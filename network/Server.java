@@ -17,7 +17,7 @@ public class Server {
     public static void main(String[] args) {
         ExecutorService pool = Executors.newFixedThreadPool(50);
 
-        try (ServerSocket server = new ServerSocket(55494)) {
+        try (ServerSocket server = new ServerSocket(2333)) {
             while (true) {
                 try {
                     Socket client = server.accept();

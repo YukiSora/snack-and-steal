@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Client {
     public static void main(String[] args) {
-        try (Socket client = new Socket("115.28.241.237", 2334)) {
+        try (Socket client = new Socket("localhost", 2334)) {
             new Thread(new InputThread(client.getInputStream())).start();
 
             OutputStream out = client.getOutputStream();
