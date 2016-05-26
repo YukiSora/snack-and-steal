@@ -61,24 +61,3 @@ public class Driver {
     }
 }
 
-
-/*
-int i = 0, j = 0;
-        try (FileInputStream in = new FileInputStream("resource/path")) {
-            int c;
-            while ((c = in.read()) != -1) {
-                if (c == '0') {
-                    path[i][j++] = 0;
-                }
-                else if (c == '1') {
-                    path[i][j++] = 1;
-                }
-                else if (c == '\n') {
-                    i++;
-                    j = 0;
-                }
-            }
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-*/
