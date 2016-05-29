@@ -13,6 +13,7 @@ import Megumin.Interact;
 
 public class Main {
     public static void main(String[] args) {
+        //init window property
         Director director = Director.getInstance();
         director.setTitle("Poi");
         director.setResizable(false);
@@ -20,6 +21,7 @@ public class Main {
         director.setBackground(Color.white);
         director.setUndecorated(true);
 
+        //init sprite
         Sprite nastu = null;
         Sprite machi = null;
         try {
@@ -29,34 +31,27 @@ public class Main {
             System.out.println(e);
         }
 
+        //init layer
         Layer character = new Layer();
         character.addSprite(machi);
         Layer guard = new Layer();
         guard.addSprite(nastu);
 
-        Scene game1 = new Scene();
-        game1.addLayer(guard);
-        //Scene game2 = new Scene();
-        //game2.addLayer(character);
-        director.setScene(game1);
+        //init scene
+        Scene scene1 = new Scene();
+        scene1.addLayer(character);
+        Scene scene2 = new Scene();
+        scene2.addLayer(guard);
+        director.setScene(scene1);
 
+        //start
         director.start();
 
-        Action w = new MoveTo(0, -5);
-        Action a = new MoveTo(-5, 0);
-        Action s = new MoveTo(0, 5);
-        Action d = new MoveTo(5, 0);
+        //init key listener and action
         Interact interact = Interact.getInstance();
-        interact.addEvent(nastu, w, KeyEvent.VK_W);
-        interact.addEvent(nastu, a, KeyEvent.VK_A);
-        interact.addEvent(nastu, s, KeyEvent.VK_S);
-        interact.addEvent(nastu, d, KeyEvent.VK_D);
-        /*
-        while (true) {
-            java.util.Scanner in = new java.util.Scanner(System.in);
-            in.nextLine();
-            nastu.runAction(action);
-        }
-        */
+        interact.addEvent(KeyEvent.VK_W, Interact.ON_KEY_PRESS, machi, new MoveTo(0, -5));
+        interact.addEvent(KeyEvent.VK_A, Interact.ON_KEY_PRESS, machi, new MoveTo(-5, 0));
+        interact.addEvent(KeyEvent.VK_S, Interact.ON_KEY_PRESS, machi, new MoveTo(0, 5));
+        interact.addEvent(KeyEvent.VK_D, Interact.ON_KEY_PRESS, machi, new MoveTo(5, 0));
     }
 }

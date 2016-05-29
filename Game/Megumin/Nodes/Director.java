@@ -55,6 +55,7 @@ public class Director extends Frame implements KeyListener, Runnable {
     @Override
     public void run () {
         while(true) {
+            interact.update();
             repaint();
             try{
                 Thread.sleep(33);
@@ -67,15 +68,17 @@ public class Director extends Frame implements KeyListener, Runnable {
     //key listener
     @Override
     public void keyTyped(KeyEvent e) {
+        interact.keyTyped(e.getKeyCode());
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        interact.keyPressed(e);
+        interact.keyPressed(e.getKeyCode());
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+        interact.keyReleased(e.getKeyCode());
     }
 
     public void setScene(Scene scene) {
