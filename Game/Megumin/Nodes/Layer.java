@@ -18,13 +18,13 @@ public class Layer {
         sprites.remove(sprite);
     }
 
-    public ArrayList getSprites() {
-        return sprites;
-    }
-
     public void render(Graphics2D g) {
         for (Sprite sprite : sprites) {
             sprite.render(g);
         }
+    }
+
+    public ArrayList getSprites() {
+        return sprites;
     }
 }

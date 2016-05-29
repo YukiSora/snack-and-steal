@@ -12,8 +12,8 @@ import Megumin.Interact;
 public class Director extends Frame implements KeyListener, Runnable {
     private static Director director;
     private Interact interact;
-    private Thread thread;
     private Scene scene;
+    private Thread thread;
 
     private Director() {
         interact = Interact.getInstance();

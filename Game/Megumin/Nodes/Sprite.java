@@ -6,8 +6,8 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-import Megumin.Point;
 import Megumin.Actions.Action;
+import Megumin.Point;
 
 public class Sprite {
     private BufferedImage image;

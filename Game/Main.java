@@ -1,15 +1,15 @@
 import java.awt.Color;
-import java.awt.image.BufferedImage;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import Megumin.Actions.Action;
 import Megumin.Actions.MoveTo;
+import Megumin.Interact;
 import Megumin.Nodes.Director;
 import Megumin.Nodes.Layer;
 import Megumin.Nodes.Scene;
 import Megumin.Nodes.Sprite;
-import Megumin.Interact;
 
 public class Main {
     public static void main(String[] args) {
