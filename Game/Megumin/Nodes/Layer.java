@@ -24,7 +24,7 @@ public class Layer {
         }
     }
 
-    public ArrayList getSprites() {
+    public ArrayList<Sprite> getSprites() {
         return sprites;
     }
 }

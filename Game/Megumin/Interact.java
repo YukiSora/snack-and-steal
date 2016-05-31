@@ -12,10 +12,12 @@ public class Interact {
     public static final int ON_KEY_PRESS = 0;
     public static final int ON_KEY_CLICK = 1;
     private static Interact interact;
+    public static int tickId;
     private HashMap<Integer, HashMap<Integer, ArrayList<Event>>> events;
     private HashMap<Integer, Boolean> keyStatus;
 
     private Interact() {
+        tickId = 0;
         events = new HashMap<Integer, HashMap<Integer, ArrayList<Event>>>();
         events.put(ON_KEY_PRESS, new HashMap<Integer, ArrayList<Event>>());
         events.put(ON_KEY_CLICK, new HashMap<Integer, ArrayList<Event>>());
@@ -60,6 +62,7 @@ public class Interact {
     }
 
     public void update() {
+        tickId = (tickId + 1) % 108000;
         for(Entry<Integer, Boolean> entry : keyStatus.entrySet()) {
             if (entry.getValue()) {
                 for (Event event : events.get(ON_KEY_PRESS).get(entry.getKey())) {

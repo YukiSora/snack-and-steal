@@ -1,15 +1,19 @@
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import javax.imageio.ImageIO;
 
 import Megumin.Actions.Action;
+import Megumin.Actions.Animate;
 import Megumin.Actions.MoveTo;
 import Megumin.Interact;
 import Megumin.Nodes.Director;
 import Megumin.Nodes.Layer;
 import Megumin.Nodes.Scene;
 import Megumin.Nodes.Sprite;
+import Megumin.Point;
 
 public class Main {
     public static void main(String[] args) {
@@ -24,34 +28,53 @@ public class Main {
         //init sprite
         Sprite nastu = null;
         Sprite machi = null;
+        Sprite map = null;
         try {
-            nastu = new Sprite("resource/image/natsu.png");
-            machi = new Sprite("resource/image/machi.png");
+            nastu = new Sprite("resource/image/natsu1.png", new Point(100, 100));
+            machi = new Sprite("resource/image/machi1.png", new Point(200, 200));
+            map = new Sprite("resource/image/small_map.png");
         } catch (IOException e) {
             System.out.println(e);
         }
 
         //init layer
-        Layer character = new Layer();
-        character.addSprite(machi);
-        Layer guard = new Layer();
-        guard.addSprite(nastu);
+        Layer characterLayer = new Layer();
+        characterLayer.addSprite(machi);
+        characterLayer.addSprite(nastu);
+        Layer mapLayer = new Layer();
+        mapLayer.addSprite(map);
 
         //init scene
-        Scene scene1 = new Scene();
-        scene1.addLayer(character);
-        Scene scene2 = new Scene();
-        scene2.addLayer(guard);
-        director.setScene(scene1);
+        Scene game = new Scene();
+        game.addLayer(mapLayer);
+        game.addLayer(characterLayer);
+        //Scene menu = new Scene();
+        //menu.addLayer(guard);
+        director.setScene(game);
 
         //start
         director.start();
 
         //init key listener and action
         Interact interact = Interact.getInstance();
-        interact.addEvent(KeyEvent.VK_W, Interact.ON_KEY_PRESS, machi, new MoveTo(0, -5));
-        interact.addEvent(KeyEvent.VK_A, Interact.ON_KEY_PRESS, machi, new MoveTo(-5, 0));
-        interact.addEvent(KeyEvent.VK_S, Interact.ON_KEY_PRESS, machi, new MoveTo(0, 5));
-        interact.addEvent(KeyEvent.VK_D, Interact.ON_KEY_PRESS, machi, new MoveTo(5, 0));
+        Action moveW = new MoveTo(0, -5);
+        Action moveA = new MoveTo(-5, 0);
+        Action moveS = new MoveTo(0, 5);
+        Action moveD = new MoveTo(5, 0);
+        Action animate = new Animate();
+        try{
+            ((Animate)animate).addImage(ImageIO.read(new File("resource/image/machi1.png")));
+            ((Animate)animate).addImage(ImageIO.read(new File("resource/image/machi2.png")));
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        moveW.addAction(animate);
+        moveA.addAction(animate);
+        moveS.addAction(animate);
+        moveD.addAction(animate);
+        interact.addEvent(KeyEvent.VK_W, Interact.ON_KEY_PRESS, machi, moveW);
+        interact.addEvent(KeyEvent.VK_A, Interact.ON_KEY_PRESS, machi, moveA);
+        interact.addEvent(KeyEvent.VK_S, Interact.ON_KEY_PRESS, machi, moveS);
+        interact.addEvent(KeyEvent.VK_D, Interact.ON_KEY_PRESS, machi, moveD);
     }
 }

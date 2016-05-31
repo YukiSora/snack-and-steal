@@ -14,5 +14,8 @@ public class MoveTo extends Action {
     @Override
     public void update(Sprite sprite) {
         sprite.getPosition().offset(x, y);
+        for (Action action : getActions()) {
+            sprite.runAction(action);
+        }
     }
 }

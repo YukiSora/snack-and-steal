@@ -71,4 +71,12 @@ public class Sprite {
     public boolean getVisible() {
         return visible;
     }
+
+    public void setImage(BufferedImage image) {
+        this.image = image;
+    }
+
+    public BufferedImage getImage() {
+        return image;
+    }
 }
