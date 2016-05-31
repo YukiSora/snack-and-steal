@@ -45,20 +45,17 @@ public class Interact {
         }
     }
 
-    public void keyTyped(int key) {
-        if (events.get(ON_KEY_CLICK).containsKey(key)) {
-            for (Event event : events.get(ON_KEY_CLICK).get(key)) {
-                event.sprite.runAction(event.action);
-            }
-        }
-    }
-
     public void keyPressed(int key) {
         keyStatus.put(key, true);
     }
 
     public void keyReleased(int key) {
         keyStatus.put(key, false);
+        if (events.get(ON_KEY_CLICK).containsKey(key)) {
+            for (Event event : events.get(ON_KEY_CLICK).get(key)) {
+                event.sprite.runAction(event.action);
+            }
+        }
     }
 
     public void update() {

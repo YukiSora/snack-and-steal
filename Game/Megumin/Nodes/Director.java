@@ -68,7 +68,6 @@ public class Director extends Frame implements KeyListener, Runnable {
     //key listener
     @Override
     public void keyTyped(KeyEvent e) {
-        interact.keyTyped(e.getKeyCode());
     }
 
     @Override

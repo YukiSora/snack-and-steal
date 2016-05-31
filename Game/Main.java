@@ -78,5 +78,12 @@ public class Main {
         interact.addEvent(KeyEvent.VK_A, Interact.ON_KEY_PRESS, machi, moveA);
         interact.addEvent(KeyEvent.VK_S, Interact.ON_KEY_PRESS, machi, moveS);
         interact.addEvent(KeyEvent.VK_D, Interact.ON_KEY_PRESS, machi, moveD);
+
+        interact.addEvent(KeyEvent.VK_ESCAPE, Interact.ON_KEY_CLICK, map, new Action() {
+            @Override
+            public void update(Sprite sprite) {
+                System.exit(1);
+            }
+        });
     }
 }
