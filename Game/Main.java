@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 import Megumin.Actions.Action;
 import Megumin.Actions.Animate;
 import Megumin.Actions.MoveTo;
-import Megumin.Interact;
+import Megumin.Actions.Interact;
 import Megumin.Nodes.Director;
 import Megumin.Nodes.Layer;
 import Megumin.Nodes.Scene;

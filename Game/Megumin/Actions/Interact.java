@@ -1,11 +1,10 @@
-package Megumin;
+package Megumin.Actions;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
-import Megumin.Actions.Action;
 import Megumin.Nodes.Sprite;
 
 public class Interact {
@@ -53,7 +52,7 @@ public class Interact {
         keyStatus.put(key, false);
         if (events.get(ON_KEY_CLICK).containsKey(key)) {
             for (Event event : events.get(ON_KEY_CLICK).get(key)) {
-                event.sprite.runAction(event.action);
+                event.getSprite().runAction(event.getAction());
             }
         }
     }
@@ -63,24 +62,9 @@ public class Interact {
         for(Entry<Integer, Boolean> entry : keyStatus.entrySet()) {
             if (entry.getValue() && events.get(ON_KEY_PRESS).containsKey(entry.getKey())) {
                 for (Event event : events.get(ON_KEY_PRESS).get(entry.getKey())) {
-                    event.sprite.runAction(event.action);
+                    event.getSprite().runAction(event.getAction());
                 }
             }
-        }
-    }
-
-    class Event {
-        public Sprite sprite;
-        public Action action;
-
-        Event(Sprite sprite, Action action) {
-            this.sprite = sprite;
-            this.action = action;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            return ((Event)o).sprite.equals(sprite) && ((Event)o).action.equals(action);
         }
     }
 }

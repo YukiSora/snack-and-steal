@@ -4,7 +4,6 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import Megumin.Nodes.Sprite;
-import Megumin.Interact;
 
 public class Animate extends Action {
     private ArrayList<BufferedImage> images;

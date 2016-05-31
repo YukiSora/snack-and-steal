@@ -7,7 +7,7 @@ import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import Megumin.Interact;
+import Megumin.Actions.Interact;
 
 public class Director extends Frame implements KeyListener, Runnable {
     private static Director director;
