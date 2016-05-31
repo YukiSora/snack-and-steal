@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 import Megumin.Actions.Action;
 import Megumin.Actions.Animate;
 import Megumin.Actions.MoveTo;
+import Megumin.Actions.Infinite;
 import Megumin.Actions.Interact;
 import Megumin.Nodes.Director;
 import Megumin.Nodes.Layer;
@@ -78,11 +79,19 @@ public class Main {
         interact.addEvent(KeyEvent.VK_A, Interact.ON_KEY_PRESS, machi, moveA);
         interact.addEvent(KeyEvent.VK_S, Interact.ON_KEY_PRESS, machi, moveS);
         interact.addEvent(KeyEvent.VK_D, Interact.ON_KEY_PRESS, machi, moveD);
-
         interact.addEvent(KeyEvent.VK_ESCAPE, Interact.ON_KEY_CLICK, map, new Action() {
             @Override
             public void update(Sprite sprite) {
                 System.exit(1);
+            }
+        });
+
+        Infinite infinite = Infinite.getInstance();
+        infinite.addEvent(nastu, new Action() {
+            @Override
+            public void update(Sprite sprite) {
+                int x = sprite.getPosition().getX() + 5 > 1280 ? -1280 : 5;
+                sprite.runAction(new MoveTo(x, 0));
             }
         });
     }

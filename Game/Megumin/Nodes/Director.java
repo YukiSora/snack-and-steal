@@ -7,15 +7,18 @@ import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import Megumin.Actions.Infinite;
 import Megumin.Actions.Interact;
 
 public class Director extends Frame implements KeyListener, Runnable {
     private static Director director;
+    private Infinite infinite;
     private Interact interact;
     private Scene scene;
     private Thread thread;
 
     private Director() {
+        infinite = Infinite.getInstance();
         interact = Interact.getInstance();
         thread = new Thread(this);
         addKeyListener(this);
@@ -56,6 +59,7 @@ public class Director extends Frame implements KeyListener, Runnable {
     public void run () {
         while(true) {
             interact.update();
+            infinite.update();
             repaint();
             try{
                 Thread.sleep(33);
