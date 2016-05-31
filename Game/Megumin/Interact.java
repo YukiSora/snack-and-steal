@@ -64,7 +64,7 @@ public class Interact {
     public void update() {
         tickId = (tickId + 1) % 108000;
         for(Entry<Integer, Boolean> entry : keyStatus.entrySet()) {
-            if (entry.getValue()) {
+            if (entry.getValue() && events.get(ON_KEY_PRESS).get(entry.getKey()) != null) {
                 for (Event event : events.get(ON_KEY_PRESS).get(entry.getKey())) {
                     event.sprite.runAction(event.action);
                 }
