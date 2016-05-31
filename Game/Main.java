@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.event.MouseEvent;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -83,6 +84,13 @@ public class Main {
             @Override
             public void update(Sprite sprite) {
                 System.exit(1);
+            }
+        });
+
+        interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, map, new Action() {
+            @Override
+            public void update(Sprite sprite) {
+                System.out.println(233);
             }
         });
 

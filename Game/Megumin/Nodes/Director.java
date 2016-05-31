@@ -6,11 +6,13 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import Megumin.Actions.Infinite;
 import Megumin.Actions.Interact;
 
-public class Director extends Frame implements KeyListener, Runnable {
+public class Director extends Frame implements KeyListener, MouseListener, Runnable {
     private static Director director;
     private Infinite infinite;
     private Interact interact;
@@ -22,6 +24,7 @@ public class Director extends Frame implements KeyListener, Runnable {
         interact = Interact.getInstance();
         thread = new Thread(this);
         addKeyListener(this);
+        addMouseListener(this);
     }
 
     public static Director getInstance() {
@@ -82,6 +85,27 @@ public class Director extends Frame implements KeyListener, Runnable {
     @Override
     public void keyReleased(KeyEvent e) {
         interact.keyReleased(e.getKeyCode());
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        interact.mouseClicked(e.getX(), e.getY());
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
     }
 
     public void setScene(Scene scene) {

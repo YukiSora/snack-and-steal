@@ -1,5 +1,6 @@
 package Megumin.Actions;
 
+import java.awt.event.MouseEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +11,7 @@ import Megumin.Nodes.Sprite;
 public class Interact {
     public static final int ON_KEY_PRESS = 0;
     public static final int ON_KEY_CLICK = 1;
+    public static final int ON_MOUSE_CLICK = 1;
     private static Interact interact;
     public static int tickId;
     private HashMap<Integer, HashMap<Integer, ArrayList<Event>>> events;
@@ -20,6 +22,7 @@ public class Interact {
         events = new HashMap<Integer, HashMap<Integer, ArrayList<Event>>>();
         events.put(ON_KEY_PRESS, new HashMap<Integer, ArrayList<Event>>());
         events.put(ON_KEY_CLICK, new HashMap<Integer, ArrayList<Event>>());
+        events.put(ON_MOUSE_CLICK, new HashMap<Integer, ArrayList<Event>>());
         keyStatus = new HashMap<Integer, Boolean>();
     }
 
@@ -52,6 +55,14 @@ public class Interact {
         keyStatus.put(key, false);
         if (events.get(ON_KEY_CLICK).containsKey(key)) {
             for (Event event : events.get(ON_KEY_CLICK).get(key)) {
+                event.getSprite().runAction(event.getAction());
+            }
+        }
+    }
+
+    public void mouseClicked(int x, int y) {
+        if (events.get(ON_MOUSE_CLICK).containsKey(MouseEvent.BUTTON1)) {
+            for (Event event : events.get(ON_MOUSE_CLICK).get(MouseEvent.BUTTON1)) {
                 event.getSprite().runAction(event.getAction());
             }
         }
