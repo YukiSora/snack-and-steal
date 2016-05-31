@@ -38,16 +38,18 @@ public class Main {
         }
 
         //init layer
-        Layer characterLayer = new Layer();
-        characterLayer.addSprite(machi);
-        characterLayer.addSprite(nastu);
+        Layer otherPlayerLayer = new Layer();
+        otherPlayerLayer.addSprite(nastu);
+        Layer ownPlayerLayer = new Layer();
+        ownPlayerLayer.addSprite(machi);
         Layer mapLayer = new Layer();
         mapLayer.addSprite(map);
 
         //init scene
         Scene game = new Scene();
-        game.addLayer(mapLayer);
-        game.addLayer(characterLayer);
+        game.addLayer(otherPlayerLayer);
+        game.addLayer(ownPlayerLayer);
+        game.addLayer(mapLayer, 0);
         //Scene menu = new Scene();
         //menu.addLayer(guard);
         director.setScene(game);

@@ -14,6 +14,10 @@ public class Scene {
         layers.add(layer);
     }
 
+    public void addLayer(Layer layer, int index) {
+        layers.add(index, layer);
+    }
+
     public void removeLayer(Layer layer) {
         layers.remove(layer);
     }
