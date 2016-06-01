@@ -22,7 +22,7 @@ public class Audio implements Runnable{
     }
 
     public void play() {
-        run();
+    	clip.start();
     }
 
     public void loop() {
@@ -42,6 +42,7 @@ public class Audio implements Runnable{
 
     @Override
     public void run() {
+    	System.out.println("Playing Audio..");
         play();
     }
 }
