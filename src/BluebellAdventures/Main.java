@@ -33,6 +33,72 @@ public class Main {
 		director.setBackground(Color.white);
 		director.setUndecorated(true);
 
+		Sprite system = new Sprite();
+
+		interact.addEvent(KeyEvent.VK_ESCAPE, Interact.ON_KEY_CLICK, system, new Action() {
+			@Override
+			public void update(Sprite sprite) {
+				System.exit(1);
+			}
+		});
+
+		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, system, new Action() {
+			@Override
+			public void update(Sprite sprite) {
+				System.out.println("left mouse clicked");
+			}
+		});
+
+		Scene menu = createMenuScene();
+		Scene game = createGameScene();
+
+		//start
+		director.setScene(menu);
+		director.start();
+		
+		new java.util.Scanner(System.in).nextLine();
+		
+		director.setScene(game);
+	}
+	
+	public static Scene createMenuScene() {
+		//init sprite
+		Sprite single = null;
+		Sprite multi = null;
+		Sprite setting = null;
+		Sprite exit = null;
+		Sprite bg = null;
+		try {
+			single = new Sprite("resource/image/tag_single.png", new Point(200, 100));
+			multi = new Sprite("resource/image/tag_multi.png", new Point(200, 250));
+			setting = new Sprite("resource/image/tag_setting.png", new Point(200, 400));
+			exit = new Sprite("resource/image/tag_quit.png", new Point(200, 550));
+			bg = new Sprite("resource/image/menu_bg.jpeg");
+		} catch (IOException e) {
+			System.out.println(e);
+		}
+
+		//init layer
+		Layer tabLayer = new Layer();
+		tabLayer.addSprite(single);
+		tabLayer.addSprite(multi);
+		tabLayer.addSprite(setting);
+		tabLayer.addSprite(exit);
+		Layer mapLayer = new Layer();
+		mapLayer.addSprite(bg);
+
+		//init scene
+		Scene menu = new Scene();
+		menu.addLayer(tabLayer);
+		menu.addLayer(mapLayer, 0);
+
+		return menu;
+	}
+	
+	public static Scene createGameScene() {
+		Infinite infinite = Infinite.getInstance();
+		Interact interact = Interact.getInstance();
+
 		//init sprite
 		Sprite nastu = null;
 		Sprite machi = null;
@@ -63,12 +129,6 @@ public class Main {
 		game.addLayer(ownPlayerLayer);
 		game.addLayer(mapLayer, 0);
 		game.addLayer(snackLayer, 1);
-		//Scene menu = new Scene();
-		//menu.addLayer(menu);
-
-		//start
-		director.setScene(game);
-		director.start();
 
 		//init key listener and action
 		//Action moveW = new MoveTo(0, -5);
@@ -109,19 +169,6 @@ public class Main {
 		interact.addEvent(KeyEvent.VK_A, Interact.ON_KEY_PRESS, machi, moveA);
 		interact.addEvent(KeyEvent.VK_S, Interact.ON_KEY_PRESS, machi, moveS);
 		interact.addEvent(KeyEvent.VK_D, Interact.ON_KEY_PRESS, machi, moveD);
-		interact.addEvent(KeyEvent.VK_ESCAPE, Interact.ON_KEY_CLICK, map, new Action() {
-			@Override
-			public void update(Sprite sprite) {
-				System.exit(1);
-			}
-		});
-
-		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, map, new Action() {
-			@Override
-			public void update(Sprite sprite) {
-				System.out.println("left mouse clicked");
-			}
-		});
 
 		infinite.addEvent(nastu, new Action() {
 			@Override
@@ -130,5 +177,7 @@ public class Main {
 				sprite.runAction(new MoveTo(x, 0));
 			}
 		});
+
+		return game;
 	}
 }
