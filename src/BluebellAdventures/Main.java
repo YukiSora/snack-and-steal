@@ -16,6 +16,7 @@ import Megumin.Actions.MoveTo;
 import Megumin.Actions.MouseCrash;
 import Megumin.Actions.Infinite;
 import Megumin.Actions.Interact;
+import Megumin.Actions.Quit;
 import Megumin.Nodes.Director;
 import Megumin.Nodes.Layer;
 import Megumin.Nodes.Scene;
@@ -48,8 +49,12 @@ public class Main {
 		Scene game = createGameScene();
 
 		Sprite single = menu.getSpriteByName("single");
-		Action mouseCrash = new MouseCrash(new ChangeScene(game));
-		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, single, mouseCrash);
+		Action changeScene = new MouseCrash(new ChangeScene(game));
+		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, single, changeScene);
+
+		Sprite exit = menu.getSpriteByName("exit");
+		Action quitGame = new MouseCrash(new Quit());
+		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, exit, quitGame);
 
 		//start
 		director.setScene(menu);
@@ -77,6 +82,7 @@ public class Main {
 			System.out.println(e);
 		}
 		single.setName("single");
+		exit.setName("exit");
 
 		//init layer
 		Layer tabLayer = new Layer();
