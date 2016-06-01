@@ -6,6 +6,7 @@ import Megumin.Nodes.Sprite;
 
 public class ChangeScene extends Action {
     private Scene scene;
+
     public ChangeScene(Scene scene) {
         this.scene = scene;
     }
@@ -13,9 +14,7 @@ public class ChangeScene extends Action {
     @Override
     public void update(Sprite sprite) {
         Director.getInstance().setScene(scene);
-        for (Action action : getActions()) {
-            sprite.runAction(action);
-        }
+        super.update(sprite);
     }
 
     public Scene getScene() {

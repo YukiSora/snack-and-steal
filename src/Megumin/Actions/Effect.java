@@ -16,6 +16,7 @@ abstract public class Effect extends Action {
 
     @Override
     public void update(Sprite sprite) {
+        super.update(sprite);
     }
 
     public Sprite getSprite() {

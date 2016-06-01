@@ -11,7 +11,11 @@ abstract public class Action {
         actions = new ArrayList<>();
     }
 
-    abstract public void update(Sprite sprite);
+    public void update(Sprite sprite) {
+        for (Action action : actions) {
+            sprite.runAction(action);
+        }
+    }
 
     public void addAction(Action action) {
         actions.add(action);

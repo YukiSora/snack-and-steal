@@ -36,5 +36,6 @@ public class Animate extends Action {
             }
             sprite.setImage(images.get(index));
         }
+        super.update(sprite);
     }
 }

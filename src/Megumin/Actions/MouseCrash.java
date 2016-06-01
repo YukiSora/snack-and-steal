@@ -20,9 +20,7 @@ public class MouseCrash extends Action {
         if (x <= this.x && this.x <= x + w && y <= this.y && this.y <= y + h) {
             sprite.runAction(action);
         }
-        for (Action action : getActions()) {
-            sprite.runAction(action);
-        }
+        super.update(sprite);
     }
 
     public Action getAction() {
