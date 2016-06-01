@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+import Megumin.Actions.MouseCrash;
 import Megumin.Nodes.Sprite;
 
 public class Interact {
@@ -63,6 +64,8 @@ public class Interact {
     public void mouseClicked(int x, int y) {
         if (events.get(ON_MOUSE_CLICK).containsKey(MouseEvent.BUTTON1)) {
             for (Event event : events.get(ON_MOUSE_CLICK).get(MouseEvent.BUTTON1)) {
+                ((MouseCrash)event.getAction()).setX(x);
+                ((MouseCrash)event.getAction()).setY(y);
                 event.getSprite().runAction(event.getAction());
             }
         }

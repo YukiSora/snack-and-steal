@@ -16,12 +16,14 @@ public class Sprite {
     private Point position;
     private Point size;
     private boolean visible;
+    private String name;
 
     public Sprite() {
         image = null;
         position = null;
         size = null;
         visible = false;
+        name = "";
     }
 
     public Sprite(String filename) throws IOException {
@@ -41,6 +43,7 @@ public class Sprite {
         this.position = position;
         size = new Point(image.getWidth(), image.getHeight());
         visible = true;
+        name = "";
     }
 
     public void render(Graphics2D g) {
@@ -110,5 +113,13 @@ public class Sprite {
 
     public BufferedImage getImage() {
         return image;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

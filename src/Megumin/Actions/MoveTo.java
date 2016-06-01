@@ -31,7 +31,7 @@ public class MoveTo extends Action {
         return y;
     }
 
-    public void getY(int y) {
+    public void setY(int y) {
         this.y = y;
     }
 }

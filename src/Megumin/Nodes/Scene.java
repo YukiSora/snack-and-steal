@@ -22,6 +22,18 @@ public class Scene {
         layers.remove(layer);
     }
 
+    public Sprite getSpriteByName(String name) {
+        for (Layer layer : layers) {
+            for (Sprite sprite : layer.getSprites()) {
+                if (sprite.getName().equals(name)) {
+                    return sprite;
+                }
+            }
+        }
+
+        return null;
+    }
+
     public void render(Graphics2D g) {
         for (Layer layer : layers) {
             layer.render(g);

@@ -10,8 +10,10 @@ import javax.imageio.ImageIO;
 
 import Megumin.Actions.Action;
 import Megumin.Actions.Animate;
+import Megumin.Actions.ChangeScene;
 import Megumin.Actions.Effect;
 import Megumin.Actions.MoveTo;
+import Megumin.Actions.MouseCrash;
 import Megumin.Actions.Infinite;
 import Megumin.Actions.Interact;
 import Megumin.Nodes.Director;
@@ -42,15 +44,12 @@ public class Main {
 			}
 		});
 
-		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, system, new Action() {
-			@Override
-			public void update(Sprite sprite) {
-				System.out.println("left mouse clicked");
-			}
-		});
-
 		Scene menu = createMenuScene();
 		Scene game = createGameScene();
+
+		Sprite single = menu.getSpriteByName("single");
+		Action mouseCrash = new MouseCrash(new ChangeScene(game));
+		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, single, mouseCrash);
 
 		//start
 		director.setScene(menu);
@@ -77,6 +76,7 @@ public class Main {
 		} catch (IOException e) {
 			System.out.println(e);
 		}
+		single.setName("single");
 
 		//init layer
 		Layer tabLayer = new Layer();
