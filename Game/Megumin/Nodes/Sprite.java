@@ -4,9 +4,11 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 import Megumin.Actions.Action;
+import Megumin.Actions.Effect;
 import Megumin.Point;
 
 public class Sprite {
@@ -56,12 +58,42 @@ public class Sprite {
         return action;
     }
 
+    public boolean checkCrash(ArrayList<Sprite> sprites, Action action) {
+        boolean crash = false;
+        int x1 = position.getX();
+        int y1 = position.getY();
+        int w1 = size.getX();
+        int h1 = size.getY();
+        for (Sprite sprite : sprites) {
+            int x2 = sprite.getPosition().getX();
+            int y2 = sprite.getPosition().getY();
+            int w2 = sprite.getSize().getX();
+            int h2 = sprite.getSize().getY();
+            if (Math.max(Math.abs(x2 - (x1 + w1)), Math.abs(x2 + w2 - x1)) < w1 + w2 &&
+                Math.max(Math.abs(y2 - (y1 + h1)), Math.abs(y2 + h2 - y1)) < h1 + h2) {
+                ((Effect)action).setSprite(sprite);
+                runAction(action);
+                crash = true;
+            }
+        }
+
+        return crash;
+    }
+
     public Point getPosition() {
         return position;
     }
 
     public void setPosition(Point position) {
         this.position = position;
+    }
+
+    public Point getSize() {
+        return size;
+    }
+
+    public void setSize(Point size) {
+        this.size = size;
     }
 
     public void setVisible(boolean visible) {

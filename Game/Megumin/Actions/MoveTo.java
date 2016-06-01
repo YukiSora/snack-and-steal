@@ -18,4 +18,20 @@ public class MoveTo extends Action {
             sprite.runAction(action);
         }
     }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void getY(int y) {
+        this.y = y;
+    }
 }
