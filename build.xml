@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="bluebell-adventures" default="run" basedir=".">
+    <property name="src" value="src" />
+    <property name="dest" value="bin" />
+    <property name="game" value="BluebellAdventures" />
+
+    <target name="init">
+        <mkdir dir="${dest}" />
+        <echo message="Create bin/"/>
+    </target>
+
+    <target name="compile" depends="init">
+        <javac srcdir="${src}" destdir="${dest}" includeantruntime="false" />
+        <echo message="Compile"/>
+    </target>
+
+    <target name="run" depends="compile">
+        <java classname="${game}.Main" classpath="${dest}" />
+        <echo message="Run"/>
+    </target>
+
+    <target name="clean">  
+       <delete dir="${dest}" />
+    </target> 
+</project>
