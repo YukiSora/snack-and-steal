@@ -27,6 +27,7 @@ public class AudioEngine{
 	// Methods
 	public void addAudio(String name, Audio audio){
 		audios.put(name, audio);
+		stop(name);
 	}
 	
 	public void removeAudio(Audio audio){
@@ -38,6 +39,7 @@ public class AudioEngine{
 	}
 	
 	public void play(String name){
+		System.out.println("Playing Audio..");
 		audios.get(name).play();
 	}
 	

@@ -16,11 +16,11 @@ public class Audio implements Runnable{
         } catch (LineUnavailableException | UnsupportedAudioFileException e) {
             close();
             throw new IOException("Unavailable audio");
-        }
+        } 
         thread = new Thread(this);
         thread.start();
     }
-
+    
     public void play() {
     	clip.start();
     }
@@ -42,7 +42,6 @@ public class Audio implements Runnable{
 
     @Override
     public void run() {
-    	System.out.println("Playing Audio..");
-        play();
+//        play();
     }
 }
