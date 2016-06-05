@@ -108,6 +108,10 @@ public class Director extends Frame implements KeyListener, MouseListener, Runna
     public void mouseReleased(MouseEvent e) {
     }
 
+    public Scene getScene() {
+        return scene;
+    }
+
     public void setScene(Scene scene) {
         this.scene = scene;
     }

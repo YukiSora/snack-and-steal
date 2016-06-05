@@ -4,7 +4,8 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Iterator;
 import javax.imageio.ImageIO;
 
 import Megumin.Actions.Action;
@@ -61,13 +62,15 @@ public class Sprite {
         return action;
     }
 
-    public boolean checkCrash(ArrayList<Sprite> sprites, Action action) {
+    public boolean checkCrash(CopyOnWriteArrayList<Sprite> sprites, Action action) {
         boolean crash = false;
         int x1 = position.getX();
         int y1 = position.getY();
         int w1 = size.getX();
         int h1 = size.getY();
-        for (Sprite sprite : sprites) {
+        Iterator it = sprites.iterator();
+        while (it.hasNext()) {
+            Sprite sprite = (Sprite)it.next();
             int x2 = sprite.getPosition().getX();
             int y2 = sprite.getPosition().getY();
             int w2 = sprite.getSize().getX();

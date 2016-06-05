@@ -1,13 +1,13 @@
 package Megumin.Nodes;
 
 import java.awt.Graphics2D;
-import java.util.LinkedList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Scene {
-    private LinkedList<Layer> layers;
+    private CopyOnWriteArrayList<Layer> layers;
 
     public Scene() {
-        layers = new LinkedList<>();
+        layers = new CopyOnWriteArrayList<Layer>();
     }
 
     public void addLayer(Layer layer) {
@@ -38,5 +38,9 @@ public class Scene {
         for (Layer layer : layers) {
             layer.render(g);
         }
+    }
+
+    public CopyOnWriteArrayList<Layer> getLayers() {
+        return layers;
     }
 }

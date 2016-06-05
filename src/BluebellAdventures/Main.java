@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
 import javax.imageio.ImageIO;
 
 import Megumin.Actions.Action;
@@ -144,7 +145,8 @@ public class Main {
 				if (!sprite.checkCrash(snackLayer.getSprites(), new Effect() {
 					@Override
 					public void update(Sprite sprite) {
-						sprite.setSize(getSprite().getSize());
+						//sprite.setSize(getSprite().getSize());
+						Director.getInstance().getScene().getLayers().get(1).removeSprite(getSprite());
 					}
 				})) {
 					sprite.getPosition().offset(getX(), getY());

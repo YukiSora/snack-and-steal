@@ -1,13 +1,13 @@
 package Megumin.Nodes;
 
 import java.awt.Graphics2D;
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Layer {
-    private ArrayList<Sprite> sprites;
+    private CopyOnWriteArrayList<Sprite> sprites;
 
     public Layer() {
-        sprites = new ArrayList<>();
+        sprites = new CopyOnWriteArrayList<Sprite>();
     }
 
     public void addSprite(Sprite sprite) {
@@ -24,7 +24,7 @@ public class Layer {
         }
     }
 
-    public ArrayList<Sprite> getSprites() {
+    public CopyOnWriteArrayList<Sprite> getSprites() {
         return sprites;
     }
 }
