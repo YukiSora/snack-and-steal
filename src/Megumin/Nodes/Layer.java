@@ -1,6 +1,7 @@
 package Megumin.Nodes;
 
 import java.awt.Graphics2D;
+import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Layer {
@@ -19,7 +20,9 @@ public class Layer {
     }
 
     public void render(Graphics2D g) {
-        for (Sprite sprite : sprites) {
+        Iterator it = sprites.iterator();
+        while (it.hasNext()) {
+            Sprite sprite = (Sprite)it.next();
             sprite.render(g);
         }
     }

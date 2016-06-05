@@ -2,9 +2,10 @@ package Megumin.Actions;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map.Entry;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import Megumin.Actions.MouseCrash;
 import Megumin.Nodes.Sprite;
@@ -15,15 +16,15 @@ public class Interact {
     public static final int ON_MOUSE_CLICK = 1;
     private static Interact interact;
     public static int tickId;
-    private HashMap<Integer, HashMap<Integer, ArrayList<Event>>> events;
+    private HashMap<Integer, HashMap<Integer, CopyOnWriteArrayList<Event>>> events;
     private HashMap<Integer, Boolean> keyStatus;
 
     private Interact() {
         tickId = 0;
-        events = new HashMap<Integer, HashMap<Integer, ArrayList<Event>>>();
-        events.put(ON_KEY_PRESS, new HashMap<Integer, ArrayList<Event>>());
-        events.put(ON_KEY_CLICK, new HashMap<Integer, ArrayList<Event>>());
-        events.put(ON_MOUSE_CLICK, new HashMap<Integer, ArrayList<Event>>());
+        events = new HashMap<Integer, HashMap<Integer, CopyOnWriteArrayList<Event>>>();
+        events.put(ON_KEY_PRESS, new HashMap<Integer, CopyOnWriteArrayList<Event>>());
+        events.put(ON_KEY_CLICK, new HashMap<Integer, CopyOnWriteArrayList<Event>>());
+        events.put(ON_MOUSE_CLICK, new HashMap<Integer, CopyOnWriteArrayList<Event>>());
         keyStatus = new HashMap<Integer, Boolean>();
     }
 
@@ -37,7 +38,7 @@ public class Interact {
 
     public void addEvent(int key, int method, Sprite sprite, Action action) {
         if (!events.get(method).containsKey(key)) {
-            events.get(method).put(key, new ArrayList<Event>());
+            events.get(method).put(key, new CopyOnWriteArrayList<Event>());
         }
         events.get(method).get(key).add(new Event(sprite, action));
     }
@@ -55,7 +56,9 @@ public class Interact {
     public void keyReleased(int key) {
         keyStatus.put(key, false);
         if (events.get(ON_KEY_CLICK).containsKey(key)) {
-            for (Event event : events.get(ON_KEY_CLICK).get(key)) {
+            Iterator it = events.get(ON_KEY_CLICK).get(key).iterator();
+            while (it.hasNext()) {
+                Event event = (Event)it.next();
                 event.getSprite().runAction(event.getAction());
             }
         }
@@ -63,7 +66,9 @@ public class Interact {
 
     public void mouseClicked(int x, int y) {
         if (events.get(ON_MOUSE_CLICK).containsKey(MouseEvent.BUTTON1)) {
-            for (Event event : events.get(ON_MOUSE_CLICK).get(MouseEvent.BUTTON1)) {
+            Iterator it = events.get(ON_MOUSE_CLICK).get(MouseEvent.BUTTON1).iterator();
+            while (it.hasNext()) {
+                Event event = (Event)it.next();
                 ((MouseCrash)event.getAction()).setX(x);
                 ((MouseCrash)event.getAction()).setY(y);
                 event.getSprite().runAction(event.getAction());
@@ -75,7 +80,9 @@ public class Interact {
         tickId = (tickId + 1) % 108000;
         for(Entry<Integer, Boolean> entry : keyStatus.entrySet()) {
             if (entry.getValue() && events.get(ON_KEY_PRESS).containsKey(entry.getKey())) {
-                for (Event event : events.get(ON_KEY_PRESS).get(entry.getKey())) {
+                Iterator it = events.get(ON_KEY_PRESS).get(entry.getKey()).iterator();
+                while (it.hasNext()) {
+                    Event event = (Event)it.next();
                     event.getSprite().runAction(event.getAction());
                 }
             }

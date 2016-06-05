@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.LinkedList;
 import javax.imageio.ImageIO;
 
@@ -150,7 +151,9 @@ public class Main {
 					}
 				})) {
 					sprite.getPosition().offset(getX(), getY());
-					for (Action action : getActions()) {
+					Iterator it = getActions().iterator();
+					while (it.hasNext()) {
+						Action action = (Action)it.next();
 						sprite.runAction(action);
 					}
 				}

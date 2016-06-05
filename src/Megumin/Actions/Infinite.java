@@ -1,15 +1,16 @@
 package Megumin.Actions;
 
-import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import Megumin.Nodes.Sprite;
 
 public class Infinite {
     private static Infinite infinite;
-    private ArrayList<Event> events;
+    private CopyOnWriteArrayList<Event> events;
 
     public Infinite() {
-        events = new ArrayList<>();
+        events = new CopyOnWriteArrayList<>();
     }
 
     public static Infinite getInstance() {
@@ -33,7 +34,9 @@ public class Infinite {
     }
 
     public void update() {
-        for (Event event : events) {
+        Iterator it = events.iterator();
+        while (it.hasNext()) {
+            Event event = (Event)it.next();
             event.getSprite().runAction(event.getAction());
         }
     }

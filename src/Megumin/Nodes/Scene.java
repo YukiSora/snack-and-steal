@@ -1,6 +1,7 @@
 package Megumin.Nodes;
 
 import java.awt.Graphics2D;
+import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Scene {
@@ -23,8 +24,11 @@ public class Scene {
     }
 
     public Sprite getSpriteByName(String name) {
-        for (Layer layer : layers) {
-            for (Sprite sprite : layer.getSprites()) {
+        Iterator layerIt = layers.iterator();
+        while (layerIt.hasNext()) {
+            Iterator spriteIt = ((Layer)layerIt.next()).getSprites().iterator();
+            while (spriteIt.hasNext()) {
+                Sprite sprite = (Sprite)spriteIt.next();
                 if (sprite.getName().equals(name)) {
                     return sprite;
                 }
@@ -35,7 +39,9 @@ public class Scene {
     }
 
     public void render(Graphics2D g) {
-        for (Layer layer : layers) {
+        Iterator it = layers.iterator();
+        while (it.hasNext()) {
+            Layer layer = (Layer)it.next();
             layer.render(g);
         }
     }

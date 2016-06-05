@@ -1,19 +1,21 @@
 package Megumin.Actions;
 
-import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import Megumin.Nodes.Sprite;
 
 abstract public class Action {
-    private ArrayList<Action> actions;
+    private CopyOnWriteArrayList<Action> actions;
 
     public Action() {
-        actions = new ArrayList<>();
+        actions = new CopyOnWriteArrayList<>();
     }
 
     public void update(Sprite sprite) {
-        for (Action action : actions) {
-            sprite.runAction(action);
+        Iterator it = actions.iterator();
+        while (it.hasNext()) {
+            sprite.runAction((Action)it.next());
         }
     }
 
@@ -25,7 +27,7 @@ abstract public class Action {
         actions.remove(action);
     }
 
-    public ArrayList<Action> getActions() {
+    public CopyOnWriteArrayList<Action> getActions() {
         return actions;
     }
 }
