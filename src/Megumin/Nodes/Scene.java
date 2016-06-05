@@ -24,14 +24,11 @@ public class Scene {
     }
 
     public Sprite getSpriteByName(String name) {
-        Iterator layerIt = layers.iterator();
-        while (layerIt.hasNext()) {
-            Iterator spriteIt = ((Layer)layerIt.next()).getSprites().iterator();
-            while (spriteIt.hasNext()) {
-                Sprite sprite = (Sprite)spriteIt.next();
-                if (sprite.getName().equals(name)) {
-                    return sprite;
-                }
+        Iterator it = layers.iterator();
+        while (it.hasNext()) {
+            Sprite sprite = ((Layer)it.next()).getSpriteByName(name);
+            if (sprite != null) {
+                return sprite;
             }
         }
 

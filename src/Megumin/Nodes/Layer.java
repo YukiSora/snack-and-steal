@@ -21,6 +21,18 @@ public class Layer {
         sprites.remove(sprite);
     }
 
+    public Sprite getSpriteByName(String name) {
+        Iterator it = sprites.iterator();
+        while (it.hasNext()) {
+            Sprite sprite = (Sprite)it.next();
+            if (sprite.getName().equals(name)) {
+                return sprite;
+            }
+        }
+
+        return null;
+    }
+
     public void render(Graphics2D g) {
         Iterator it = sprites.iterator();
         while (it.hasNext()) {
