@@ -6,9 +6,11 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Layer {
     private CopyOnWriteArrayList<Sprite> sprites;
+    private String name;
 
     public Layer() {
         sprites = new CopyOnWriteArrayList<Sprite>();
+        name = "";
     }
 
     public void addSprite(Sprite sprite) {
@@ -29,5 +31,13 @@ public class Layer {
 
     public CopyOnWriteArrayList<Sprite> getSprites() {
         return sprites;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -38,6 +38,18 @@ public class Scene {
         return null;
     }
 
+    public Layer getLayerByName(String name) {
+        Iterator layerIt = layers.iterator();
+        while (layerIt.hasNext()) {
+            Layer layer = (Layer)layerIt.next();
+            if (layer.getName().equals(name)) {
+                return layer;
+            }
+        }
+
+        return null;
+    }
+
     public void render(Graphics2D g) {
         Iterator it = layers.iterator();
         while (it.hasNext()) {

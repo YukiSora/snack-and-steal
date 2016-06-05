@@ -128,6 +128,7 @@ public class Main {
 		ownPlayerLayer.addSprite(machi);
 		Layer snackLayer = new Layer();
 		snackLayer.addSprite(snack);
+		snackLayer.setName("snack");
 		Layer mapLayer = new Layer();
 		mapLayer.addSprite(map);
 
@@ -147,7 +148,7 @@ public class Main {
 					@Override
 					public void update(Sprite sprite) {
 						//sprite.setSize(getSprite().getSize());
-						Director.getInstance().getScene().getLayers().get(1).removeSprite(getSprite());
+						Director.getInstance().getScene().getLayerByName("snack").removeSprite(getSprite());
 					}
 				})) {
 					sprite.getPosition().offset(getX(), getY());
