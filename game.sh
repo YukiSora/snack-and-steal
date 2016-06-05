@@ -1,8 +1,8 @@
 #!/bin/bash
 
 if [[ $1 == 'make' ]]; then
-    javac -d bin -classpath src src/BluebellAdventures/Main.java
+    javac -d bin -classpath src src/BluebellAdventures/$2.java
 elif [[ $1 == 'run' ]]; then
-    java -classpath bin BluebellAdventures/Main
+    java -classpath bin BluebellAdventures/$2
 fi
 
