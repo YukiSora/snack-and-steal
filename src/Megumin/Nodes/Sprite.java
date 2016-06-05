@@ -48,12 +48,9 @@ public class Sprite {
     }
 
     public void render(Graphics2D g) {
-        g.drawImage(image,
-                    position.getX(), position.getY(),
-                    position.getX() + size.getX(), position.getY() + size.getY(),
-                    0, 0,
-                    size.getX(), size.getY(),
-                    null);
+        if (visible) {
+            g.drawImage(image, position.getX(), position.getY(), null);
+        }
     }
 
     public Action runAction(Action action) {
