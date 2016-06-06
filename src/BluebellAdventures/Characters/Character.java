@@ -8,12 +8,15 @@ import Megumin.Nodes.Sprite;
 import Megumin.Point;
 
 public class Character extends Sprite {
-	int hp, mp, speed, unlockSpeed, detectionRange, attackScore, snackScore;
+	int hp, mp, chargeBar, lives, speed, unlockSpeed, detectionRange, attackScore, snackScore;
 	
-	public Character(String filename, int hp, int mp, int speed, int unlockSpeed,int detectionRange, int attackScore, int snackScore){
+	// Constructors //
+	public Character(String filename, int hp, int mp, int chargeBar, int lives, int speed, int unlockSpeed,int detectionRange, int attackScore, int snackScore){
 		super(filename, new Point(0, 0));
 		this.hp = 100;
 		this.mp = 100;
+		this.chargeBar = 0;
+		this.lives = lives;
 		this.speed = speed;
 		this.unlockSpeed = unlockSpeed;
 		this.detectionRange = detectionRange;
@@ -21,10 +24,12 @@ public class Character extends Sprite {
 		this.snackScore = 0;
 	}
 	
-	public Character(String filename, Point position, int hp, int mp, int speed, int unlockSpeed,int detectionRange, int attackScore, int snackScore){
+	public Character(String filename, Point position, int hp, int mp, int chargeBar, int lives, int speed, int unlockSpeed,int detectionRange, int attackScore, int snackScore){
 		super(ImageIO.read(new File(filename)), position);
 		this.hp = 100;
 		this.mp = 100;
+		this.chargeBar = 0;
+		this.lives = lives;
 		this.speed = speed;
 		this.unlockSpeed = unlockSpeed;
 		this.detectionRange = detectionRange;
@@ -32,10 +37,12 @@ public class Character extends Sprite {
 		this.snackScore = 0;
 	}
 	
-	public Character(BufferedImage image, int hp, int mp, int speed, int unlockSpeed,int detectionRange, int attackScore, int snackScore){
+	public Character(BufferedImage image, int hp, int mp, int chargeBar, int lives, int speed, int unlockSpeed,int detectionRange, int attackScore, int snackScore){
 		super(image, new Point(0, 0));
 		this.hp = 100;
 		this.mp = 100;
+		this.chargeBar = 0;
+		this.lives = lives;
 		this.speed = speed;
 		this.unlockSpeed = unlockSpeed;
 		this.detectionRange = detectionRange;
@@ -43,10 +50,12 @@ public class Character extends Sprite {
 		this.snackScore = 0;
 	}
 	
-	public Character(BufferedImage image, Point position, int hp, int mp, int speed, int unlockSpeed,int detectionRange, int attackScore, int snackScore){
+	public Character(BufferedImage image, Point position, int hp, int mp, int chargeBar, int lives, int speed, int unlockSpeed,int detectionRange, int attackScore, int snackScore){
 		super(image, position);
 		this.hp = 100;
 		this.mp = 100;
+		this.chargeBar = 0;
+		this.lives = lives;
 		this.speed = speed;
 		this.unlockSpeed = unlockSpeed;
 		this.detectionRange = detectionRange;
@@ -54,6 +63,7 @@ public class Character extends Sprite {
 		this.snackScore = 0;
 	}
 	
+	// Get and Sets //
 	public void setHp(int hp){
 		this.hp = hp;
 	}
@@ -66,6 +76,20 @@ public class Character extends Sprite {
 	}
 	public int getMp(){
 		return mp;
+	}
+	
+	public void setChargeBar(int chargeBar){
+		this.chargeBar = chargeBar;
+	}
+	public int getChargeBar(){
+		return chargeBar;
+	}
+	
+	public void setLives(int lives){
+		this.lives = lives;
+	}
+	public int getLives(){
+		return lives;
 	}
 	
 	public void setSpeed(int speed){
