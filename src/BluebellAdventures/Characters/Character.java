@@ -11,7 +11,7 @@ public class Character extends Sprite {
 	int hp, mp, chargeBar, lives, speed, unlockSpeed, detectionRange, attackScore, snackScore;
 	
 	// Constructors //
-	public Character(String filename, int hp, int mp, int chargeBar, int lives, int speed, int unlockSpeed,int detectionRange, int attackScore, int snackScore){
+	public Character(String filename, int hp, int mp, int chargeBar, int lives, int speed, int unlockSpeed,int detectionRange, int attackScore, int snackScore) throws IOException{
 		super(filename, new Point(0, 0));
 		this.hp = 100;
 		this.mp = 100;
@@ -24,7 +24,7 @@ public class Character extends Sprite {
 		this.snackScore = 0;
 	}
 	
-	public Character(String filename, Point position, int hp, int mp, int chargeBar, int lives, int speed, int unlockSpeed,int detectionRange, int attackScore, int snackScore){
+	public Character(String filename, Point position, int hp, int mp, int chargeBar, int lives, int speed, int unlockSpeed,int detectionRange, int attackScore, int snackScore) throws IOException{
 		super(ImageIO.read(new File(filename)), position);
 		this.hp = 100;
 		this.mp = 100;
