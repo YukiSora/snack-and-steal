@@ -28,11 +28,14 @@ public class Audio implements Runnable{
     }
     
     public void play() {
+        if (clip.getMicrosecondPosition() == clip.getMicrosecondLength()) {
+            clip.setMicrosecondPosition(0);
+        }
         clip.start();
     }
 
-    public void loop() {
-        clip.loop(Clip.LOOP_CONTINUOUSLY);
+    public void loop(int times) {
+        clip.loop(times);
     }
 
     public void stop() {

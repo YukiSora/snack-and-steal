@@ -2,6 +2,7 @@ package BluebellAdventures;
 
 import java.io.IOException;
 import java.util.Scanner;
+import javax.sound.sampled.Clip;
 
 import Megumin.Audio.Audio;
 import Megumin.Audio.AudioEngine;
@@ -23,7 +24,7 @@ public class AudioDriver {
 			System.out.println(e);
 		}
 
-		audioEngine.play("menu");
+		audioEngine.loop("menu", Clip.LOOP_CONTINUOUSLY);
 		Scanner in = new Scanner(System.in);
 		while (true) {
 			System.out.print("Please enter audio name: ");
