@@ -9,30 +9,27 @@ import Megumin.Nodes.Sprite;
 import Megumin.Point;
 
 public class Map extends Sprite {
-	byte[] path;
+	private byte[] path;
 
-	public Map(String filename, byte[] path) throws IOException {
+	public Map(String filename) throws IOException {
 		super(filename, new Point(0, 0));
-		this.path = path;
 	}
 
-	public Map(String filename, Point position, byte[] path) throws IOException {
+	public Map(String filename, Point position) throws IOException {
 		super(ImageIO.read(new File(filename)), position);
-		this.path = path;
 	}
 
-	public Map(BufferedImage image, byte[] path) {
+	public Map(BufferedImage image) {
 		super(image, new Point(0, 0));
-		this.path = path;
 	}
 
-	public Map(BufferedImage image, Point position, byte[] path) {
+	public Map(BufferedImage image, Point position) {
 		super(image, position);
-		this.path = path;
 	}
 
-	public void setPath(byte[] path) {
+	public Map setPath(byte[] path) {
 		this.path = path;
+		return this;
 	}
 
 	public byte[] getPath() {

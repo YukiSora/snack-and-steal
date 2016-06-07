@@ -1,41 +1,40 @@
 package BluebellAdventures.Characters;
 
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import Megumin.Nodes.Sprite;
 import Megumin.Point;
 
 public class MovableObject extends Sprite {
-		int score;
-	
+	private int score;
+
 	// Constructors //
-	public Snack(String filename, int score) throws IOException {
+	public Snack(String filename) throws IOException {
 		super(filename, new Point(0, 0));
-		this.score = score;
 	}
 
-	public Snack(String filename, Point position, int score) throws IOException {
+	public Snack(String filename, Point position) throws IOException {
 		super(ImageIO.read(new File(filename)), position);
-		this.score = score;
 	}
 
-	public Snack(BufferedImage image, int score) {
+	public Snack(BufferedImage image) {
 		super(image, new Point(0, 0));
-		this.score = score;
 	}
 
-	public Snack(BufferedImage image, Point position, int score) {
+	public Snack(BufferedImage image, Point position) {
 		super(image, position);
-		this.score = score;
 	}
 	
 	// Set and Gets //
-	public void setScore(int score){
+	public MovableObject setScore(int score) {
 		this.score = score;
+		return this;
 	}
-	public int getScore(){
+
+	public int getScore() {
 		return score;
 	}
 }
