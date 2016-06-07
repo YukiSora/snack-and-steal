@@ -1,51 +1,44 @@
-import java.net.Socket;
-import java.net.UnknownHostException;
+import java.net.*;
+import java.io.*;
 
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.IOException;
+public class Client{
 
-import java.util.Scanner;
-
-public class Client {
-    public static void main(String[] args) {
-        try (Socket client = new Socket("localhost", 2334)) {
-            new Thread(new InputThread(client.getInputStream())).start();
-
-            OutputStream out = client.getOutputStream();
-            Scanner input = new Scanner(System.in);
-            while (true) {
-                String s = input.nextLine() + "\r\n";
-                for (int i = 0; i < s.length(); i++) {
-                    out.write(s.charAt(i));
-                }
-            }
-        } catch (UnknownHostException e) {
-            System.out.println("Unknow Host");
-        } catch (IOException e) {
-            System.out.println(e);
-        }
+    public static void main(String args[]) throws IOException, ClassNotFoundException{
+    	Socket client = new Socket( "localhost", 4000 );
+    	
+        ObjectOutputStream oos = new ObjectOutputStream(client.getOutputStream());
+        ObjectInputStream  ois = new ObjectInputStream( client.getInputStream());
+        
+        new Thread(new InputThread(oos, ois)).start();
     }
-
+    
     static private class InputThread implements Runnable {
+    	private OutputStream out;
         private InputStream in;
 
-        InputThread(InputStream in) {
+        InputThread(OutputStream out, InputStream in) {
+        	this.out = out;
             this.in = in;
         }
 
         @Override
         public void run() {
-            try {
-                while (true) {
-                    int c;
-                    while ((c = in.read()) != -1) {
-                        System.out.write(c);
-                    }
-                }
-            } catch (IOException e) {
-                System.out.println(e);
-            }
+			try {
+				Weapon to = new Weapon( 1, "Candlestick", 2.5);
+
+                System.out.println(to);
+
+                ((ObjectOutputStream) out).writeObject(to);
+                out.flush();
+                Object received = ((ObjectInputStream) in).readObject();
+          
+                System.out.println(received);
+
+                out.close();
+                in.close();
+			} catch (ClassNotFoundException | IOException e) {
+				e.printStackTrace();
+			}
         }
     }
 }

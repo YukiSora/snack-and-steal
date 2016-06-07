@@ -1,7 +1,10 @@
+import java.net.*;
 import java.net.Socket;
 import java.net.ServerSocket;
 
 import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.IOException;
 
@@ -11,19 +14,43 @@ import java.util.concurrent.Callable;
 import java.util.Vector;
 import java.util.Enumeration;
 
-public class Server {
-    static private Vector<Socket> clients = new Vector<Socket>(4);
+public class Server{
+	static private Vector<Socket> clients = new Vector<Socket>(4);
+	
+    public static void main(String args[]) throws IOException, ClassNotFoundException {
+    	ExecutorService pool = Executors.newFixedThreadPool(50);
 
-    public static void main(String[] args) {
-        ExecutorService pool = Executors.newFixedThreadPool(50);
-
-        try (ServerSocket server = new ServerSocket(2333)) {
+        try (ServerSocket server = new ServerSocket(4000)) {
             while (true) {
                 try {
                     Socket client = server.accept();
-                    clients.add(client);
-                    Callable<Void> task = new ClientThread(client);
-                    pool.submit(task);
+                    ObjectInputStream ois = new ObjectInputStream(client.getInputStream());
+                    ObjectOutputStream oos = new ObjectOutputStream(client.getOutputStream());
+
+                    Object to = null;
+                    try 
+                    {
+                    	clients.add(client);
+                        Callable<Void> task = new ClientThread(client);
+                        pool.submit(task);
+                        
+                        to = ois.readObject();
+                    } 
+                    catch (ClassNotFoundException e)
+                    {
+                        System.out.println("broke");
+                        e.printStackTrace();
+                    }
+
+                    oos.writeObject(to);
+                    oos.flush();
+
+                    // close the connections
+                    ois.close();
+                    oos.close();
+
+                    client.close();
+                    server.close();
                 } catch (IOException e) {
                     System.out.println(e);
                 }
@@ -32,7 +59,7 @@ public class Server {
             System.out.println(e);
         }
     }
-
+    
     static private class ClientThread implements Callable<Void> {
         private Socket client;
 
