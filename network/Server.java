@@ -1,12 +1,9 @@
 import java.net.Socket;
 import java.net.ServerSocket;
 
-
-import java.io.InputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 
 import java.util.Iterator;
 import java.util.concurrent.Executors;
@@ -14,14 +11,25 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Server {
-    static private CopyOnWriteArrayList<Client> clients;
+public class Server implements Runnable {
+    private int port;
+    private CopyOnWriteArrayList<Client> clients;
+    private ExecutorService pool;
+
+    Server(int port) {
+        this.port = port;
+        clients = new CopyOnWriteArrayList<>();
+        pool = Executors.newFixedThreadPool(50);
+        new Thread(this).start();
+    }
 
     public static void main(String[] args) {
-        clients = new CopyOnWriteArrayList<>();
-        ExecutorService pool = Executors.newFixedThreadPool(50);
+        Server server = new Server(2333);
+    }
 
-        try (ServerSocket server = new ServerSocket(2333)) {
+    @Override
+    public void run() {
+        try (ServerSocket server = new ServerSocket(port)) {
             while (true) {
                 try {
                     Client client = new Client(server.accept());
@@ -37,19 +45,15 @@ public class Server {
         }
     }
 
-    static private class Client {
+    private class Client {
         private Socket client;
         private ObjectInputStream in;
         private ObjectOutputStream out;
 
-        Client(Socket client) {
+        Client(Socket client) throws IOException {
             this.client = client;
-            try {
-                in = new ObjectInputStream(client.getInputStream());
-                out = new ObjectOutputStream(client.getOutputStream());
-            } catch (IOException e) {
-                System.out.println(e);
-            }
+            in = new ObjectInputStream(client.getInputStream());
+            out = new ObjectOutputStream(client.getOutputStream());
         }
 
         public Socket getSocket() {
@@ -65,7 +69,7 @@ public class Server {
         }
     }
 
-    static private class ClientThread implements Callable<Void> {
+    private class ClientThread implements Callable<Void> {
         private Client client;
 
         ClientThread(Client client) {
@@ -77,12 +81,12 @@ public class Server {
             try {
                 while (true) {
                     Data data = (Data)client.getIn().readObject();
+                    System.out.println(data);
                     Iterator it = clients.iterator();
                     while (it.hasNext()) {
                         Client client = (Client)it.next();
                         if (!client.getSocket().equals(this.client.getSocket())) {
                             client.getOut().writeObject(data);
-                            System.out.println(data);
                         }
                     }
                 }
