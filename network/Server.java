@@ -1,56 +1,33 @@
-import java.net.*;
 import java.net.Socket;
 import java.net.ServerSocket;
 
+
 import java.io.InputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
-import java.io.IOException;
 
+import java.util.Iterator;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Callable;
-import java.util.Vector;
-import java.util.Enumeration;
+import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Server{
-	static private Vector<Socket> clients = new Vector<Socket>(4);
-	
-    public static void main(String args[]) throws IOException, ClassNotFoundException {
-    	ExecutorService pool = Executors.newFixedThreadPool(50);
+public class Server {
+    static private CopyOnWriteArrayList<Client> clients;
 
-        try (ServerSocket server = new ServerSocket(4000)) {
+    public static void main(String[] args) {
+        clients = new CopyOnWriteArrayList<>();
+        ExecutorService pool = Executors.newFixedThreadPool(50);
+
+        try (ServerSocket server = new ServerSocket(2333)) {
             while (true) {
                 try {
-                    Socket client = server.accept();
-                    ObjectInputStream ois = new ObjectInputStream(client.getInputStream());
-                    ObjectOutputStream oos = new ObjectOutputStream(client.getOutputStream());
-
-                    Object to = null;
-                    try 
-                    {
-                    	clients.add(client);
-                        Callable<Void> task = new ClientThread(client);
-                        pool.submit(task);
-                        
-                        to = ois.readObject();
-                    } 
-                    catch (ClassNotFoundException e)
-                    {
-                        System.out.println("broke");
-                        e.printStackTrace();
-                    }
-
-                    oos.writeObject(to);
-                    oos.flush();
-
-                    // close the connections
-                    ois.close();
-                    oos.close();
-
-                    client.close();
-                    server.close();
+                    Client client = new Client(server.accept());
+                    clients.add(client);
+                    Callable<Void> task = new ClientThread(client);
+                    pool.submit(task);
                 } catch (IOException e) {
                     System.out.println(e);
                 }
@@ -59,36 +36,64 @@ public class Server{
             System.out.println(e);
         }
     }
-    
-    static private class ClientThread implements Callable<Void> {
-        private Socket client;
 
-        ClientThread(Socket client) {
+    static private class Client {
+        private Socket client;
+        private ObjectInputStream in;
+        private ObjectOutputStream out;
+
+        Client(Socket client) {
+            this.client = client;
+            try {
+                in = new ObjectInputStream(client.getInputStream());
+                out = new ObjectOutputStream(client.getOutputStream());
+            } catch (IOException e) {
+                System.out.println(e);
+            }
+        }
+
+        public Socket getSocket() {
+            return client;
+        }
+
+        public ObjectInputStream getIn() {
+            return in;
+        }
+
+        public ObjectOutputStream getOut() {
+            return out;
+        }
+    }
+
+    static private class ClientThread implements Callable<Void> {
+        private Client client;
+
+        ClientThread(Client client) {
             this.client = client;
         }
 
         @Override
         public Void call() {
             try {
-                InputStream in = client.getInputStream();
-                int c;
-                while ((c = in.read()) != -1) {
-                    Enumeration clients = Server.clients.elements();
-                    while (clients.hasMoreElements()) {
-                        Socket client = (Socket)clients.nextElement();
-                        if (!client.equals(this.client)) {
-                            OutputStream out = client.getOutputStream();
-                            out.write(c);
-                            System.out.write(c);
+                while (true) {
+                    Data data = (Data)client.getIn().readObject();
+                    Iterator it = clients.iterator();
+                    while (it.hasNext()) {
+                        Client client = (Client)it.next();
+                        if (!client.getSocket().equals(this.client.getSocket())) {
+                            client.getOut().writeObject(data);
+                            System.out.println(data);
                         }
                     }
                 }
+            } catch (ClassNotFoundException e) {
+                System.out.println(e);
             } catch (IOException e) {
                 System.out.println(e);
             } finally {
                 clients.remove(this);
                 try {
-                    client.close();
+                    client.getSocket().close();
                 } catch (IOException e) {
                     System.out.println(e);
                 }
