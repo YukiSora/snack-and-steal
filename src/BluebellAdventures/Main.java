@@ -12,13 +12,13 @@ import javax.imageio.ImageIO;
 
 import Megumin.Actions.Action;
 import Megumin.Actions.Animate;
-import Megumin.Actions.ChangeScene;
+import BluebellAdventures.Actions.ChangeScene;
 import Megumin.Actions.Effect;
 import Megumin.Actions.MoveTo;
 import Megumin.Actions.MouseCrash;
 import Megumin.Actions.Infinite;
 import Megumin.Actions.Interact;
-import Megumin.Actions.Quit;
+import BluebellAdventures.Actions.Quit;
 import Megumin.Nodes.Director;
 import Megumin.Nodes.Layer;
 import Megumin.Nodes.Scene;
