@@ -7,7 +7,10 @@ import java.io.IOException;
 
 import java.util.Scanner;
 
-public class Client {
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
+public class Client <T> {
     private int port;
     private String ip;
 
@@ -16,17 +19,17 @@ public class Client {
         this.port = port;
 
         Socket client = new Socket(ip, port);
-        Thread clientThread = new Thread(new OutputThread(new ObjectOutputStream(client.getOutputStream())));
+        Thread clientThread = new Thread(new OutputThread <T>(new ObjectOutputStream(client.getOutputStream()), Data.class));
         clientThread.start();
         clientThread.join();
-        Thread serverThread = new Thread(new InputThread(new ObjectInputStream(client.getInputStream())));
+        Thread serverThread = new Thread(new InputThread <T>(new ObjectInputStream(client.getInputStream())));
         serverThread.start();
         serverThread.join();
     }
 
     public static void main(String[] args) {
         try {
-            Client client = new Client("localhost", 2333);
+            Client <Data> client = new Client <Data> ("localhost", 2333);
         } catch (InterruptedException e) {
             System.out.println(e);
         } catch (UnknownHostException e) {
@@ -36,7 +39,7 @@ public class Client {
         }
     }
 
-    private class InputThread implements Runnable {
+    private class InputThread <T> implements Runnable {
         private ObjectInputStream in;
 
         InputThread(ObjectInputStream in) {
@@ -47,7 +50,7 @@ public class Client {
         public void run() {
             try {
                 while (true) {
-                    System.out.println((Data)in.readObject());
+                    System.out.println((T)in.readObject());
                 }
             } catch (ClassNotFoundException e) {
                 System.out.println(e);
@@ -57,11 +60,13 @@ public class Client {
         }
     }
 
-    private class OutputThread implements Runnable {
+    private class OutputThread <T> implements Runnable {
         private ObjectOutputStream out;
+        private Class cls;
 
-        OutputThread(ObjectOutputStream out) {
+        OutputThread(ObjectOutputStream out, Class cls) {
             this.out = out;
+            this.cls = cls;
         }
 
         @Override
@@ -71,10 +76,17 @@ public class Client {
             try {
                 while (true) {
                     String s = input.nextLine();
-                    out.writeObject(new Data(s));
+                    Constructor constructor = cls.getDeclaredConstructor(String.class);
+                    constructor.setAccessible(true);
+
+                    Object obj = (T) constructor.newInstance(s);
+                    T t = (T) obj;
+
+                    out.writeObject(t);
                     out.flush();
                 }
-            } catch (IOException e) {
+            } catch (IOException | InstantiationException | IllegalAccessException | IllegalArgumentException
+                | InvocationTargetException | NoSuchMethodException | SecurityException e) {
                 System.out.println(e);
             }
         }
