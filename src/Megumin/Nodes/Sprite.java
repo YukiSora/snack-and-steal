@@ -18,6 +18,7 @@ public class Sprite {
     private Point size;
     private boolean visible;
     private String name;
+    private int[] direction;
 
     public Sprite() {
         image = null;
@@ -25,6 +26,7 @@ public class Sprite {
         size = null;
         visible = false;
         name = "";
+        direction = new int[]{1, 1};
     }
 
     public Sprite(String filename) throws IOException {
@@ -45,6 +47,7 @@ public class Sprite {
         size = new Point(image.getWidth(), image.getHeight());
         visible = true;
         name = "";
+        direction = new int[]{1, 1};
     }
 
     public void render(Graphics2D g) {
@@ -121,5 +124,9 @@ public class Sprite {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int[] getDirection() {
+        return direction;
     }
 }
