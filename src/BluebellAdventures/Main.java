@@ -10,15 +10,16 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import javax.imageio.ImageIO;
 
+import BluebellAdventures.Actions.ChangeScene;
+import BluebellAdventures.Actions.Quit;
+
 import Megumin.Actions.Action;
 import Megumin.Actions.Animate;
-import BluebellAdventures.Actions.ChangeScene;
 import Megumin.Actions.Effect;
 import Megumin.Actions.MoveTo;
 import Megumin.Actions.MouseCrash;
 import Megumin.Actions.Infinite;
 import Megumin.Actions.Interact;
-import BluebellAdventures.Actions.Quit;
 import Megumin.Nodes.Director;
 import Megumin.Nodes.Layer;
 import Megumin.Nodes.Scene;
@@ -173,22 +174,37 @@ public class Main {
 		} catch (IOException e) {
 			System.out.println(e);
 		}
+
+		Action animate2 = new Animate();
+		try{
+			((Animate)animate2).addImage(ImageIO.read(new File("resource/image/natsu1.png")));
+			((Animate)animate2).addImage(ImageIO.read(new File("resource/image/natsu2.png")));
+		} catch (IOException e) {
+			System.out.println(e);
+		}
+
 		moveW.addAction(animate);
 		moveA.addAction(animate);
 		moveS.addAction(animate);
 		moveD.addAction(animate);
+
 		interact.addEvent(KeyEvent.VK_W, Interact.ON_KEY_PRESS, machi, moveW);
 		interact.addEvent(KeyEvent.VK_A, Interact.ON_KEY_PRESS, machi, moveA);
 		interact.addEvent(KeyEvent.VK_S, Interact.ON_KEY_PRESS, machi, moveS);
 		interact.addEvent(KeyEvent.VK_D, Interact.ON_KEY_PRESS, machi, moveD);
 
-		infinite.addEvent(nastu, new Action() {
+		Action poi = new Action() {
 			@Override
 			public void update(Sprite sprite) {
 				int x = sprite.getPosition().getX() + 5 > 1280 ? -1280 : 5;
-				sprite.runAction(new MoveTo(x, 0));
+				int y = sprite.getPosition().getY() + 5 > 720 ? -720 : 5;
+				sprite.runAction(new MoveTo(x, y));
+				super.update(sprite);
 			}
-		});
+		};
+
+		poi.addAction(animate2);
+		infinite.addEvent(nastu, poi);
 
 		return game;
 	}
