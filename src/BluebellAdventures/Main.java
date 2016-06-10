@@ -114,7 +114,7 @@ public class Main {
 		Sprite map = null;
 		Sprite snack = null;
 		try {
-			nastu = new Sprite("resource/image/natsu1.png", new Point(0, 0));
+			nastu = new Sprite("resource/image/natsu1.png", new Point(200, 200));
 			machi = new Sprite("resource/image/machi1.png", new Point(200, 200));
 			map = new Sprite("resource/image/small_map.png");
 			snack = new Sprite("resource/image/snack1.png", new Point(200, 300));
@@ -198,38 +198,42 @@ public class Main {
 			public void update(Sprite sprite) {
 				// int x = sprite.getPosition().getX() + 5 > 1280 ? -1280 : 5;
 				// int y = sprite.getPosition().getY() + 5 > 720 ? -720 : 5;
-
-				// Increment
+				
 				int x = 0;
 				int y = 0;
 
-				if (sprite.getPosition().getX() + 15 < 1095){
+				if (sprite.getPosition().getY() <= 0  && sprite.getPosition().getX() < 1070){
 					// Right
 					x = 15;
 					y = 0;
-				} else {
+				} 
+
+				if (sprite.getPosition().getX() >= 1070){
 					// Down
 					x = 0;
 					y = 15;
 				}
 
-				if (sprite.getPosition().getY()  + y > 460){
+				if (sprite.getPosition().getY() >= 440){
 					 // Left
 					 x = (-15);
+					 y = 0;
 				}
 
-				if (sprite.getPosition().getX() == 0 && sprite.getPosition().getY() != 0){
+				if (sprite.getPosition().getX() <= 0 && sprite.getPosition().getY() > 0){
 					 // Up
 					 x = 0;
 					 y =(-15);
 				}
 
-
+				if (x == 0 && y == 0){
+					// Automatically Head Down When Out of Position
+					x = 0;
+					y = 5;
+				}
 
 				sprite.runAction(new MoveTo(x, y));
 				super.update(sprite);
-
-				
 			}
 		};
 
