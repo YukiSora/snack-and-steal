@@ -202,35 +202,55 @@ public class Main {
 				int x = 0;
 				int y = 0;
 
+				int[] dir = sprite.getDirection();
+
 				if (sprite.getPosition().getY() <= 0  && sprite.getPosition().getX() < 1070){
 					// Right
 					x = 15;
 					y = 0;
+
+					dir[0] = 1;
+					dir[1] = 0;
+
 				} 
 
 				if (sprite.getPosition().getX() >= 1070){
 					// Down
 					x = 0;
 					y = 15;
+
+					dir[0] = -1;
+					dir[1] = 0;
 				}
 
 				if (sprite.getPosition().getY() >= 440){
 					 // Left
 					 x = (-15);
 					 y = 0;
+
+					dir[0] = -1;
+					dir[1] = 0;
 				}
 
 				if (sprite.getPosition().getX() <= 0 && sprite.getPosition().getY() > 0){
 					 // Up
 					 x = 0;
 					 y =(-15);
+
+					dir[0] = 0;
+					dir[1] = -1;
 				}
 
 				if (x == 0 && y == 0){
 					// Automatically Head Down When Out of Position
 					x = 0;
 					y = 5;
+
+					dir[0] = -1;
+					dir[1] = 0;
 				}
+
+				// System.out.println(dir[0] + "," + dir[1]);
 
 				sprite.runAction(new MoveTo(x, y));
 				super.update(sprite);
