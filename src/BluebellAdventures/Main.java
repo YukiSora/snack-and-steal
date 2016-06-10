@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 
 import BluebellAdventures.Actions.ChangeScene;
 import BluebellAdventures.Actions.Quit;
+import BluebellAdventures.Actions.SnackScore;
 
 import Megumin.Actions.Action;
 import Megumin.Actions.Animate;
@@ -117,7 +118,7 @@ public class Main {
 			nastu = new Sprite("resource/image/natsu1.png", new Point(200, 200));
 			machi = new Sprite("resource/image/machi1.png", new Point(200, 200));
 			map = new Sprite("resource/image/small_map.png");
-			snack = new Sprite("resource/image/snack1.png", new Point(200, 300));
+			snack = new Sprite("resource/image/snack1.png", new Point(400, 300));
 		} catch (IOException e) {
 			System.out.println(e);
 		}
@@ -142,31 +143,11 @@ public class Main {
 
 		//init key listener and action
 		//Action moveW = new MoveTo(0, -5);
-		Action moveW = new MoveTo(0, -5) {
-			@Override
-			public void update(Sprite sprite) {
-				if (!sprite.checkCrash(snackLayer.getSprites(), new Effect() {
-					@Override
-					public void update(Sprite sprite) {
-						//sprite.setSize(getSprite().getSize());
-						Director.getInstance().getScene().getLayerByName("snack").removeSprite(getSprite());
-					}
-				})) {
-					sprite.getPosition().offset(getX(), getY());
-					Iterator it = getActions().iterator();
-					while (it.hasNext()) {
-						Action action = (Action)it.next();
-						sprite.runAction(action);
-					}
-				}
-				else {
-					System.out.println("crash");
-				}
-			}
-		};
-		Action moveA = new MoveTo(-5, 0);
-		Action moveS = new MoveTo(0, 5);
-		Action moveD = new MoveTo(5, 0);
+
+		Action moveW = new SnackScore(0, -5, snackLayer.getSprites());
+		Action moveA = new SnackScore(-5, 0, snackLayer.getSprites());
+		Action moveS = new SnackScore(0, 5, snackLayer.getSprites());
+		Action moveD = new SnackScore(5, 0, snackLayer.getSprites());
 		Action animate = new Animate();
 		try{
 			((Animate)animate).addImage(ImageIO.read(new File("resource/image/machi1.png")));
