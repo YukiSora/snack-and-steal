@@ -62,12 +62,15 @@ public class Main {
 		//start
 		director.setScene(menu);
 		director.start();
-		
-		new java.util.Scanner(System.in).nextLine();
-		
+		try {
+			director.getThread().join();
+		} catch (InterruptedException e) {
+			System.out.println(e);
+		}
+
 		director.setScene(game);
 	}
-	
+
 	public static Scene createMenuScene() {
 		//init sprite
 		Sprite single = null;
