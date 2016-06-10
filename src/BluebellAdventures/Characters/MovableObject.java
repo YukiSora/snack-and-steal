@@ -12,19 +12,19 @@ public class MovableObject extends Sprite {
 	private int score;
 
 	// Constructors //
-	public Snack(String filename) throws IOException {
+	public MovableObject(String filename) throws IOException {
 		super(filename, new Point(0, 0));
 	}
 
-	public Snack(String filename, Point position) throws IOException {
+	public MovableObject(String filename, Point position) throws IOException {
 		super(ImageIO.read(new File(filename)), position);
 	}
 
-	public Snack(BufferedImage image) {
+	public MovableObject(BufferedImage image) {
 		super(image, new Point(0, 0));
 	}
 
-	public Snack(BufferedImage image, Point position) {
+	public MovableObject(BufferedImage image, Point position) {
 		super(image, position);
 	}
 	
