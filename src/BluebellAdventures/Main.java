@@ -114,7 +114,7 @@ public class Main {
 		Sprite map = null;
 		Sprite snack = null;
 		try {
-			nastu = new Sprite("resource/image/natsu1.png", new Point(100, 100));
+			nastu = new Sprite("resource/image/natsu1.png", new Point(0, 0));
 			machi = new Sprite("resource/image/machi1.png", new Point(200, 200));
 			map = new Sprite("resource/image/small_map.png");
 			snack = new Sprite("resource/image/snack1.png", new Point(200, 300));
@@ -196,10 +196,40 @@ public class Main {
 		Action poi = new Action() {
 			@Override
 			public void update(Sprite sprite) {
-				int x = sprite.getPosition().getX() + 5 > 1280 ? -1280 : 5;
-				int y = sprite.getPosition().getY() + 5 > 720 ? -720 : 5;
+				// int x = sprite.getPosition().getX() + 5 > 1280 ? -1280 : 5;
+				// int y = sprite.getPosition().getY() + 5 > 720 ? -720 : 5;
+
+				// Increment
+				int x = 0;
+				int y = 0;
+
+				if (sprite.getPosition().getX() + 15 < 1095){
+					// Right
+					x = 15;
+					y = 0;
+				} else {
+					// Down
+					x = 0;
+					y = 15;
+				}
+
+				if (sprite.getPosition().getY()  + y > 460){
+					 // Left
+					 x = (-15);
+				}
+
+				if (sprite.getPosition().getX() == 0 && sprite.getPosition().getY() != 0){
+					 // Up
+					 x = 0;
+					 y =(-15);
+				}
+
+
+
 				sprite.runAction(new MoveTo(x, y));
 				super.update(sprite);
+
+				
 			}
 		};
 
