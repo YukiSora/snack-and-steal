@@ -3,8 +3,14 @@ package BluebellAdventures.Characters;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.concurrent.CopyOnWriteArrayList;
 import javax.imageio.ImageIO;
 
+import BluebellAdventures.Characters.GameMap;
+
+import Megumin.Actions.Action;
+import Megumin.Actions.Effect;
 import Megumin.Nodes.Sprite;
 import Megumin.Point;
 
@@ -33,6 +39,32 @@ public class Character extends Sprite {
 
 	public Character(BufferedImage image, Point position) {
 		super(image, position);
+	}
+
+	@Override
+	public boolean checkCrash(CopyOnWriteArrayList<Sprite> sprites, Action action) {
+		boolean crash = false;
+		GameMap map = GameMap.getInstance();
+		int x1 = getPosition().getX();
+		int y1 = getPosition().getY();
+		int w1 = getSize().getX();
+		int h1 = getSize().getY();
+		Iterator it = sprites.iterator();
+		while (it.hasNext()) {
+			Sprite sprite = (Sprite)it.next();
+			int x2 = map.getPosition().getX() + sprite.getPosition().getX();
+			int y2 = map.getPosition().getY() + sprite.getPosition().getY();
+			int w2 = sprite.getSize().getX();
+			int h2 = sprite.getSize().getY();
+			if (Math.max(Math.abs(x2 - (x1 + w1)), Math.abs(x2 + w2 - x1)) < w1 + w2 &&
+				Math.max(Math.abs(y2 - (y1 + h1)), Math.abs(y2 + h2 - y1)) < h1 + h2) {
+				((Effect)action).setSprite(sprite);
+				runAction(action);
+				crash = true;
+			}
+		}
+
+		return crash;
 	}
 
 	// Get and Sets //

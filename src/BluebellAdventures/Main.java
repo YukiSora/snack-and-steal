@@ -46,7 +46,7 @@ public class Main {
 		director.setTitle("Bluebell's Adventures");
 		director.setResizable(false);
 		director.setSize(1280, 720);
-		director.setBackground(Color.white);
+		director.setBackground(Color.black);
 		director.setUndecorated(true);
 
 		//system action
