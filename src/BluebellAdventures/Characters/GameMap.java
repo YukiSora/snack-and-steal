@@ -39,8 +39,30 @@ public class GameMap extends Sprite {
 		return map;
 	}
 
+	public static boolean mapCrash(Sprite sprite) {
+		byte[][] path = map.getPath();
+		int mapX = map.getPosition().getX();
+		int mapY = map.getPosition().getY();
+		int x = sprite.getPosition().getX();
+		int y = sprite.getPosition().getY();
+		int w = sprite.getSize().getX();
+		int h = sprite.getSize().getY();
+		for (int i = 0; i < w; i++) {
+			if (path[mapY + y][mapX + x + i] == 1 || path[mapY + y + h][mapX + x + i] == 1) {
+				return true;
+			}
+		}
+		for (int i = 0; i < h; i++) {
+			if (path[mapY + y + i][mapX + x] == 1 || path[mapY + y + i][mapX + x + w] == 1) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	public GameMap setPath(String filename) throws IOException {
-		byte[][] path = new byte[getSize().getY()][getSize().getX()];
+		path = new byte[getSize().getY()][getSize().getX()];
 		int i = 0, j = 0;
 		try (FileInputStream in = new FileInputStream(filename)) {
 			int c;

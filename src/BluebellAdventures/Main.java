@@ -104,7 +104,7 @@ public class Main {
 		//init sprite
 		Sprite nastu = new Enemy("resource/image/natsu1.png", new Point(200, 200))
 							.setSpeed(10);
-		Sprite machi = new Character("resource/image/machi1.png", new Point(200, 200))
+		Sprite machi = new Character("resource/image/machi1.png", new Point(300, 315))
 							.setSpeed(5)
 							.setSnackScore(0);
 		Sprite snack1 = new Snack("resource/image/snack1.png", new Point(400, 300))

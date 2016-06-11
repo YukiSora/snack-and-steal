@@ -3,6 +3,8 @@ package BluebellAdventures.Actions;
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import BluebellAdventures.Characters.GameMap;
+
 import Megumin.Actions.Action;
 import Megumin.Actions.MoveTo;
 import Megumin.Nodes.Director;
@@ -18,7 +20,9 @@ public class CharacterMoveTo extends MoveTo {
 
 	@Override
 	public void update(Sprite sprite) {
-		sprite.checkCrash(sprites, new CrashSnack());
-		super.update(sprite);
+		if (!GameMap.mapCrash(sprite)) {
+			sprite.checkCrash(sprites, new CrashSnack());
+			super.update(sprite);
+		}
 	}
 }
