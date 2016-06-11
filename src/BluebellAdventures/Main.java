@@ -11,7 +11,7 @@ import java.util.LinkedList;
 import javax.imageio.ImageIO;
 
 import BluebellAdventures.Actions.ChangeScene;
-import BluebellAdventures.Actions.SnackScore;
+import BluebellAdventures.Actions.CharacterMoveTo;
 import BluebellAdventures.Actions.Quit;
 
 import Megumin.Actions.Action;
@@ -138,10 +138,10 @@ public class Main {
 		game.addLayer(snackLayer, 1);
 
 		//init key listener and action
-		Action moveW = new SnackScore(0, -5, snackLayer.getSprites());
-		Action moveA = new SnackScore(-5, 0, snackLayer.getSprites());
-		Action moveS = new SnackScore(0, 5, snackLayer.getSprites());
-		Action moveD = new SnackScore(5, 0, snackLayer.getSprites());
+		Action moveW = new CharacterMoveTo(0, -5, snackLayer.getSprites());
+		Action moveA = new CharacterMoveTo(-5, 0, snackLayer.getSprites());
+		Action moveS = new CharacterMoveTo(0, 5, snackLayer.getSprites());
+		Action moveD = new CharacterMoveTo(5, 0, snackLayer.getSprites());
 		Action machiAnimate = new Animate();
 		try{
 			((Animate)machiAnimate).addImage(machi.getImage());
