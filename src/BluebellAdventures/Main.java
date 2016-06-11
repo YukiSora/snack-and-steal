@@ -35,7 +35,7 @@ public class Main {
 	private static Infinite infinite;
 	private static Interact interact;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		director = Director.getInstance();
 		infinite = Infinite.getInstance();
 		interact = Interact.getInstance();
@@ -71,22 +71,13 @@ public class Main {
 		}
 	}
 
-	public static Scene createMenuScene() {
+	public static Scene createMenuScene() throws IOException  {
 		//init sprite
-		Sprite singlePlayer = null;
-		Sprite multiPlayer = null;
-		Sprite setting = null;
-		Sprite exit = null;
-		Sprite background = null;
-		try {
-			singlePlayer = new Sprite("resource/image/tag_single.png", new Point(200, 100));
-			multiPlayer = new Sprite("resource/image/tag_multi.png", new Point(200, 250));
-			setting = new Sprite("resource/image/tag_setting.png", new Point(200, 400));
-			exit = new Sprite("resource/image/tag_quit.png", new Point(200, 550));
-			background = new Sprite("resource/image/menu_bg.jpeg");
-		} catch (IOException e) {
-			System.out.println(e);
-		}
+		Sprite singlePlayer = new Sprite("resource/image/tag_single.png", new Point(200, 100));
+		Sprite multiPlayer = new Sprite("resource/image/tag_multi.png", new Point(200, 250));
+		Sprite setting = new Sprite("resource/image/tag_setting.png", new Point(200, 400));
+		Sprite exit = new Sprite("resource/image/tag_quit.png", new Point(200, 550));
+		Sprite background = new Sprite("resource/image/menu_bg.jpeg");
 		singlePlayer.setName("single player");
 		exit.setName("exit");
 
@@ -107,35 +98,23 @@ public class Main {
 		return menu;
 	}
 
-	public static Scene createGameScene() {
+	public static Scene createGameScene() throws IOException  {
 		//init sprite
-		Sprite nastu = null;
-		Sprite machi = null;
-		Sprite map = null;
-		Sprite snack1 = null;
-		Sprite snack2 = null;
-		Sprite snack3 = null;
-		Sprite snack4 = null;
-		Sprite snack5 = null;
-		try {
-			nastu = new Sprite("resource/image/natsu1.png", new Point(200, 200));
-			machi = new Character("resource/image/machi1.png", new Point(200, 200))
-								.setSpeed(5)
-								.setSnackScore(0);
-			map = new Sprite("resource/image/small_map.png");
-			snack1 = new Snack("resource/image/snack1.png", new Point(400, 300))
-								.setScore(1);
-			snack2 = new Snack("resource/image/snack1.png", new Point(500, 400))
-								.setScore(10);
-			snack3 = new Snack("resource/image/snack1.png", new Point(600, 500))
-								.setScore(100);
-			snack4 = new Snack("resource/image/snack1.png", new Point(700, 600))
-								.setScore(1000);
-			snack5 = new Snack("resource/image/snack1.png", new Point(800, 700))
-								.setScore(10000);
-		} catch (IOException e) {
-			System.out.println(e);
-		}
+		Sprite nastu = new Sprite("resource/image/natsu1.png", new Point(200, 200));
+		Sprite machi = new Character("resource/image/machi1.png", new Point(200, 200))
+							.setSpeed(5)
+							.setSnackScore(0);
+		Sprite snack1 = new Snack("resource/image/snack1.png", new Point(400, 300))
+							.setScore(1);
+		Sprite snack2 = new Snack("resource/image/snack1.png", new Point(500, 400))
+							.setScore(10);
+		Sprite snack3 = new Snack("resource/image/snack1.png", new Point(600, 500))
+							.setScore(100);
+		Sprite snack4 = new Snack("resource/image/snack1.png", new Point(700, 600))
+							.setScore(1000);
+		Sprite snack5 = new Snack("resource/image/snack1.png", new Point(800, 700))
+							.setScore(10000);
+		Sprite map = new Sprite("resource/image/small_map.png");
 
 		//init layer
 		Layer guardLayer = new Layer();
@@ -165,12 +144,8 @@ public class Main {
 		Action moveS = new CharacterMoveTo(0, 5, snackLayer.getSprites());
 		Action moveD = new CharacterMoveTo(5, 0, snackLayer.getSprites());
 		Action machiAnimate = new Animate();
-		try{
-			((Animate)machiAnimate).addImage(machi.getImage());
-			((Animate)machiAnimate).addImage(ImageIO.read(new File("resource/image/machi2.png")));
-		} catch (IOException e) {
-			System.out.println(e);
-		}
+		((Animate)machiAnimate).addImage(machi.getImage());
+		((Animate)machiAnimate).addImage(ImageIO.read(new File("resource/image/machi2.png")));
 		moveW.addAction(machiAnimate);
 		moveA.addAction(machiAnimate);
 		moveS.addAction(machiAnimate);
@@ -182,12 +157,8 @@ public class Main {
 
 		Action nastuMove = new EnemyMove(15, EnemyMove.ANTICLOCKWISE);
 		Action nastuAnimate = new Animate();
-		try{
-			((Animate)nastuAnimate).addImage(nastu.getImage());
-			((Animate)nastuAnimate).addImage(ImageIO.read(new File("resource/image/natsu2.png")));
-		} catch (IOException e) {
-			System.out.println(e);
-		}
+		((Animate)nastuAnimate).addImage(nastu.getImage());
+		((Animate)nastuAnimate).addImage(ImageIO.read(new File("resource/image/natsu2.png")));
 
 		nastuMove.addAction(nastuAnimate);
 		infinite.addEvent(nastu, nastuMove);
