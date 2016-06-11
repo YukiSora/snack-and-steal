@@ -11,8 +11,8 @@ import java.util.LinkedList;
 import javax.imageio.ImageIO;
 
 import BluebellAdventures.Actions.ChangeScene;
-import BluebellAdventures.Actions.Quit;
 import BluebellAdventures.Actions.SnackScore;
+import BluebellAdventures.Actions.Quit;
 
 import Megumin.Actions.Action;
 import Megumin.Actions.Animate;
@@ -28,37 +28,35 @@ import Megumin.Nodes.Sprite;
 import Megumin.Point;
 
 public class Main {
+	private static Director director;
+	private static Infinite infinite;
+	private static Interact interact;
+
 	public static void main(String[] args) {
-		Director director = Director.getInstance();
-		Infinite infinite = Infinite.getInstance();
-		Interact interact = Interact.getInstance();
+		director = Director.getInstance();
+		infinite = Infinite.getInstance();
+		interact = Interact.getInstance();
 
 		//init window property
-		director.setTitle("Poi");
+		director.setTitle("Bluebell's Adventures");
 		director.setResizable(false);
 		director.setSize(1280, 720);
 		director.setBackground(Color.white);
 		director.setUndecorated(true);
 
+		//system action
 		Sprite system = new Sprite();
+		interact.addEvent(KeyEvent.VK_ESCAPE, Interact.ON_KEY_CLICK, system, new Quit());
 
-		interact.addEvent(KeyEvent.VK_ESCAPE, Interact.ON_KEY_CLICK, system, new Action() {
-			@Override
-			public void update(Sprite sprite) {
-				System.exit(1);
-			}
-		});
-
+		//create scene
 		Scene menu = createMenuScene();
 		Scene game = createGameScene();
 
-		Sprite single = menu.getSpriteByName("single");
-		Action changeScene = new MouseCrash(new ChangeScene(game));
-		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, single, changeScene);
-
+		//add menu action
+		Sprite single = menu.getSpriteByName("single player");
+		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, single, new MouseCrash(new ChangeScene(game)));
 		Sprite exit = menu.getSpriteByName("exit");
-		Action quitGame = new MouseCrash(new Quit());
-		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, exit, quitGame);
+		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, exit, new MouseCrash(new Quit()));
 
 		//start
 		director.setScene(menu);
@@ -68,37 +66,35 @@ public class Main {
 		} catch (InterruptedException e) {
 			System.out.println(e);
 		}
-
-		director.setScene(game);
 	}
 
 	public static Scene createMenuScene() {
 		//init sprite
-		Sprite single = null;
-		Sprite multi = null;
+		Sprite singlePlayer = null;
+		Sprite multiPlayer = null;
 		Sprite setting = null;
 		Sprite exit = null;
-		Sprite bg = null;
+		Sprite background = null;
 		try {
-			single = new Sprite("resource/image/tag_single.png", new Point(200, 100));
-			multi = new Sprite("resource/image/tag_multi.png", new Point(200, 250));
+			singlePlayer = new Sprite("resource/image/tag_single.png", new Point(200, 100));
+			multiPlayer = new Sprite("resource/image/tag_multi.png", new Point(200, 250));
 			setting = new Sprite("resource/image/tag_setting.png", new Point(200, 400));
 			exit = new Sprite("resource/image/tag_quit.png", new Point(200, 550));
-			bg = new Sprite("resource/image/menu_bg.jpeg");
+			background = new Sprite("resource/image/menu_bg.jpeg");
 		} catch (IOException e) {
 			System.out.println(e);
 		}
-		single.setName("single");
+		singlePlayer.setName("single player");
 		exit.setName("exit");
 
 		//init layer
 		Layer tabLayer = new Layer();
-		tabLayer.addSprite(single);
-		tabLayer.addSprite(multi);
+		tabLayer.addSprite(singlePlayer);
+		tabLayer.addSprite(multiPlayer);
 		tabLayer.addSprite(setting);
 		tabLayer.addSprite(exit);
 		Layer mapLayer = new Layer();
-		mapLayer.addSprite(bg);
+		mapLayer.addSprite(background);
 
 		//init scene
 		Scene menu = new Scene();
@@ -109,9 +105,6 @@ public class Main {
 	}
 	
 	public static Scene createGameScene() {
-		Infinite infinite = Infinite.getInstance();
-		Interact interact = Interact.getInstance();
-
 		//init sprite
 		Sprite nastu = null;
 		Sprite machi = null;
@@ -145,39 +138,27 @@ public class Main {
 		game.addLayer(snackLayer, 1);
 
 		//init key listener and action
-		//Action moveW = new MoveTo(0, -5);
-
 		Action moveW = new SnackScore(0, -5, snackLayer.getSprites());
 		Action moveA = new SnackScore(-5, 0, snackLayer.getSprites());
 		Action moveS = new SnackScore(0, 5, snackLayer.getSprites());
 		Action moveD = new SnackScore(5, 0, snackLayer.getSprites());
-		Action animate = new Animate();
+		Action machiAnimate = new Animate();
 		try{
-			((Animate)animate).addImage(ImageIO.read(new File("resource/image/machi1.png")));
-			((Animate)animate).addImage(ImageIO.read(new File("resource/image/machi2.png")));
+			((Animate)machiAnimate).addImage(machi.getImage());
+			((Animate)machiAnimate).addImage(ImageIO.read(new File("resource/image/machi2.png")));
 		} catch (IOException e) {
 			System.out.println(e);
 		}
-
-		Action animate2 = new Animate();
-		try{
-			((Animate)animate2).addImage(ImageIO.read(new File("resource/image/natsu1.png")));
-			((Animate)animate2).addImage(ImageIO.read(new File("resource/image/natsu2.png")));
-		} catch (IOException e) {
-			System.out.println(e);
-		}
-
-		moveW.addAction(animate);
-		moveA.addAction(animate);
-		moveS.addAction(animate);
-		moveD.addAction(animate);
-
+		moveW.addAction(machiAnimate);
+		moveA.addAction(machiAnimate);
+		moveS.addAction(machiAnimate);
+		moveD.addAction(machiAnimate);
 		interact.addEvent(KeyEvent.VK_W, Interact.ON_KEY_PRESS, machi, moveW);
 		interact.addEvent(KeyEvent.VK_A, Interact.ON_KEY_PRESS, machi, moveA);
 		interact.addEvent(KeyEvent.VK_S, Interact.ON_KEY_PRESS, machi, moveS);
 		interact.addEvent(KeyEvent.VK_D, Interact.ON_KEY_PRESS, machi, moveD);
 
-		Action poi = new Action() {
+		Action nastuMove = new Action() {
 			@Override
 			public void update(Sprite sprite) {
 				// int x = sprite.getPosition().getX() + 5 > 1280 ? -1280 : 5;
@@ -241,8 +222,16 @@ public class Main {
 			}
 		};
 
-		poi.addAction(animate2);
-		infinite.addEvent(nastu, poi);
+		Action nastuAnimate = new Animate();
+		try{
+			((Animate)nastuAnimate).addImage(nastu.getImage());
+			((Animate)nastuAnimate).addImage(ImageIO.read(new File("resource/image/natsu2.png")));
+		} catch (IOException e) {
+			System.out.println(e);
+		}
+
+		nastuMove.addAction(nastuAnimate);
+		infinite.addEvent(nastu, nastuMove);
 
 		return game;
 	}
