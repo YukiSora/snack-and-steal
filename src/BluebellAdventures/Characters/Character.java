@@ -15,7 +15,6 @@ public class Character extends Sprite {
 	private int lives;
 	private int speed;
 	private int unlockSpeed;
-	private int detectionRange;
 	private int attackScore;
 	private int snackScore;
 
@@ -91,15 +90,6 @@ public class Character extends Sprite {
 		return unlockSpeed;
 	}
 
-	public Character setDetectionRange(int detectionRange) {
-		this.detectionRange = detectionRange;
-		return this;
-	}
-
-	public int getDetectionRange() {
-		return detectionRange;
-	}
-
 	public Character setAttackScore(int attackScore) {
 		this.attackScore = attackScore;
 		return this;
@@ -112,6 +102,10 @@ public class Character extends Sprite {
 	public Character setSnackScore(int snackScore) {
 		this.snackScore = snackScore;
 		return this;
+	}
+
+	public void addSnackScore(int snackScore) {
+		this.snackScore += snackScore;
 	}
 
 	public int getSnackScore() {

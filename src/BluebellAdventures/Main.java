@@ -14,6 +14,8 @@ import BluebellAdventures.Actions.ChangeScene;
 import BluebellAdventures.Actions.CharacterMoveTo;
 import BluebellAdventures.Actions.EnemyMove;
 import BluebellAdventures.Actions.Quit;
+import BluebellAdventures.Characters.Character;
+import BluebellAdventures.Characters.Snack;
 
 import Megumin.Actions.Action;
 import Megumin.Actions.Animate;
@@ -104,18 +106,33 @@ public class Main {
 
 		return menu;
 	}
-	
+
 	public static Scene createGameScene() {
 		//init sprite
 		Sprite nastu = null;
 		Sprite machi = null;
 		Sprite map = null;
-		Sprite snack = null;
+		Sprite snack1 = null;
+		Sprite snack2 = null;
+		Sprite snack3 = null;
+		Sprite snack4 = null;
+		Sprite snack5 = null;
 		try {
 			nastu = new Sprite("resource/image/natsu1.png", new Point(200, 200));
-			machi = new Sprite("resource/image/machi1.png", new Point(200, 200));
+			machi = new Character("resource/image/machi1.png", new Point(200, 200))
+								.setSpeed(5)
+								.setSnackScore(0);
 			map = new Sprite("resource/image/small_map.png");
-			snack = new Sprite("resource/image/snack1.png", new Point(400, 300));
+			snack1 = new Snack("resource/image/snack1.png", new Point(400, 300))
+								.setScore(1);
+			snack2 = new Snack("resource/image/snack1.png", new Point(500, 400))
+								.setScore(10);
+			snack3 = new Snack("resource/image/snack1.png", new Point(600, 500))
+								.setScore(100);
+			snack4 = new Snack("resource/image/snack1.png", new Point(700, 600))
+								.setScore(1000);
+			snack5 = new Snack("resource/image/snack1.png", new Point(800, 700))
+								.setScore(10000);
 		} catch (IOException e) {
 			System.out.println(e);
 		}
@@ -126,8 +143,12 @@ public class Main {
 		Layer ownPlayerLayer = new Layer();
 		ownPlayerLayer.addSprite(machi);
 		Layer snackLayer = new Layer();
-		snackLayer.addSprite(snack);
 		snackLayer.setName("snack");
+		snackLayer.addSprite(snack1);
+		snackLayer.addSprite(snack2);
+		snackLayer.addSprite(snack3);
+		snackLayer.addSprite(snack4);
+		snackLayer.addSprite(snack5);
 		Layer mapLayer = new Layer();
 		mapLayer.addSprite(map);
 
