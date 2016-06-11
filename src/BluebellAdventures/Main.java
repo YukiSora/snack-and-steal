@@ -16,6 +16,7 @@ import BluebellAdventures.Actions.EnemyMove;
 import BluebellAdventures.Actions.Quit;
 import BluebellAdventures.Characters.Character;
 import BluebellAdventures.Characters.Snack;
+import BluebellAdventures.Characters.Enemy;
 
 import Megumin.Actions.Action;
 import Megumin.Actions.Animate;
@@ -100,7 +101,8 @@ public class Main {
 
 	public static Scene createGameScene() throws IOException  {
 		//init sprite
-		Sprite nastu = new Sprite("resource/image/natsu1.png", new Point(200, 200));
+		Sprite nastu = new Enemy("resource/image/natsu1.png", new Point(200, 200))
+							.setSpeed(10);
 		Sprite machi = new Character("resource/image/machi1.png", new Point(200, 200))
 							.setSpeed(5)
 							.setSnackScore(0);
@@ -139,10 +141,11 @@ public class Main {
 		game.addLayer(snackLayer, 1);
 
 		//init key listener and action
-		Action moveW = new CharacterMoveTo(0, -5, snackLayer.getSprites());
-		Action moveA = new CharacterMoveTo(-5, 0, snackLayer.getSprites());
-		Action moveS = new CharacterMoveTo(0, 5, snackLayer.getSprites());
-		Action moveD = new CharacterMoveTo(5, 0, snackLayer.getSprites());
+		//machi
+		Action moveW = new CharacterMoveTo(0, -((Character)machi).getSpeed(), snackLayer.getSprites());
+		Action moveA = new CharacterMoveTo(-((Character)machi).getSpeed(), 0, snackLayer.getSprites());
+		Action moveS = new CharacterMoveTo(0, ((Character)machi).getSpeed(), snackLayer.getSprites());
+		Action moveD = new CharacterMoveTo(((Character)machi).getSpeed(), 0, snackLayer.getSprites());
 		Action machiAnimate = new Animate();
 		((Animate)machiAnimate).addImage(machi.getImage());
 		((Animate)machiAnimate).addImage(ImageIO.read(new File("resource/image/machi2.png")));
@@ -155,11 +158,11 @@ public class Main {
 		interact.addEvent(KeyEvent.VK_S, Interact.ON_KEY_PRESS, machi, moveS);
 		interact.addEvent(KeyEvent.VK_D, Interact.ON_KEY_PRESS, machi, moveD);
 
-		Action nastuMove = new EnemyMove(15, EnemyMove.ANTICLOCKWISE);
+		//nastu
+		Action nastuMove = new EnemyMove(((Enemy)nastu).getSpeed(), EnemyMove.ANTICLOCKWISE);
 		Action nastuAnimate = new Animate();
 		((Animate)nastuAnimate).addImage(nastu.getImage());
 		((Animate)nastuAnimate).addImage(ImageIO.read(new File("resource/image/natsu2.png")));
-
 		nastuMove.addAction(nastuAnimate);
 		infinite.addEvent(nastu, nastuMove);
 
