@@ -20,7 +20,7 @@ public class CharacterMoveTo extends MoveTo {
 
 	@Override
 	public void update(Sprite sprite) {
-		if (!GameMap.mapCrash(sprite)) {
+		if (!GameMap.mapCrash(sprite, getX(), getY())) {
 			sprite.checkCrash(sprites, new CrashSnack());
 			super.update(sprite);
 		}
