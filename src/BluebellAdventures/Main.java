@@ -15,8 +15,9 @@ import BluebellAdventures.Actions.CharacterMoveTo;
 import BluebellAdventures.Actions.EnemyMove;
 import BluebellAdventures.Actions.Quit;
 import BluebellAdventures.Characters.Character;
-import BluebellAdventures.Characters.Snack;
 import BluebellAdventures.Characters.Enemy;
+import BluebellAdventures.Characters.GameMap;
+import BluebellAdventures.Characters.Snack;
 
 import Megumin.Actions.Action;
 import Megumin.Actions.Animate;
@@ -116,7 +117,8 @@ public class Main {
 							.setScore(1000);
 		Sprite snack5 = new Snack("resource/image/snack1.png", new Point(800, 700))
 							.setScore(10000);
-		Sprite map = new Sprite("resource/image/small_map.png");
+		Sprite map = GameMap.getInstance("resource/image/full_map.png")
+							.setPath("resource/path");
 
 		//init layer
 		Layer guardLayer = new Layer();
