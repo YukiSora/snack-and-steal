@@ -1,6 +1,7 @@
 package Megumin.Audio;
 
 import java.util.HashMap;
+import java.util.Map.Entry;
 import javax.sound.sampled.Clip;
 
 public class AudioEngine {
@@ -44,6 +45,12 @@ public class AudioEngine {
 
     public void stop(String name) {
         audios.get(name).stop();
+    }
+
+    public void stopAll() {
+        for(Entry<String, Audio> entry : audios.entrySet()) {
+            entry.getValue().stop();
+        }
     }
 
     public void close(String name) {
