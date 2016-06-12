@@ -19,7 +19,7 @@ public class ChangeScene extends Action {
 	public void update(Sprite sprite) {
 		Director.getInstance().setScene(scene);
 		AudioEngine.getInstance().stopAll();
-		AudioEngine.getInstance().play(audio);
+		AudioEngine.getInstance().loop(audio, Clip.LOOP_CONTINUOUSLY);
 		super.update(sprite);
 	}
 
