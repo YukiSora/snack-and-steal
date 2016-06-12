@@ -1,5 +1,8 @@
 package BluebellAdventures.Characters;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -39,6 +42,15 @@ public class Character extends Sprite {
 
 	public Character(BufferedImage image, Point position) {
 		super(image, position);
+	}
+
+	public void render(Graphics2D g) {
+		if (getVisible()) {
+			g.setFont(new Font("TimesRoman", Font.PLAIN, 40));
+			g.setColor(Color.green);
+			g.drawString("Score: " + snackScore, 1000, 50);
+			super.render(g);
+		}
 	}
 
 	@Override
