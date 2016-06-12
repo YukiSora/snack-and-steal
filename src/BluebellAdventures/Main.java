@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import javax.imageio.ImageIO;
+import javax.sound.sampled.Clip;
 
 import BluebellAdventures.Actions.ChangeScene;
 import BluebellAdventures.Actions.CharacterMoveTo;
@@ -26,6 +27,8 @@ import Megumin.Actions.MoveTo;
 import Megumin.Actions.MouseCrash;
 import Megumin.Actions.Infinite;
 import Megumin.Actions.Interact;
+import Megumin.Audio.Audio;
+import Megumin.Audio.AudioEngine;
 import Megumin.Nodes.Director;
 import Megumin.Nodes.Layer;
 import Megumin.Nodes.Scene;
@@ -36,11 +39,13 @@ public class Main {
 	private static Director director;
 	private static Infinite infinite;
 	private static Interact interact;
+	private static AudioEngine audioEngine;
 
 	public static void main(String[] args) throws IOException {
 		director = Director.getInstance();
 		infinite = Infinite.getInstance();
 		interact = Interact.getInstance();
+		audioEngine = AudioEngine.getInstance();
 
 		//init window property
 		director.setTitle("Bluebell's Adventures");
@@ -59,13 +64,24 @@ public class Main {
 
 		//add menu action
 		Sprite single = menu.getSpriteByName("single player");
-		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, single, new MouseCrash(new ChangeScene(game)));
+		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, single, new MouseCrash(new ChangeScene(game, "main")));
 		Sprite exit = menu.getSpriteByName("exit");
 		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, exit, new MouseCrash(new Quit()));
+
+		//init audio
+		audioEngine.addAudio("eating", new Audio("resource/audio/eating.wav"));
+		audioEngine.addAudio("attacking", new Audio("resource/audio/attacking.wav"));
+		audioEngine.addAudio("slurping", new Audio("resource/audio/slurping.wav"));
+		audioEngine.addAudio("walking", new Audio("resource/audio/walking.wav"));
+		audioEngine.addAudio("menu", new Audio("resource/audio/menu.wav"));
+		audioEngine.addAudio("main", new Audio("resource/audio/main.wav"));
+		audioEngine.addAudio("nervous", new Audio("resource/audio/nervous.wav"));
+		audioEngine.addAudio("victory", new Audio("resource/audio/victory.wav"));
 
 		//start
 		director.setScene(menu);
 		director.start();
+		audioEngine.loop("menu", Clip.LOOP_CONTINUOUSLY);
 		try {
 			director.getThread().join();
 		} catch (InterruptedException e) {
