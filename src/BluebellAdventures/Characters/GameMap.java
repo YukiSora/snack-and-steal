@@ -67,6 +67,9 @@ public class GameMap extends Sprite {
 		try (FileInputStream in = new FileInputStream(filename)) {
 			int c;
 			while ((c = in.read()) != -1) {
+				if (c == '\r') {
+				}
+				else if (c == '\n') {
 					i++;
 					j = 0;
 				}
