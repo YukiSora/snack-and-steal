@@ -95,7 +95,7 @@ public class Main {
 		mapLayer.addSprite(background);
 
 		//init scene
-		Scene loading = new Scaene();
+		Scene loading = new Scene();
 		loading.addLayer(mapLayer);
 
 		return loading;
