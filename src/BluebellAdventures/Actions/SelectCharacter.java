@@ -111,7 +111,7 @@ public class SelectCharacter extends Action {
 		interact.addEvent(KeyEvent.VK_D, Interact.ON_KEY_PRESS, player, moveD);
 
 		//nastu
-		Action nastuMove = new EnemyMove(((Enemy)nastu).getSpeed(), EnemyMove.ANTICLOCKWISE);
+		Action nastuMove = new EnemyMove(((Enemy)nastu).getSpeed(), EnemyMove.ANTICLOCKWISE, new Point(50, 50), new Point(800, 500));
 		Action nastuAnimate = new Animate();
 		((Animate)nastuAnimate).addImage(nastu.getImage());
 		((Animate)nastuAnimate).addImage(ImageIO.read(new File("resource/image/natsu2.png")));
