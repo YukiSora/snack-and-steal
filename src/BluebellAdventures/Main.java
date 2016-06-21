@@ -72,18 +72,11 @@ public class Main {
 		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, exit, new MouseCrash(new Quit()));
 
 		//character selection action
-		Sprite rat = characterSelection.getSpriteByName("rat");
-		Action selectRat = new MouseCrash(new SelectCharacter("machi"));
-		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, rat, selectRat);
-
-		Sprite raccoon = characterSelection.getSpriteByName("roach");
-		Action selectRaccoon = new MouseCrash(new SelectCharacter("natsu"));
-		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, raccoon, selectRaccoon);
-
 		Sprite back = characterSelection.getSpriteByName("back");
 		Action backToMenu = new MouseCrash(new ChangeScene(menu, "menu"));
 		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, back, backToMenu);
 
+		//after loading start game
 		audioEngine.loop("menu", Clip.LOOP_CONTINUOUSLY);
 		director.setScene(menu);
 		try {
@@ -102,7 +95,7 @@ public class Main {
 		mapLayer.addSprite(background);
 
 		//init scene
-		Scene loading = new Scene();
+		Scene loading = new Scaene();
 		loading.addLayer(mapLayer);
 
 		return loading;
@@ -170,6 +163,13 @@ public class Main {
 		Scene characterSelection = new Scene();
 		characterSelection.addLayer(tabLayer);
 		characterSelection.addLayer(mapLayer, 0);
+
+		//init action
+		Action selectRat = new MouseCrash(new SelectCharacter("machi"));
+		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, rat, selectRat);
+
+		Action selectRaccoon = new MouseCrash(new SelectCharacter("natsu"));
+		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, raccoon, selectRaccoon);
 
 		return characterSelection;
 	}
