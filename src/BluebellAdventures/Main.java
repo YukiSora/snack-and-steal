@@ -40,7 +40,7 @@ public class Main {
 	private static Infinite infinite;
 	private static Interact interact;
 	private static AudioEngine audioEngine;
-        private static String player;
+	private static Character player;
 
 	public static void main(String[] args) throws IOException {
 		director = Director.getInstance();
@@ -55,29 +55,6 @@ public class Main {
 		director.setBackground(Color.black);
 		director.setUndecorated(true);
 
-		//system action
-		Sprite system = new Sprite();
-		interact.addEvent(KeyEvent.VK_ESCAPE, Interact.ON_KEY_CLICK, system, new Quit());
-
-		//create scene
-		Scene menu = createMenuScene();
-                Scene charSelect = createCharacterSelection();
-		Scene game = createGameScene();
-
-		//add menu action
-		Sprite single = menu.getSpriteByName("single player");
-		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, single, new MouseCrash(new ChangeScene(charSelect, "selection")));
-		Sprite exit = menu.getSpriteByName("exit");
-		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, exit, new MouseCrash(new Quit()));
-                
-                Sprite character = charSelect.getSpriteByName("rat");
-		Action toGame = new MouseCrash(new ChangeScene(game, "main"));
-		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, character, toGame);
-                
-                Sprite back = charSelect.getSpriteByName("back");
-		Action backMenu = new MouseCrash(new ChangeScene(menu, "main"));
-		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, back, backMenu);
-                
 		//init audio
 		audioEngine.addAudio("eating", new Audio("resource/audio/eating.wav"));
 		audioEngine.addAudio("attacking", new Audio("resource/audio/attacking.wav"));
@@ -87,6 +64,30 @@ public class Main {
 		audioEngine.addAudio("main", new Audio("resource/audio/main.wav"));
 		audioEngine.addAudio("nervous", new Audio("resource/audio/nervous.wav"));
 		audioEngine.addAudio("victory", new Audio("resource/audio/victory.wav"));
+
+		//system action
+		Sprite system = new Sprite();
+		interact.addEvent(KeyEvent.VK_ESCAPE, Interact.ON_KEY_CLICK, system, new Quit());
+
+		//create scene
+		Scene menu = createMenuScene();
+		Scene characterSelection = createCharacterSelectionScene();
+		Scene game = createGameScene();
+
+		//menu action
+		Sprite single = menu.getSpriteByName("single player");
+		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, single, new MouseCrash(new ChangeScene(characterSelection, "main")));
+		Sprite exit = menu.getSpriteByName("exit");
+		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, exit, new MouseCrash(new Quit()));
+
+		//character selection action
+		Sprite character = characterSelection.getSpriteByName("rat");
+		Action startGame = new MouseCrash(new ChangeScene(game, "main"));
+		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, character, startGame);
+
+		Sprite back = characterSelection.getSpriteByName("back");
+		Action backToMenu = new MouseCrash(new ChangeScene(menu, "menu"));
+		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, back, backToMenu);
 
 		//start
 		director.setScene(menu);
@@ -99,7 +100,7 @@ public class Main {
 		}
 	}
 
-	public static Scene createMenuScene() throws IOException  {
+	public static Scene createMenuScene() throws IOException {
 		//init sprite
 		Sprite singlePlayer = new Sprite("resource/image/tag_single.png", new Point(200, 100));
 		Sprite multiPlayer = new Sprite("resource/image/tag_multi.png", new Point(200, 250));
@@ -125,59 +126,45 @@ public class Main {
 
 		return menu;
 	}
-        
-        public static Scene createCharacterSelection(){
-            //init Sprite
-            Sprite dog = null;
-            Sprite cat = null;
-            Sprite raccoon = null;
-            Sprite fox = null;
-            Sprite rat = null;
-            Sprite roach = null;
-            Sprite back = null;
-            Sprite bg = null;
-            
-            try {
-                rat = new Sprite("resource/image/rat.png", new Point(40, 300));
-                raccoon = new Sprite("resource/image/raccoon.png", new Point(150, 350));
-		dog = new Sprite("resource/image/dog.png", new Point(450, 300));
-                cat = new Sprite("resource/image/cat.png", new Point(650, 300));
-                fox = new Sprite("resource/image/fox.png", new Point(900, 300));
-                roach = new Sprite("resource/image/roach.png", new Point(1000, 300));
-                back = new Sprite("resource/image/tab_back.png", new Point(1100, 570));
-		bg = new Sprite("resource/image/menu_bg.jpeg");
-            } 
-            catch (IOException e) {
-		System.out.println(e);
-            }
-            rat.setName("rat");
-            raccoon.setName("raccoon");
-            dog.setName("dog");
-            cat.setName("cat");
-            fox.setName("fox");
-            roach.setName("roach");
-            back.setName("back");
-            
-            //init layers
-            Layer tabLayer = new Layer();
-            tabLayer.addSprite(raccoon);
-            tabLayer.addSprite(rat);
-            tabLayer.addSprite(dog);
-            tabLayer.addSprite(cat);
-            tabLayer.addSprite(fox);
-            tabLayer.addSprite(roach);
-            tabLayer.addSprite(back);
-            
-            Layer mapLayer = new Layer();
-            mapLayer.addSprite(bg);
-            
-            //init scene
-            Scene selection = new Scene();
-            selection.addLayer(tabLayer);
-            selection.addLayer(mapLayer, 0);
-            
-            return selection;
-        }
+
+	public static Scene createCharacterSelectionScene() throws IOException {
+		//init Sprite
+		Sprite rat = new Sprite("resource/image/rat.png", new Point(40, 300));
+		Sprite raccoon = new Sprite("resource/image/raccoon.png", new Point(150, 350));
+		Sprite dog = new Sprite("resource/image/dog.png", new Point(450, 300));
+		Sprite cat = new Sprite("resource/image/cat.png", new Point(650, 300));
+		Sprite fox = new Sprite("resource/image/fox.png", new Point(900, 300));
+		Sprite roach = new Sprite("resource/image/roach.png", new Point(1000, 300));
+		Sprite back = new Sprite("resource/image/tab_back.png", new Point(1100, 570));
+		Sprite background = new Sprite("resource/image/menu_bg.jpeg");
+		rat.setName("rat");
+		raccoon.setName("raccoon");
+		dog.setName("dog");
+		cat.setName("cat");
+		fox.setName("fox");
+		roach.setName("roach");
+		back.setName("back");
+
+		//init layers
+		Layer tabLayer = new Layer();
+		tabLayer.addSprite(rat);
+		tabLayer.addSprite(raccoon);
+		tabLayer.addSprite(dog);
+		tabLayer.addSprite(cat);
+		tabLayer.addSprite(fox);
+		tabLayer.addSprite(roach);
+		tabLayer.addSprite(back);
+
+		Layer mapLayer = new Layer();
+		mapLayer.addSprite(background);
+
+		//init scene
+		Scene characterSelection = new Scene();
+		characterSelection.addLayer(tabLayer);
+		characterSelection.addLayer(mapLayer, 0);
+
+		return characterSelection;
+	}
 
 	public static Scene createGameScene() throws IOException  {
 		//init sprite
