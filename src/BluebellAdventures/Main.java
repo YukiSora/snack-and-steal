@@ -43,6 +43,7 @@ public class Main {
 	private static Character player;
 
 	public static void main(String[] args) throws IOException {
+		//init instances
 		director = Director.getInstance();
 		infinite = Infinite.getInstance();
 		interact = Interact.getInstance();
@@ -54,6 +55,11 @@ public class Main {
 		director.setSize(1280, 720);
 		director.setBackground(Color.black);
 		director.setUndecorated(true);
+
+		//start loading page
+		Scene loading = createLoadingScene();
+		director.setScene(loading);
+		director.start();
 
 		//init audio
 		audioEngine.addAudio("eating", new Audio("resource/audio/eating.wav"));
@@ -89,15 +95,28 @@ public class Main {
 		Action backToMenu = new MouseCrash(new ChangeScene(menu, "menu"));
 		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, back, backToMenu);
 
-		//start
-		director.setScene(menu);
-		director.start();
 		audioEngine.loop("menu", Clip.LOOP_CONTINUOUSLY);
+		director.setScene(menu);
 		try {
 			director.getThread().join();
 		} catch (InterruptedException e) {
 			System.out.println(e);
 		}
+	}
+
+	public static Scene createLoadingScene() throws IOException {
+		//init sprite
+		Sprite background = new Sprite("resource/image/menu_bg.jpeg");
+
+		//init layer
+		Layer mapLayer = new Layer();
+		mapLayer.addSprite(background);
+
+		//init scene
+		Scene loading = new Scene();
+		loading.addLayer(mapLayer);
+
+		return loading;
 	}
 
 	public static Scene createMenuScene() throws IOException {
