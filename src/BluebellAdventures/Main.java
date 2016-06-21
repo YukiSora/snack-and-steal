@@ -3,27 +3,14 @@ package BluebellAdventures;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.LinkedList;
-import javax.imageio.ImageIO;
 import javax.sound.sampled.Clip;
 
 import BluebellAdventures.Actions.ChangeScene;
-import BluebellAdventures.Actions.CharacterMoveTo;
-import BluebellAdventures.Actions.EnemyMove;
+import BluebellAdventures.Actions.SelectCharacter;
 import BluebellAdventures.Actions.Quit;
-import BluebellAdventures.Characters.Character;
-import BluebellAdventures.Characters.Enemy;
-import BluebellAdventures.Characters.GameMap;
-import BluebellAdventures.Characters.Snack;
 
 import Megumin.Actions.Action;
-import Megumin.Actions.Animate;
-import Megumin.Actions.Effect;
-import Megumin.Actions.MoveTo;
 import Megumin.Actions.MouseCrash;
 import Megumin.Actions.Infinite;
 import Megumin.Actions.Interact;
@@ -40,7 +27,6 @@ public class Main {
 	private static Infinite infinite;
 	private static Interact interact;
 	private static AudioEngine audioEngine;
-	private static Character player;
 
 	public static void main(String[] args) throws IOException {
 		//init instances
@@ -78,7 +64,6 @@ public class Main {
 		//create scene
 		Scene menu = createMenuScene();
 		Scene characterSelection = createCharacterSelectionScene();
-		Scene game = createGameScene();
 
 		//menu action
 		Sprite single = menu.getSpriteByName("single player");
@@ -87,9 +72,13 @@ public class Main {
 		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, exit, new MouseCrash(new Quit()));
 
 		//character selection action
-		Sprite character = characterSelection.getSpriteByName("rat");
-		Action startGame = new MouseCrash(new ChangeScene(game, "main"));
-		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, character, startGame);
+		Sprite rat = characterSelection.getSpriteByName("rat");
+		Action selectRat = new MouseCrash(new SelectCharacter("machi"));
+		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, rat, selectRat);
+
+		Sprite raccoon = characterSelection.getSpriteByName("roach");
+		Action selectRaccoon = new MouseCrash(new SelectCharacter("natsu"));
+		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, raccoon, selectRaccoon);
 
 		Sprite back = characterSelection.getSpriteByName("back");
 		Action backToMenu = new MouseCrash(new ChangeScene(menu, "menu"));
@@ -183,76 +172,5 @@ public class Main {
 		characterSelection.addLayer(mapLayer, 0);
 
 		return characterSelection;
-	}
-
-	public static Scene createGameScene() throws IOException  {
-		//init sprite
-		Sprite nastu = new Enemy("resource/image/natsu1.png", new Point(200, 200))
-							.setSpeed(10);
-		Sprite machi = new Character("resource/image/machi1.png", new Point(600, 200))
-							.setSpeed(5)
-							.setSnackScore(0);
-		Sprite snack1 = new Snack("resource/image/snack1.png", new Point(400, 300))
-							.setScore(1);
-		Sprite snack2 = new Snack("resource/image/snack1.png", new Point(500, 400))
-							.setScore(10);
-		Sprite snack3 = new Snack("resource/image/snack1.png", new Point(600, 500))
-							.setScore(100);
-		Sprite snack4 = new Snack("resource/image/snack1.png", new Point(700, 600))
-							.setScore(1000);
-		Sprite snack5 = new Snack("resource/image/snack1.png", new Point(800, 700))
-							.setScore(10000);
-		Sprite map = GameMap.getInstance("resource/image/full_map.png")
-							.setPath("resource/path");
-
-		//init layer
-		Layer guardLayer = new Layer();
-		guardLayer.addSprite(nastu);
-		Layer ownPlayerLayer = new Layer();
-		ownPlayerLayer.addSprite(machi);
-		Layer snackLayer = new Layer();
-		snackLayer.setName("snack");
-		snackLayer.addSprite(snack1);
-		snackLayer.addSprite(snack2);
-		snackLayer.addSprite(snack3);
-		snackLayer.addSprite(snack4);
-		snackLayer.addSprite(snack5);
-		Layer mapLayer = new Layer();
-		mapLayer.addSprite(map);
-
-		//init scene
-		Scene game = new Scene();
-		game.addLayer(guardLayer);
-		game.addLayer(ownPlayerLayer);
-		game.addLayer(mapLayer, 0);
-		game.addLayer(snackLayer, 1);
-
-		//init key listener and action
-		//machi
-		Action moveW = new CharacterMoveTo(0, -((Character)machi).getSpeed(), snackLayer.getSprites());
-		Action moveA = new CharacterMoveTo(-((Character)machi).getSpeed(), 0, snackLayer.getSprites());
-		Action moveS = new CharacterMoveTo(0, ((Character)machi).getSpeed(), snackLayer.getSprites());
-		Action moveD = new CharacterMoveTo(((Character)machi).getSpeed(), 0, snackLayer.getSprites());
-		Action machiAnimate = new Animate();
-		((Animate)machiAnimate).addImage(machi.getImage());
-		((Animate)machiAnimate).addImage(ImageIO.read(new File("resource/image/machi2.png")));
-		moveW.addAction(machiAnimate);
-		moveA.addAction(machiAnimate);
-		moveS.addAction(machiAnimate);
-		moveD.addAction(machiAnimate);
-		interact.addEvent(KeyEvent.VK_W, Interact.ON_KEY_PRESS, machi, moveW);
-		interact.addEvent(KeyEvent.VK_A, Interact.ON_KEY_PRESS, machi, moveA);
-		interact.addEvent(KeyEvent.VK_S, Interact.ON_KEY_PRESS, machi, moveS);
-		interact.addEvent(KeyEvent.VK_D, Interact.ON_KEY_PRESS, machi, moveD);
-
-		//nastu
-		Action nastuMove = new EnemyMove(((Enemy)nastu).getSpeed(), EnemyMove.ANTICLOCKWISE);
-		Action nastuAnimate = new Animate();
-		((Animate)nastuAnimate).addImage(nastu.getImage());
-		((Animate)nastuAnimate).addImage(ImageIO.read(new File("resource/image/natsu2.png")));
-		nastuMove.addAction(nastuAnimate);
-		infinite.addEvent(nastu, nastuMove);
-
-		return game;
 	}
 }
