@@ -52,7 +52,7 @@ public class SelectCharacter extends Action {
 
 	private Scene createGameScene() throws IOException  {
 		//init sprite
-		Sprite nastu = new Enemy("resource/image/natsu1.png", new Point(200, 200))
+		Sprite nastu = new Enemy("resource/image/snack1.png", new Point(200, 330))
 							.setSpeed(10);
 		Sprite player = new Character("resource/image/" + playerImageName + "1.png", new Point(600, 200))
 							.setSpeed(5)
@@ -112,10 +112,10 @@ public class SelectCharacter extends Action {
 
 		//nastu
 		Action nastuMove = new EnemyMove(((Enemy)nastu).getSpeed(), EnemyMove.ANTICLOCKWISE, new Point(50, 50), new Point(800, 500));
-		Action nastuAnimate = new Animate();
-		((Animate)nastuAnimate).addImage(nastu.getImage());
-		((Animate)nastuAnimate).addImage(ImageIO.read(new File("resource/image/natsu2.png")));
-		nastuMove.addAction(nastuAnimate);
+		// Action nastuAnimate = new Animate();
+		// ((Animate)nastuAnimate).addImage(nastu.getImage());
+		// ((Animate)nastuAnimate).addImage(ImageIO.read(new File("resource/image/natsu2.png")));
+		// nastuMove.addAction(nastuAnimate);
 		infinite.addEvent(nastu, nastuMove);
 
 		return game;
