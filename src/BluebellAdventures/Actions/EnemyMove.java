@@ -42,13 +42,15 @@ public class EnemyMove extends MoveTo {
 
 		int[] dir = {-1, 0, 1};
 		Random rand = new Random();
-		if (GameMap.enemyCrash(sprite, direction[0] * speed, direction[1] * speed)) {
+		if (GameMap.enemyCrash(sprite, direction[0] * speed, direction[1] * speed) || (x + w) > position.getX() + size.getX() || (y + h) > position.getY() + size.getY()) {
 			direction[0] = dir[rand.nextInt(3)];
 			direction[1] = dir[rand.nextInt(3)];
+
 			while (direction[0] == 0 && direction[1] == 0) {
 				direction[0] = dir[rand.nextInt(3)];
 				direction[1] = dir[rand.nextInt(3)];
 			}
+
 			setX(direction[0] * speed);
 			setY(direction[1] * speed);
 
