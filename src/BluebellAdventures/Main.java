@@ -171,6 +171,9 @@ public class Main {
 
 		Action selectRoach = new MouseCrash(new SelectCharacter("natsu"));
 		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, roach, selectRoach);
+                
+                Action selectCat = new MouseCrash(new SelectCharacter("cat"));
+		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, cat, selectCat);
 		
 		// Action selectRaccoon = new MouseCrash(new SelectCharacter("natsu"));
 		// interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, raccoon, selectRaccoon);
