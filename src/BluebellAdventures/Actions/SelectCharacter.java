@@ -58,7 +58,7 @@ public class SelectCharacter extends Action {
 		Sprite player = new Character("resource/image/" + playerImageName + "1.png", new Point(600, 200))
 							.setSpeed(5)
 							.setSnackScore(0);
-                Sprite fridge = new MovableObject("resource/image/fridge.png", new Point(3532, 2440))
+                Sprite fridge = new MovableObject("resource/image/fridge.png", new Point(3387, 2528))
                                                         .setLock(true);
 		Sprite snackFridge = new Snack("resource/image/snack1.png", new Point(3531, 2590))
 							.setScore(350);
@@ -92,9 +92,11 @@ public class SelectCharacter extends Action {
 		guardLayer.addSprite(nastu);
 		Layer ownPlayerLayer = new Layer();
 		ownPlayerLayer.addSprite(player);
-                Layer lockedLayer = new Layer();
-                lockedLayer.setName("lockObject");
-                lockedLayer.addSprite(fridge);
+                
+                Layer lockLayer = new Layer();
+                lockLayer.setName("fridge");
+                lockLayer.addSprite(fridge);
+                
 		Layer snackLayer = new Layer();
 		snackLayer.setName("snack");
 		snackLayer.addSprite(snackFridge);
@@ -109,6 +111,7 @@ public class SelectCharacter extends Action {
                 snackLayer.addSprite(snackcloset2);
                 snackLayer.addSprite(snackcloset3);
                 snackLayer.addSprite(snackcloset4);
+                
 		Layer mapLayer = new Layer();
 		mapLayer.addSprite(map);
 
@@ -118,22 +121,22 @@ public class SelectCharacter extends Action {
 		game.addLayer(ownPlayerLayer);
 		game.addLayer(mapLayer, 0);
 		game.addLayer(snackLayer, 1);
-                game.addLayer(lockedLayer, 1);
+                game.addLayer(lockLayer, 2);
 
 		//init key listener and action
 		//player
 		Action moveW = new CharacterMoveTo(0, -((Character)player).getSpeed());
                 ((CharacterMoveTo)moveW).addSprites(snackLayer.getSprites());
-                ((CharacterMoveTo)moveW).addSprites(lockedLayer.getSprites());
+                ((CharacterMoveTo)moveW).addSprites(lockLayer.getSprites());
 		Action moveA = new CharacterMoveTo(-((Character)player).getSpeed(), 0);
                 ((CharacterMoveTo)moveA).addSprites(snackLayer.getSprites());
-                ((CharacterMoveTo)moveA).addSprites(lockedLayer.getSprites());
+                ((CharacterMoveTo)moveA).addSprites(lockLayer.getSprites());
 		Action moveS = new CharacterMoveTo(0, ((Character)player).getSpeed());
                 ((CharacterMoveTo)moveS).addSprites(snackLayer.getSprites());
-                ((CharacterMoveTo)moveS).addSprites(lockedLayer.getSprites());
+                ((CharacterMoveTo)moveS).addSprites(lockLayer.getSprites());
 		Action moveD = new CharacterMoveTo(((Character)player).getSpeed(), 0);
                 ((CharacterMoveTo)moveD).addSprites(snackLayer.getSprites());
-                ((CharacterMoveTo)moveD).addSprites(lockedLayer.getSprites());
+                ((CharacterMoveTo)moveD).addSprites(lockLayer.getSprites());
 		Action playerAnimate = new Animate();
 		((Animate)playerAnimate).addImage(player.getImage());
 		((Animate)playerAnimate).addImage(ImageIO.read(new File("resource/image/" + playerImageName + "2.png")));
