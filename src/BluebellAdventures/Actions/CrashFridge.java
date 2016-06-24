@@ -13,7 +13,7 @@ import java.io.File;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
-public class CrashLock extends Effect {
+public class CrashFridge extends Effect {
     @Override
     public void update(Sprite sprite) {
         AudioEngine.getInstance().play("fridge");
