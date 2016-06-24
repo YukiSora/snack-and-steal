@@ -164,4 +164,12 @@ public class Character extends Sprite {
         public void getKeys(){
             return key;
         }
+        
+        public void addKey(int key) {
+		this.key += key;
+	}
+        
+        public void useKey(int key) {
+		this.key -= key;
+	}
 }
