@@ -11,21 +11,30 @@ import Megumin.Nodes.Director;
 import Megumin.Nodes.Sprite;
 import Megumin.Point;
 
-public class CrashCharacter extends Effect {
+public class ChaseCharacter extends Effect {
+	private Action action;
+
+	ChaseCharacter(Action action){
+		this.action = action;
+	}
 
 	@Override
 	public void update(Sprite sprite) {
-		AudioEngine.getInstance().play("attacking");
-		Character player = (Character) getSprite();
-		int hp = player.getHp();
+		System.out.println("Chasing Mode: ON");
+		((EnemyMove)action).setMode(1);
+		((EnemyMove)action).setCharacterSprite(getSprite());
 
-		if (hp < 1){
-			System.out.println("Game Over Mate!");
-		} else {
-			System.out.println("Health: " + hp);
-			player.setHp(--hp);
-			GameMap.getInstance().setPosition(new Point (-2752, -2619));
-		}
+		// AudioEngine.getInstance().play("attacking");
+		// Character player = (Character) getSprite();
+		// int hp = player.getHp();
+
+		// if (hp < 1){
+		// 	System.out.println("Game Over Mate!");
+		// } else {
+		// 	System.out.println("Health: " + hp);
+		// 	player.setHp(--hp);
+		// 	GameMap.getInstance().setPosition(new Point (-2752, -2619));
+		// }
 
 		// Director.getInstance().getScene().getLayerByName("snack").removeSprite(getSprite());
 		// ((Character)sprite).addSnackScore(((Snack)getSprite()).getScore());

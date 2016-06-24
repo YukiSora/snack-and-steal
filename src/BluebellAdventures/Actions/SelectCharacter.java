@@ -54,7 +54,7 @@ public class SelectCharacter extends Action {
 	private Scene createGameScene() throws IOException  {
 		//init AI & player sprites
 		Sprite enemyRoom1 = new Enemy("resource/image/ladybug1.png", new Point(200, 330))
-							.setSpeed(10);
+							.setSpeed(5);
 
 		Sprite enemyLivingRoom = new Enemy("resource/image/ladybug1.png", new Point(2375, 1050))
 							.setSpeed(10);
