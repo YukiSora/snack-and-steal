@@ -151,8 +151,12 @@ public class SelectCharacter extends Action {
 		interact.addEvent(KeyEvent.VK_S, Interact.ON_KEY_PRESS, player, moveS);
 		interact.addEvent(KeyEvent.VK_D, Interact.ON_KEY_PRESS, player, moveD);
 
-		//nastu
-		Action nastuMove = new EnemyMove(((Enemy)nastu).getSpeed(), new Point(50, 50), new Point(800, 500));
+		//nastu - Room 1
+		Action nastuMove = new EnemyMove(((Enemy)nastu).getSpeed(), new Point(47, 47), new Point(972, 788));
+
+		// Living Room
+		// Action nastuMove = new EnemyMove(((Enemy)nastu).getSpeed(), new Point(1764, 47), new Point(3137, 2045));
+
 		((EnemyMove)nastuMove).addSprites(ownPlayerLayer.getSprites());
 		// Action nastuAnimate = new Animate();
 		// ((Animate)nastuAnimate).addImage(nastu.getImage());
