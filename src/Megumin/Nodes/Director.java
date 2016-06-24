@@ -89,7 +89,7 @@ public class Director extends Frame implements KeyListener, MouseListener, Runna
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println("Mouse position: " + e.getX() + ", " + e.getY());
+        System.out.println("Debug message: Mouse position: {x = " + e.getX() + ", y = " + e.getY() + "}");
         interact.mouseClicked(e.getX(), e.getY());
     }
 
