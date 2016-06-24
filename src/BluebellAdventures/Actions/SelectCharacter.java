@@ -60,7 +60,8 @@ public class SelectCharacter extends Action {
 							.setSpeed(10);
 
 		Sprite player = new Character("resource/image/" + playerImageName + "1.png", new Point(600, 200))
-							.setSpeed(35)
+							.setHp(3)
+							.setSpeed(25)
 							.setSnackScore(0);
                 //Fox has advantage in speed
                 if (playerImageName == "fox"){
@@ -171,7 +172,6 @@ public class SelectCharacter extends Action {
 		interact.addEvent(KeyEvent.VK_S, Interact.ON_KEY_PRESS, player, moveS);
 		interact.addEvent(KeyEvent.VK_D, Interact.ON_KEY_PRESS, player, moveD);
 
-		//nastu - Room 1
 		Action enemyRoom1Move = new EnemyMove(((Enemy)enemyRoom1).getSpeed(), new Point(47, 47), new Point(925, 741));
 		Action enemyLivingRoomMove = new EnemyMove(((Enemy)enemyRoom1).getSpeed(), new Point(1762, 47), new Point(1383, 2015));
 
