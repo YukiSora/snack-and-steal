@@ -62,7 +62,7 @@ public class SelectCharacter extends Action {
 		Sprite player = new Character("resource/image/" + playerImageName + "1.png", new Point(600, 200))
 							.setSpeed(25)
 							.setSnackScore(0);
-                Sprite fridge = new MovableObject("resource/image/fridge.png", new Point(3387, 2528))
+                Sprite fridge = new MovableObject("resource/image/fridge.png", new Point(3387, 2520))
                                                         .setLock(true);
                 fridge.setName("fridge");
 		Sprite snackFridge = new Snack("resource/image/snack1.png", new Point(3531, 2590))
