@@ -12,6 +12,7 @@ import Megumin.Nodes.Sprite;
 import Megumin.Point;
 
 public class CrashCharacter extends Effect {
+
 	@Override
 	public void update(Sprite sprite) {
 		AudioEngine.getInstance().play("attacking");

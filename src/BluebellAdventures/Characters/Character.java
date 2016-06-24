@@ -21,11 +21,11 @@ public class Character extends Sprite {
 	private int hp;
 	private int mp;
 	private int chargeBar;
-	private int lives;
 	private int speed;
 	private int unlockSpeed;
 	private int attackScore;
 	private int snackScore;
+        private int key;
 
 	// Constructors //
 	public Character(String filename) throws IOException {
@@ -107,15 +107,6 @@ public class Character extends Sprite {
 		return chargeBar;
 	}
 
-	public Character setLives(int lives) {
-		this.lives = lives;
-		return this;
-	}
-
-	public int getLives() {
-		return lives;
-	}
-
 	public Character setSpeed(int speed) {
 		this.speed = speed;
 		return this;
@@ -154,5 +145,22 @@ public class Character extends Sprite {
 
 	public int getSnackScore() {
 		return snackScore;
+	}
+        
+        public Character setKey(int key){
+            this.key = key;
+            return this;
+        }
+        
+        public int getKey(){
+            return key;
+        }
+        
+        public void addKey(int key) {
+		this.key += key;
+	}
+        
+        public void useKey(int key) {
+		this.key -= key;
 	}
 }

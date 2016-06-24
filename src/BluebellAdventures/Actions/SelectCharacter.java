@@ -52,9 +52,9 @@ public class SelectCharacter extends Action {
 	}
 
 	private Scene createGameScene() throws IOException  {
-		//init sprite
+		//init AI & player sprites
 		Sprite enemyRoom1 = new Enemy("resource/image/ladybug1.png", new Point(200, 330))
-							.setSpeed(10);
+							.setSpeed(5);
 
 		Sprite enemyLivingRoom = new Enemy("resource/image/ladybug1.png", new Point(2375, 1050))
 							.setSpeed(10);
@@ -62,10 +62,27 @@ public class SelectCharacter extends Action {
 		Sprite player = new Character("resource/image/" + playerImageName + "1.png", new Point(600, 200))
 							.setHp(3)
 							.setSpeed(25)
-							.setSnackScore(0);
+							.setSnackScore(0)
+                                                        .setKey(0);
+                //Fox has advantage in speed
+                if (playerImageName == "fox"){
+                    ((Character)player).setSpeed(40);
+                }
+                if (playerImageName == "cat"){
+                    ((Character)player).setHp(9);
+                }
+                if(playerImageName == "rat"){
+                    ((Character)player).setKey(10);
+                }
+                //init movable object sprites
                 Sprite fridge = new MovableObject("resource/image/fridge.png", new Point(3387, 2520))
                                                         .setLock(true);
                 fridge.setName("fridge");
+                Sprite storeDoor = new MovableObject("resource/image/door.png", new Point(2698, 1441))
+                                                        .setLock(true);
+                storeDoor.setName("door");
+                
+                //init snacks sprites
 		Sprite snackFridge = new Snack("resource/image/snack1.png", new Point(3531, 2590))
 							.setScore(350);
 		Sprite snackcounter1 = new Snack("resource/image/snack1.png", new Point(3679, 2095))
@@ -90,8 +107,13 @@ public class SelectCharacter extends Action {
 							.setScore(-25);
                 Sprite snackcloset4 = new Snack("resource/image/snack1.png", new Point(504, 675))
 							.setScore(-25);
+                
+                //init snacks sprites
+                Sprite key1 = new Snack("resource/image/key.png", new Point(2900, 1717))
+							.setScore(0);
+                //init map sprite
 		Sprite map = GameMap.getInstance("resource/image/full_map.png")
-							.setPath("resource/path");
+                                                        .setPath("resource/path");
 
 		//init layer
 		Layer guardLayer = new Layer();
@@ -104,6 +126,11 @@ public class SelectCharacter extends Action {
                 Layer lockLayer = new Layer();
                 lockLayer.setName("locks");
                 lockLayer.addSprite(fridge);
+                lockLayer.addSprite(storeDoor);
+                
+                Layer keyLayer = new Layer();
+                keyLayer.setName("keys");
+                keyLayer.addSprite(key1);
                 
 		Layer snackLayer = new Layer();
 		snackLayer.setName("snack");
@@ -130,6 +157,7 @@ public class SelectCharacter extends Action {
 		game.addLayer(mapLayer, 0);
 		game.addLayer(snackLayer, 1);
                 game.addLayer(lockLayer, 2);
+                game.addLayer(keyLayer, 3);
 
 		//init key listener and action
 		//player
