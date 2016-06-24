@@ -53,8 +53,12 @@ public class SelectCharacter extends Action {
 
 	private Scene createGameScene() throws IOException  {
 		//init sprite
-		Sprite nastu = new Enemy("resource/image/snack1.png", new Point(200, 330))
+		Sprite enemyRoom1 = new Enemy("resource/image/snack1.png", new Point(200, 330))
 							.setSpeed(10);
+
+		Sprite enemyLivingRoom = new Enemy("resource/image/ladybug1.png", new Point(1764, 500))
+							.setSpeed(10);
+
 		Sprite player = new Character("resource/image/" + playerImageName + "1.png", new Point(600, 200))
 							.setSpeed(5)
 							.setSnackScore(0);
@@ -90,7 +94,7 @@ public class SelectCharacter extends Action {
 
 		//init layer
 		Layer guardLayer = new Layer();
-		guardLayer.addSprite(nastu);
+		guardLayer.addSprite(enemyRoom1);
 		Layer ownPlayerLayer = new Layer();
 		ownPlayerLayer.addSprite(player);
                 
@@ -153,17 +157,20 @@ public class SelectCharacter extends Action {
 		interact.addEvent(KeyEvent.VK_D, Interact.ON_KEY_PRESS, player, moveD);
 
 		//nastu - Room 1
-		Action nastuMove = new EnemyMove(((Enemy)nastu).getSpeed(), new Point(47, 47), new Point(972, 788));
+		Action enemyRoom1Move = new EnemyMove(((Enemy)enemyRoom1).getSpeed(), new Point(47, 47), new Point(972, 788));
+		Action enemyLivingRoomMove = new EnemyMove(((Enemy)enemyLivingRoom).getSpeed(), new Point(1764, 47), new Point(3137, 2045));
 
-		// Living Room
+		((EnemyMove)enemyRoom1Move).addSprites(ownPlayerLayer.getSprites());
+		((EnemyMove)enemyLivingRoomMove).addSprites(ownPlayerLayer.getSprites());
+
+		infinite.addEvent(enemyRoom1, enemyRoom1Move);
+		infinite.addEvent(enemyLivingRoom, enemyLivingRoomMove);
+
 		// Action nastuMove = new EnemyMove(((Enemy)nastu).getSpeed(), new Point(1764, 47), new Point(3137, 2045));
-
-		((EnemyMove)nastuMove).addSprites(ownPlayerLayer.getSprites());
 		// Action nastuAnimate = new Animate();
 		// ((Animate)nastuAnimate).addImage(nastu.getImage());
 		// ((Animate)nastuAnimate).addImage(ImageIO.read(new File("resource/image/natsu2.png")));
 		// nastuMove.addAction(nastuAnimate);
-		infinite.addEvent(nastu, nastuMove);
 
 		return game;
 	}
