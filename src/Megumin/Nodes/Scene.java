@@ -23,6 +23,13 @@ public class Scene {
         layers.remove(layer);
     }
 
+    public void removeSpriteByName(String name) {
+        Iterator it = layers.iterator();
+        while (it.hasNext()) {
+            ((Layer)it.next()).removeSpriteByName(name);
+        }
+    }
+
     public Sprite getSpriteByName(String name) {
         Iterator it = layers.iterator();
         while (it.hasNext()) {
@@ -50,8 +57,7 @@ public class Scene {
     public void render(Graphics2D g) {
         Iterator it = layers.iterator();
         while (it.hasNext()) {
-            Layer layer = (Layer)it.next();
-            layer.render(g);
+            ((Layer)it.next()).render(g);
         }
     }
 
