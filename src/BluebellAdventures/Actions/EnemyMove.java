@@ -1,6 +1,7 @@
 package BluebellAdventures.Actions;
 
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Random;
 import BluebellAdventures.Characters.GameMap;
 
 import Megumin.Actions.MoveTo;
@@ -28,8 +29,8 @@ public class EnemyMove extends MoveTo {
 	}
 
 	public void addSprites(CopyOnWriteArrayList<Sprite> sprites){
-        this.sprites.add(sprites);
-    }
+		this.sprites.add(sprites);
+	}
 
 	@Override
 	public void update(Sprite sprite) {
@@ -39,15 +40,22 @@ public class EnemyMove extends MoveTo {
 		int w = sprite.getSize().getX();
 		int h = sprite.getSize().getY();
 
+		int[] dir = {-1, 0, 1};
+		Random rand = new Random();
 		if (GameMap.enemyCrash(sprite, direction[0] * speed, direction[1] * speed)) {
-			direction[0] = -direction[0];
+			direction[0] = dir[rand.nextInt(3)];
+			direction[1] = dir[rand.nextInt(3)];
+			while (direction[0] == 0 && direction[1] == 0) {
+				direction[0] = dir[rand.nextInt(3)];
+				direction[1] = dir[rand.nextInt(3)];
+			}
 			setX(direction[0] * speed);
-			setY(direction[1] * 0);
+			setY(direction[1] * speed);
 
 			// setX(direction[0] * speed);
 
 			//  if (x + w > position.getX() + size.getX() || x < position.getX()) {
-			// 	direction[1] = rotateDirection * direction[0];
+			// 	directiossssssn[1] = rotateDirection * direction[0];
 			// 	direction[0] = 0;
 			// 	setX(direction[0] * speed);
 			// 	setY(direction[1] * speed);
