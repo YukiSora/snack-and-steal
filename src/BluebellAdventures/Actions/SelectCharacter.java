@@ -53,14 +53,14 @@ public class SelectCharacter extends Action {
 
 	private Scene createGameScene() throws IOException  {
 		//init sprite
-		Sprite enemyRoom1 = new Enemy("resource/image/snack1.png", new Point(200, 330))
+		Sprite enemyRoom1 = new Enemy("resource/image/ladybug1.png", new Point(200, 330))
 							.setSpeed(10);
 
-		Sprite enemyLivingRoom = new Enemy("resource/image/ladybug1.png", new Point(1764, 500))
+		Sprite enemyLivingRoom = new Enemy("resource/image/ladybug1.png", new Point(2375, 1050))
 							.setSpeed(10);
 
 		Sprite player = new Character("resource/image/" + playerImageName + "1.png", new Point(600, 200))
-							.setSpeed(5)
+							.setSpeed(25)
 							.setSnackScore(0);
                 Sprite fridge = new MovableObject("resource/image/fridge.png", new Point(3387, 2528))
                                                         .setLock(true);
@@ -95,6 +95,8 @@ public class SelectCharacter extends Action {
 		//init layer
 		Layer guardLayer = new Layer();
 		guardLayer.addSprite(enemyRoom1);
+		guardLayer.addSprite(enemyLivingRoom);
+
 		Layer ownPlayerLayer = new Layer();
 		ownPlayerLayer.addSprite(player);
                 
@@ -143,6 +145,7 @@ public class SelectCharacter extends Action {
                 ((CharacterMoveTo)moveD).addSprites(snackLayer.getSprites());
                 ((CharacterMoveTo)moveD).addSprites(lockLayer.getSprites());
 		Action playerAnimate = new Animate();
+
 		((Animate)playerAnimate).addImage(player.getImage());
 		((Animate)playerAnimate).addImage(ImageIO.read(new File("resource/image/" + playerImageName + "2.png")));
 		
@@ -157,8 +160,8 @@ public class SelectCharacter extends Action {
 		interact.addEvent(KeyEvent.VK_D, Interact.ON_KEY_PRESS, player, moveD);
 
 		//nastu - Room 1
-		Action enemyRoom1Move = new EnemyMove(((Enemy)enemyRoom1).getSpeed(), new Point(47, 47), new Point(972, 788));
-		Action enemyLivingRoomMove = new EnemyMove(((Enemy)enemyLivingRoom).getSpeed(), new Point(1764, 47), new Point(3137, 2045));
+		Action enemyRoom1Move = new EnemyMove(((Enemy)enemyRoom1).getSpeed(), new Point(47, 47), new Point(925, 741));
+		Action enemyLivingRoomMove = new EnemyMove(((Enemy)enemyRoom1).getSpeed(), new Point(1762, 47), new Point(1383, 2015));
 
 		((EnemyMove)enemyRoom1Move).addSprites(ownPlayerLayer.getSprites());
 		((EnemyMove)enemyLivingRoomMove).addSprites(ownPlayerLayer.getSprites());
