@@ -157,11 +157,11 @@ public class Character extends Sprite {
 		return snackScore;
 	}
         
-        public int setKeys(int key){
+        public int setKey(int key){
             this.key = key;
         }
         
-        public void getKeys(){
+        public void getKey(){
             return key;
         }
         
