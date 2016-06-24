@@ -49,9 +49,11 @@ public class Point {
         this.y = y;
     }
 
-    public void offset(int dx, int dy) {
+    public Point offset(int dx, int dy) {
         x += dx;
         y += dy;
+
+        return this;
     }
 
     @Override
