@@ -26,6 +26,7 @@ public class Character extends Sprite {
 	private int unlockSpeed;
 	private int attackScore;
 	private int snackScore;
+        private int key;
 
 	// Constructors //
 	public Character(String filename) throws IOException {
@@ -154,5 +155,21 @@ public class Character extends Sprite {
 
 	public int getSnackScore() {
 		return snackScore;
+	}
+        
+        public int setKey(int key){
+            this.key = key;
+        }
+        
+        public int getKey(){
+            return key;
+        }
+        
+        public void addKey(int key) {
+		this.key += key;
+	}
+        
+        public void useKey(int key) {
+		this.key -= key;
 	}
 }
