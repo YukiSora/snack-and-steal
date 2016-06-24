@@ -137,10 +137,12 @@ public class SelectCharacter extends Action {
 		Action playerAnimate = new Animate();
 		((Animate)playerAnimate).addImage(player.getImage());
 		((Animate)playerAnimate).addImage(ImageIO.read(new File("resource/image/" + playerImageName + "2.png")));
+		
 		moveW.addAction(playerAnimate);
 		moveA.addAction(playerAnimate);
 		moveS.addAction(playerAnimate);
 		moveD.addAction(playerAnimate);
+
 		interact.addEvent(KeyEvent.VK_W, Interact.ON_KEY_PRESS, player, moveW);
 		interact.addEvent(KeyEvent.VK_A, Interact.ON_KEY_PRESS, player, moveA);
 		interact.addEvent(KeyEvent.VK_S, Interact.ON_KEY_PRESS, player, moveS);
@@ -148,6 +150,7 @@ public class SelectCharacter extends Action {
 
 		//nastu
 		Action nastuMove = new EnemyMove(((Enemy)nastu).getSpeed(), EnemyMove.ANTICLOCKWISE, new Point(50, 50), new Point(800, 500));
+		((EnemyMove)nastuMove).addSprites(ownPlayerLayer.getSprites());
 		// Action nastuAnimate = new Animate();
 		// ((Animate)nastuAnimate).addImage(nastu.getImage());
 		// ((Animate)nastuAnimate).addImage(ImageIO.read(new File("resource/image/natsu2.png")));
