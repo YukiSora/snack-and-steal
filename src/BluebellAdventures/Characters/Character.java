@@ -21,7 +21,6 @@ public class Character extends Sprite {
 	private int hp;
 	private int mp;
 	private int chargeBar;
-	private int lives;
 	private int speed;
 	private int unlockSpeed;
 	private int attackScore;
@@ -108,15 +107,6 @@ public class Character extends Sprite {
 		return chargeBar;
 	}
 
-	public Character setLives(int lives) {
-		this.lives = lives;
-		return this;
-	}
-
-	public int getLives() {
-		return lives;
-	}
-
 	public Character setSpeed(int speed) {
 		this.speed = speed;
 		return this;
@@ -157,8 +147,9 @@ public class Character extends Sprite {
 		return snackScore;
 	}
         
-        public int setKey(int key){
+        public Character setKey(int key){
             this.key = key;
+            return this;
         }
         
         public int getKey(){
