@@ -14,6 +14,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import BluebellAdventures.Characters.GameMap;
 import Megumin.Nodes.Sprite;
 import Megumin.Point;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 
 public class Enemy extends Sprite {
 	private int attack;
@@ -41,8 +43,7 @@ public class Enemy extends Sprite {
 	public void render(Graphics2D g) {
 		if (getVisible()) {
 			GameMap map = GameMap.getInstance();
-			g.drawImage(getImage(), map.getPosition().getX() + getPosition().getX(), map.getPosition().getY() + getPosition().getY(), null);
-			int dir = 0;
+                        int dir = 0;
 			if (getDirection()[0] == 1) {
 				dir = 3;
 			}
@@ -55,6 +56,11 @@ public class Enemy extends Sprite {
 			if (getDirection()[1] == -1) {
 				dir = 0;
 			}
+                        /*AffineTransform tx = new AffineTransform();
+                        tx.rotate(Math.PI/dir, getImage().getWidth()/2, getImage().getHeight()/2);
+                        AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+                        g.drawImage(op.filter(getImage(), null), map.getPosition().getX() + getPosition().getX(), map.getPosition().getY() + getPosition().getY(), null);*/
+                        g.drawImage(getImage(), map.getPosition().getX() + getPosition().getX(), map.getPosition().getY() + getPosition().getY(), null);
 			g.fill(new Arc2D.Double(map.getPosition().getX() + getPosition().getX(), map.getPosition().getY() + getPosition().getY(), 200, 200, 30 + 90 * dir, 120, Arc2D.PIE));
 		}
 	}
