@@ -161,7 +161,7 @@ public class Character extends Sprite {
             this.key = key;
         }
         
-        public void getKey(){
+        public int getKey(){
             return key;
         }
         
