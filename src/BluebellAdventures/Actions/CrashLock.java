@@ -19,7 +19,7 @@ public class CrashLock extends Effect {
         AudioEngine.getInstance().play("fridge");
         try{
         Director.getInstance().getScene().getLayerByName("locks").getSpriteByName("fridge").setImage(ImageIO.read(new File("resource/image/fridge_open.png")));
-        Director.getInstance().getScene().getLayerByName("locks").getSpriteByName("fridge").setPosition(new Point(3387, 2470));
+        Director.getInstance().getScene().getLayerByName("locks").getSpriteByName("fridge").setPosition(new Point(3387, 2430));
         }
         catch(IOException e){
             System.exit(1);
