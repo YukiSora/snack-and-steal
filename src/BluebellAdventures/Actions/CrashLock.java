@@ -15,6 +15,6 @@ public class CrashLock extends Effect {
     @Override
     public void update(Sprite sprite) {
         AudioEngine.getInstance().play("eating");
-        ((MovableObject)this.getSprite()).setLock(false);
+        //((MovableObject)this.getSprite()).setLock(false);
     }
 }
