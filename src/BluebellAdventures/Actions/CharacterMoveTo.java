@@ -9,6 +9,7 @@ import BluebellAdventures.Characters.MovableObject;
 import Megumin.Actions.Action;
 import Megumin.Nodes.Director;
 import Megumin.Nodes.Sprite;
+import Megumin.Point;
 
 public class CharacterMoveTo extends Action {
 
@@ -30,9 +31,11 @@ public class CharacterMoveTo extends Action {
     public void update(Sprite sprite) {
         if (!GameMap.characterCrash(sprite, x, y)) {
             sprite.checkCrash(sprites.get(0), new CrashSnack());
-            Action lock = new CrashLock();
-//            ((CrashLock)lock).setSprite(sprites.get(1).get(0));
-            sprite.checkCrash(sprites.get(1), lock);
+            Action fridgeLock = new CrashFridge();
+            Action doorLock = new CrashDoor(new Point(2698, 1450));
+//            ((CrashFridge)lock).setSprite(sprites.get(1).get(0));
+            sprite.checkCrash(sprites.get(1), fridgeLock);
+            sprite.checkCrash(sprites.get(1), doorLock);
 //            if ((((MovableObject)sprites.get(1).get(0)).getLock()) == true) {
                 GameMap.getInstance().getPosition().offset(-x, -y);
 //            }

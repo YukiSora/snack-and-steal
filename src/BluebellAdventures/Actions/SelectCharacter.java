@@ -52,7 +52,7 @@ public class SelectCharacter extends Action {
 	}
 
 	private Scene createGameScene() throws IOException  {
-		//init sprite
+		//init AI & player sprites
 		Sprite enemyRoom1 = new Enemy("resource/image/ladybug1.png", new Point(200, 330))
 							.setSpeed(10);
 
@@ -60,11 +60,21 @@ public class SelectCharacter extends Action {
 							.setSpeed(10);
 
 		Sprite player = new Character("resource/image/" + playerImageName + "1.png", new Point(600, 200))
-							.setSpeed(25)
+							.setSpeed(35)
 							.setSnackScore(0);
+                //Fox has advantage in speed
+                if (playerImageName == "fox"){
+                    ((Character)player).setSpeed(40);
+                }
+                //init movable object sprites
                 Sprite fridge = new MovableObject("resource/image/fridge.png", new Point(3387, 2520))
                                                         .setLock(true);
                 fridge.setName("fridge");
+                Sprite storeDoor = new MovableObject("resource/image/door.png", new Point(2698, 1441))
+                                                        .setLock(true);
+                storeDoor.setName("door");
+                
+                //init snacks sprites
 		Sprite snackFridge = new Snack("resource/image/snack1.png", new Point(3531, 2590))
 							.setScore(350);
 		Sprite snackcounter1 = new Snack("resource/image/snack1.png", new Point(3679, 2095))
@@ -89,8 +99,9 @@ public class SelectCharacter extends Action {
 							.setScore(-25);
                 Sprite snackcloset4 = new Snack("resource/image/snack1.png", new Point(504, 675))
 							.setScore(-25);
+                //init map sprite
 		Sprite map = GameMap.getInstance("resource/image/full_map.png")
-							.setPath("resource/path");
+                                                        .setPath("resource/path");
 
 		//init layer
 		Layer guardLayer = new Layer();
@@ -103,6 +114,7 @@ public class SelectCharacter extends Action {
                 Layer lockLayer = new Layer();
                 lockLayer.setName("locks");
                 lockLayer.addSprite(fridge);
+                lockLayer.addSprite(storeDoor);
                 
 		Layer snackLayer = new Layer();
 		snackLayer.setName("snack");
