@@ -60,6 +60,7 @@ public class SelectCharacter extends Action {
 							.setSnackScore(0);
                 Sprite fridge = new MovableObject("resource/image/fridge.png", new Point(3387, 2528))
                                                         .setLock(true);
+                fridge.setName("fridge");
 		Sprite snackFridge = new Snack("resource/image/snack1.png", new Point(3531, 2590))
 							.setScore(350);
 		Sprite snackcounter1 = new Snack("resource/image/snack1.png", new Point(3679, 2095))
@@ -94,7 +95,7 @@ public class SelectCharacter extends Action {
 		ownPlayerLayer.addSprite(player);
                 
                 Layer lockLayer = new Layer();
-                lockLayer.setName("fridge");
+                lockLayer.setName("locks");
                 lockLayer.addSprite(fridge);
                 
 		Layer snackLayer = new Layer();

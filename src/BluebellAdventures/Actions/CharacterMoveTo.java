@@ -31,11 +31,11 @@ public class CharacterMoveTo extends Action {
         if (!GameMap.characterCrash(sprite, x, y)) {
             sprite.checkCrash(sprites.get(0), new CrashSnack());
             Action lock = new CrashLock();
-            ((CrashLock)lock).setSprite(sprites.get(1).get(0));
+//            ((CrashLock)lock).setSprite(sprites.get(1).get(0));
             sprite.checkCrash(sprites.get(1), lock);
-            if ((((MovableObject)sprites.get(1).get(0)).getLock()) == true) {
+//            if ((((MovableObject)sprites.get(1).get(0)).getLock()) == true) {
                 GameMap.getInstance().getPosition().offset(-x, -y);
-            }
+//            }
         }
         super.update(sprite);
     }
