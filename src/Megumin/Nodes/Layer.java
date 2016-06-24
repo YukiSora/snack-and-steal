@@ -9,7 +9,7 @@ public class Layer {
     private String name;
 
     public Layer() {
-        sprites = new CopyOnWriteArrayList<Sprite>();
+        sprites = new CopyOnWriteArrayList<>();
         name = "";
     }
 
@@ -19,6 +19,17 @@ public class Layer {
 
     public void removeSprite(Sprite sprite) {
         sprites.remove(sprite);
+    }
+
+    public void removeSpriteByName(String name) {
+        Iterator it = sprites.iterator();
+        while (it.hasNext()) {
+            Sprite sprite = (Sprite)it.next();
+            if (sprite.getName().equals(name)) {
+                sprites.remove(sprite);
+                break;
+            }
+        }
     }
 
     public Sprite getSpriteByName(String name) {
