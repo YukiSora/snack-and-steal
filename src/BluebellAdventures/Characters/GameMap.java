@@ -39,7 +39,29 @@ public class GameMap extends Sprite {
 		return map;
 	}
 
-	public static boolean mapCrash(Sprite sprite, int moveX, int moveY) {
+	public static boolean enemyCrash(Sprite sprite, int moveX, int moveY) {
+		byte[][] path = map.getPath();
+		int mapX = map.getPosition().getX();
+		int mapY = map.getPosition().getY();
+		int x = sprite.getPosition().getX() + moveX;
+		int y = sprite.getPosition().getY() + moveY;
+		int w = sprite.getSize().getX();
+		int h = sprite.getSize().getY();
+		for (int i = 0; i < w; i++) {
+			if (path[y][x + i] == 0 || path[y + h][x + i] == 0) {
+				return true;
+			}
+		}
+		for (int i = 0; i < h; i++) {
+			if (path[y + i][x] == 0 || path[y + i][x + w] == 0) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public static boolean characterCrash(Sprite sprite, int moveX, int moveY) {
 		byte[][] path = map.getPath();
 		int mapX = map.getPosition().getX();
 		int mapY = map.getPosition().getY();

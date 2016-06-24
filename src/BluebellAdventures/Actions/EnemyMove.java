@@ -33,9 +33,10 @@ public class EnemyMove extends MoveTo {
 		int h = sprite.getSize().getY();
 
 		System.out.println("x: " + x + "&y: " + y);
-		if (GameMap.mapCrash(sprite, direction[0] * speed, direction[1] * speed)) {
+		if (GameMap.enemyCrash(sprite, direction[0] * speed, direction[1] * speed)) {
 			direction[0] = -direction[0];
 			setX(direction[0] * speed);
+
 			// 	setX(direction[0] * speed);
 			//  if (x + w > position.getX() + size.getX() || x < position.getX()) {
 			// 	direction[1] = rotateDirection * direction[0];

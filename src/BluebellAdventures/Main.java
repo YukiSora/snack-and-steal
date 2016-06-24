@@ -56,6 +56,9 @@ public class Main {
 		audioEngine.addAudio("main", new Audio("resource/audio/main.wav"));
 		audioEngine.addAudio("nervous", new Audio("resource/audio/nervous.wav"));
 		audioEngine.addAudio("victory", new Audio("resource/audio/victory.wav"));
+		audioEngine.addAudio("door", new Audio("resource/audio/door.wav"));
+		audioEngine.addAudio("fridge", new Audio("resource/audio/fridge.wav"));
+		audioEngine.addAudio("unlock", new Audio("resource/audio/unlock.wav"));
 
 		//system action
 		Sprite system = new Sprite();
@@ -169,7 +172,7 @@ public class Main {
 		Action selectRat = new MouseCrash(new SelectCharacter("machi"));
 		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, rat, selectRat);
 
-		Action selectRoach = new MouseCrash(new SelectCharacter("natsu"));
+		Action selectRoach = new MouseCrash(new SelectCharacter("ladybug"));
 		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, roach, selectRoach);
 		
 		// Action selectRaccoon = new MouseCrash(new SelectCharacter("natsu"));

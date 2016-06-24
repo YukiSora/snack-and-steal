@@ -28,7 +28,7 @@ public class CharacterMoveTo extends Action {
         
     @Override
     public void update(Sprite sprite) {
-        if (!GameMap.mapCrash(sprite, x, y)) {
+        if (!GameMap.characterCrash(sprite, x, y)) {
             sprite.checkCrash(sprites.get(0), new CrashSnack());
             Action lock = new CrashLock();
             ((CrashLock)lock).setSprite(sprites.get(1).get(0));
