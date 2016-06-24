@@ -130,13 +130,14 @@ public class Main {
 
 	public static Scene createCharacterSelectionScene() throws IOException {
 		//init Sprite
-		Sprite rat = new Sprite("resource/image/rat.png", new Point(40, 300));
-		Sprite raccoon = new Sprite("resource/image/raccoon.png", new Point(150, 350));
-		Sprite dog = new Sprite("resource/image/dog.png", new Point(450, 300));
-		Sprite cat = new Sprite("resource/image/cat.png", new Point(650, 300));
-		Sprite fox = new Sprite("resource/image/fox.png", new Point(900, 300));
-		Sprite roach = new Sprite("resource/image/roach.png", new Point(1000, 300));
-		Sprite back = new Sprite("resource/image/tab_back.png", new Point(1100, 570));
+		Sprite rat = new Sprite("resource/image/rat.png", new Point(40, 250));
+		Sprite raccoon = new Sprite("resource/image/raccoon.png", new Point(180, 250));
+		Sprite dog = new Sprite("resource/image/dog.png", new Point(390, 250));
+		Sprite cat = new Sprite("resource/image/cat.png", new Point(630, 250));
+		Sprite fox = new Sprite("resource/image/fox.png", new Point(830, 250));
+		Sprite roach = new Sprite("resource/image/roach.png", new Point(1045, 250));
+
+		Sprite back = new Sprite("resource/image/tab_back.png", new Point(1150, 600));
 		Sprite background = new Sprite("resource/image/menu_bg.jpeg");
 		rat.setName("rat");
 		raccoon.setName("raccoon");
@@ -170,6 +171,9 @@ public class Main {
 
 		Action selectRaccoon = new MouseCrash(new SelectCharacter("natsu"));
 		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, raccoon, selectRaccoon);
+                
+                Action selectCat = new MouseCrash(new SelectCharacter("cat"));
+		interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, cat, selectCat);
 
 		return characterSelection;
 	}

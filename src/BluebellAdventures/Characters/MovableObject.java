@@ -9,32 +9,32 @@ import Megumin.Nodes.Sprite;
 import Megumin.Point;
 
 public class MovableObject extends Sprite {
-	private int score;
+    private boolean lock = true;
 
-	// Constructors //
-	public MovableObject(String filename) throws IOException {
-		super(filename, new Point(0, 0));
-	}
+    // Constructors //
+    public MovableObject(String filename) throws IOException {
+        super(filename, new Point(0, 0));
+    }
 
-	public MovableObject(String filename, Point position) throws IOException {
-		super(ImageIO.read(new File(filename)), position);
-	}
+    public MovableObject(String filename, Point position) throws IOException {
+        super(ImageIO.read(new File(filename)), position);
+    }
 
-	public MovableObject(BufferedImage image) {
-		super(image, new Point(0, 0));
-	}
+    public MovableObject(BufferedImage image) {
+        super(image, new Point(0, 0));
+    }
 
-	public MovableObject(BufferedImage image, Point position) {
-		super(image, position);
-	}
-	
-	// Set and Gets //
-	public MovableObject setScore(int score) {
-		this.score = score;
-		return this;
-	}
+    public MovableObject(BufferedImage image, Point position) {
+        super(image, position);
+    }
 
-	public int getScore() {
-		return score;
-	}
+    // Set and Gets //
+    public MovableObject setLock(boolean lock) {
+        this.lock = lock;
+        return this;
+    }
+
+    public boolean getLock() {
+        return lock;
+    }
 }

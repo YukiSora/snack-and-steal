@@ -10,6 +10,7 @@ import BluebellAdventures.Characters.Character;
 import BluebellAdventures.Characters.Enemy;
 import BluebellAdventures.Characters.GameMap;
 import BluebellAdventures.Characters.Snack;
+import BluebellAdventures.Characters.MovableObject;
 
 import Megumin.Actions.Action;
 import Megumin.Actions.Animate;
@@ -57,16 +58,32 @@ public class SelectCharacter extends Action {
 		Sprite player = new Character("resource/image/" + playerImageName + "1.png", new Point(600, 200))
 							.setSpeed(5)
 							.setSnackScore(0);
-		Sprite snack1 = new Snack("resource/image/snack1.png", new Point(400, 300))
-							.setScore(1);
-		Sprite snack2 = new Snack("resource/image/snack1.png", new Point(500, 400))
-							.setScore(10);
-		Sprite snack3 = new Snack("resource/image/snack1.png", new Point(600, 500))
+                Sprite fridge = new MovableObject("resource/image/fridge.png", new Point(3532, 2440))
+                                                        .setLock(true);
+		Sprite snackFridge = new Snack("resource/image/snack1.png", new Point(3531, 2590))
+							.setScore(350);
+		Sprite snackcounter1 = new Snack("resource/image/snack1.png", new Point(3679, 2095))
 							.setScore(100);
-		Sprite snack4 = new Snack("resource/image/snack1.png", new Point(700, 600))
-							.setScore(1000);
-		Sprite snack5 = new Snack("resource/image/snack1.png", new Point(800, 700))
-							.setScore(10000);
+		Sprite snackcounter2 = new Snack("resource/image/snack1.png", new Point(3243, 2095))
+							.setScore(-25);
+		Sprite snacktable1 = new Snack("resource/image/snack1.png", new Point(3709, 809))
+							.setScore(100);
+		Sprite snacktable2 = new Snack("resource/image/snack1.png", new Point(3457, 462))
+							.setScore(50);
+                Sprite snackcoffee1 = new Snack("resource/image/snack1.png", new Point(3457, 462))
+							.setScore(-25);
+                Sprite snackcoffee2 = new Snack("resource/image/snack1.png", new Point(2283, 470))
+							.setScore(-10);
+                Sprite snackcoffee3 = new Snack("resource/image/snack1.png", new Point(2280, 311))
+							.setScore(50);
+                Sprite snackcloset1 = new Snack("resource/image/snack1.png", new Point(1590, 333))
+							.setScore(100);
+                Sprite snackcloset2 = new Snack("resource/image/snack1.png", new Point(1588, 291))
+							.setScore(100);
+                Sprite snackcloset3 = new Snack("resource/image/snack1.png", new Point(432, 733))
+							.setScore(-25);
+                Sprite snackcloset4 = new Snack("resource/image/snack1.png", new Point(504, 675))
+							.setScore(-25);
 		Sprite map = GameMap.getInstance("resource/image/full_map.png")
 							.setPath("resource/path");
 
@@ -75,13 +92,23 @@ public class SelectCharacter extends Action {
 		guardLayer.addSprite(nastu);
 		Layer ownPlayerLayer = new Layer();
 		ownPlayerLayer.addSprite(player);
+                Layer lockedLayer = new Layer();
+                lockedLayer.setName("lockObject");
+                lockedLayer.addSprite(fridge);
 		Layer snackLayer = new Layer();
 		snackLayer.setName("snack");
-		snackLayer.addSprite(snack1);
-		snackLayer.addSprite(snack2);
-		snackLayer.addSprite(snack3);
-		snackLayer.addSprite(snack4);
-		snackLayer.addSprite(snack5);
+		snackLayer.addSprite(snackFridge);
+		snackLayer.addSprite(snackcounter1);
+		snackLayer.addSprite(snackcounter2);
+		snackLayer.addSprite(snacktable1);
+		snackLayer.addSprite(snacktable2);
+                snackLayer.addSprite(snackcoffee1);
+                snackLayer.addSprite(snackcoffee2);
+                snackLayer.addSprite(snackcoffee3);
+                snackLayer.addSprite(snackcloset1);
+                snackLayer.addSprite(snackcloset2);
+                snackLayer.addSprite(snackcloset3);
+                snackLayer.addSprite(snackcloset4);
 		Layer mapLayer = new Layer();
 		mapLayer.addSprite(map);
 
@@ -91,13 +118,22 @@ public class SelectCharacter extends Action {
 		game.addLayer(ownPlayerLayer);
 		game.addLayer(mapLayer, 0);
 		game.addLayer(snackLayer, 1);
+                game.addLayer(lockedLayer, 1);
 
 		//init key listener and action
 		//player
-		Action moveW = new CharacterMoveTo(0, -((Character)player).getSpeed(), snackLayer.getSprites());
-		Action moveA = new CharacterMoveTo(-((Character)player).getSpeed(), 0, snackLayer.getSprites());
-		Action moveS = new CharacterMoveTo(0, ((Character)player).getSpeed(), snackLayer.getSprites());
-		Action moveD = new CharacterMoveTo(((Character)player).getSpeed(), 0, snackLayer.getSprites());
+		Action moveW = new CharacterMoveTo(0, -((Character)player).getSpeed());
+                ((CharacterMoveTo)moveW).addSprites(snackLayer.getSprites());
+                ((CharacterMoveTo)moveW).addSprites(lockedLayer.getSprites());
+		Action moveA = new CharacterMoveTo(-((Character)player).getSpeed(), 0);
+                ((CharacterMoveTo)moveA).addSprites(snackLayer.getSprites());
+                ((CharacterMoveTo)moveA).addSprites(lockedLayer.getSprites());
+		Action moveS = new CharacterMoveTo(0, ((Character)player).getSpeed());
+                ((CharacterMoveTo)moveS).addSprites(snackLayer.getSprites());
+                ((CharacterMoveTo)moveS).addSprites(lockedLayer.getSprites());
+		Action moveD = new CharacterMoveTo(((Character)player).getSpeed(), 0);
+                ((CharacterMoveTo)moveD).addSprites(snackLayer.getSprites());
+                ((CharacterMoveTo)moveD).addSprites(lockedLayer.getSprites());
 		Action playerAnimate = new Animate();
 		((Animate)playerAnimate).addImage(player.getImage());
 		((Animate)playerAnimate).addImage(ImageIO.read(new File("resource/image/" + playerImageName + "2.png")));
