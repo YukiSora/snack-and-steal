@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import java.awt.Graphics2D;
 
 import Megumin.Nodes.Sprite;
 import Megumin.Point;
@@ -26,6 +27,14 @@ public class MovableObject extends Sprite {
 
     public MovableObject(BufferedImage image, Point position) {
         super(image, position);
+    }
+    
+    @Override
+    public void render(Graphics2D g) {
+        if (getVisible()) {
+            GameMap map = GameMap.getInstance();
+            g.drawImage(getImage(), map.getPosition().getX() + getPosition().getX(), map.getPosition().getY() + getPosition().getY(), null);
+        }
     }
 
     // Set and Gets //
