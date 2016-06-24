@@ -20,6 +20,11 @@ public class AudioDriver {
 			audioEngine.addAudio("main", new Audio("resource/audio/main.wav"));
 			audioEngine.addAudio("nervous", new Audio("resource/audio/nervous.wav"));
 			audioEngine.addAudio("victory", new Audio("resource/audio/victory.wav"));
+			audioEngine.addAudio("cupboard", new Audio("resource/audio/cupboard.wav"));
+			audioEngine.addAudio("door", new Audio("resource/audio/door.wav"));
+			audioEngine.addAudio("fridge", new Audio("resource/audio/fridge.wav"));
+			audioEngine.addAudio("unlock", new Audio("resource/audio/unlock.wav"));
+
 		} catch (IOException e) {
 			System.out.println(e);
 		}
