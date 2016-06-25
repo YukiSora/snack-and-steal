@@ -28,11 +28,15 @@ public class CreateGameScene {
         Director director = Director.getInstance();
         Infinite infinite = Infinite.getInstance();
         Interact interact = Interact.getInstance();
+
         //init AI & player sprites
-        Sprite enemyRoom1 = new Enemy("resource/image/ladybug1.png", new Point(200, 330))
+        Sprite enemyBedRoom = new Enemy("resource/image/ladybug1.png", new Point(350, 400))
                             .setSpeed(5);
 
-        Sprite enemyLivingRoom = new Enemy("resource/image/ladybug1.png", new Point(2375, 1050))
+        Sprite enemyLivingRoom = new Enemy("resource/image/ladybug1.png", new Point(2360, 980))
+                            .setSpeed(10);
+
+        Sprite enemyDiningRoom = new Enemy("resource/image/ladybug1.png", new Point(3600, 1200))
                             .setSpeed(10);
 
         Sprite player = new Character("resource/image/" + playerImageName + "1.png", new Point(600, 200))
@@ -40,6 +44,7 @@ public class CreateGameScene {
                             .setSpeed(25)
                             .setSnackScore(0)
                             .setKey(0);
+
         //Fox has advantage in speed
         if (playerImageName == "fox"){
             ((Character)player).setSpeed(40);
@@ -50,6 +55,7 @@ public class CreateGameScene {
         if(playerImageName == "rat"){
             ((Character)player).setKey(10);
         }
+
         //init movable object sprites
         Sprite fridge = new MovableObject("resource/image/fridge.png", new Point(3387, 2520))
                             .setLock(true);
@@ -91,10 +97,13 @@ public class CreateGameScene {
         Sprite map = GameMap.getInstance("resource/image/full_map.png")
                             .setPath("resource/path");
 
+        GameMap.getInstance().setPosition(-2752, -2619);
+
         //init layer
         Layer guardLayer = new Layer();
-        guardLayer.addSprite(enemyRoom1);
+        guardLayer.addSprite(enemyBedRoom);
         guardLayer.addSprite(enemyLivingRoom);
+        guardLayer.addSprite(enemyDiningRoom);
 
         Layer ownPlayerLayer = new Layer();
         ownPlayerLayer.addSprite(player);
@@ -164,18 +173,19 @@ public class CreateGameScene {
         interact.addEvent(KeyEvent.VK_S, Interact.ON_KEY_PRESS, player, moveS);
         interact.addEvent(KeyEvent.VK_D, Interact.ON_KEY_PRESS, player, moveD);
 
-        //enemy
+        // Enemy 1 - Bedroom
         //move action
-        Action enemyRoom1Move = new EnemyMove(((Enemy)enemyRoom1).getSpeed(), new Point(47, 47), new Point(925, 741));
-        ((EnemyMove)enemyRoom1Move).addSprites(ownPlayerLayer.getSprites());
+        Action enemyBedRoomMove = new EnemyMove(((Enemy)enemyBedRoom).getSpeed(), new Point(47, 47), new Point(925, 741));
+        ((EnemyMove)enemyBedRoomMove).addSprites(ownPlayerLayer.getSprites());
         //animate
-        Action enemyRoom1Animate = new Animate();
-        ((Animate)enemyRoom1Animate).addImage(enemyRoom1.getImage());
-        ((Animate)enemyRoom1Animate).addImage(ImageIO.read(new File("resource/image/ladybug2.png")));
-        enemyRoom1Move.addAction(enemyRoom1Animate);
+        Action enemyBedRoomAnimate = new Animate();
+        ((Animate)enemyBedRoomAnimate).addImage(enemyBedRoom.getImage());
+        ((Animate)enemyBedRoomAnimate).addImage(ImageIO.read(new File("resource/image/ladybug2.png")));
+        enemyBedRoomMove.addAction(enemyBedRoomAnimate);
         //insert
-        infinite.addEvent(enemyRoom1, enemyRoom1Move);
+        infinite.addEvent(enemyBedRoom, enemyBedRoomMove);
 
+        // Enemy 2 - Living Room
         //move action
         Action enemyLivingRoomMove = new EnemyMove(((Enemy)enemyLivingRoom).getSpeed(), new Point(1762, 47), new Point(1383, 2015));
         ((EnemyMove)enemyLivingRoomMove).addSprites(ownPlayerLayer.getSprites());
@@ -186,6 +196,18 @@ public class CreateGameScene {
         enemyLivingRoomMove.addAction(enemyLivingRoomAnimate);
         //insert
         infinite.addEvent(enemyLivingRoom, enemyLivingRoomMove);
+
+        // Enemy 3 - Dining Room
+        //move action
+        Action enemyDiningRoomMove = new EnemyMove(((Enemy)enemyDiningRoom).getSpeed(), new Point(2724, 47), new Point(1324, 2640));
+        ((EnemyMove)enemyDiningRoomMove).addSprites(ownPlayerLayer.getSprites());
+        //animate
+        Action enemyDiningRoomAnimate = new Animate();
+        ((Animate)enemyDiningRoomAnimate).addImage(enemyDiningRoom.getImage());
+        ((Animate)enemyDiningRoomAnimate).addImage(ImageIO.read(new File("resource/image/ladybug2.png")));
+        enemyDiningRoomMove.addAction(enemyDiningRoomAnimate);
+        //insert
+        //infinite.addEvent(enemyDiningRoom, enemyDiningRoomMove);
 
         return game;
     }

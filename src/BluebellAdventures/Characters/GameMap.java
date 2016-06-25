@@ -41,12 +41,15 @@ public class GameMap extends Sprite {
 
     public static boolean enemyCrash(Sprite sprite, int moveX, int moveY) {
         byte[][] path = map.getPath();
+        
         int mapX = map.getPosition().getX();
         int mapY = map.getPosition().getY();
+
         int x = sprite.getPosition().getX() + moveX;
         int y = sprite.getPosition().getY() + moveY;
         int w = sprite.getSize().getX();
         int h = sprite.getSize().getY();
+
         for (int i = 0; i < w; i++) {
             if (path[y][x + i] == 0 || path[y + h][x + i] == 0) {
                 return true;
