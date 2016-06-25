@@ -31,8 +31,11 @@ public class CharacterMoveTo extends Action {
             sprite.checkCrash(sprites.get(0), new CrashSnack());
             Action fridgeLock = new CrashFridge();
             Action doorLock = new CrashDoor(new Point(2698, 1450));
+            Action keyTouch = new CrashKey();
+            
             sprite.checkCrash(sprites.get(1), fridgeLock);
             sprite.checkCrash(sprites.get(1), doorLock);
+            sprite.checkCrash(sprites.get(2), keyTouch);
 //            if ((((MovableObject)sprites.get(1).get(0)).getLock()) == true) {
                 GameMap.getInstance().getPosition().offset(-x, -y);
 //            }

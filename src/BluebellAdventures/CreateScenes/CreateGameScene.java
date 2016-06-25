@@ -67,31 +67,59 @@ public class CreateGameScene {
         //init snacks sprites
         Sprite snackFridge = new Snack("resource/image/snack1.png", new Point(3531, 2590))
                             .setScore(350);
-        Sprite snackcounter1 = new Snack("resource/image/snack1.png", new Point(3679, 2095))
-                            .setScore(100);
-        Sprite snackcounter2 = new Snack("resource/image/snack1.png", new Point(3243, 2095))
+        Sprite snackkitchen1 = new Snack("resource/image/badsnack.png", new Point(3175, 2084))
                             .setScore(-25);
-        Sprite snacktable1 = new Snack("resource/image/snack1.png", new Point(3709, 809))
-                            .setScore(100);
-        Sprite snacktable2 = new Snack("resource/image/snack1.png", new Point(3457, 462))
+        Sprite snackkitchen2 = new Snack("resource/image/snack1.png", new Point(3767, 2042))
                             .setScore(50);
-        Sprite snackcoffee1 = new Snack("resource/image/snack1.png", new Point(3457, 462))
-                            .setScore(-25);
-        Sprite snackcoffee2 = new Snack("resource/image/snack1.png", new Point(2283, 470))
-                            .setScore(-10);
-        Sprite snackcoffee3 = new Snack("resource/image/snack1.png", new Point(2280, 311))
+        Sprite snackkitchen3 = new Snack("resource/image/snack1.png", new Point(3890, 2404))
+                            .setScore(100);
+        Sprite snackkitchen4 = new Snack("resource/image/snack1.png", new Point(3977, 2338))
                             .setScore(50);
-        Sprite snackcloset1 = new Snack("resource/image/snack1.png", new Point(1590, 333))
-                            .setScore(100);
-        Sprite snackcloset2 = new Snack("resource/image/snack1.png", new Point(1588, 291))
-                            .setScore(100);
-        Sprite snackcloset3 = new Snack("resource/image/snack1.png", new Point(432, 733))
+        Sprite snackdining1 = new Snack("resource/image/badsnack.png", new Point(3525, 687))
+                             .setScore(-50);
+        Sprite snackdining2 = new Snack("resource/image/snack1.png", new Point(3623, 319))
+                            .setScore(20);
+        Sprite snackrack1 = new Snack("resource/image/snack1.png", new Point(3933, 1166))
+                            .setScore(40);
+        Sprite snackrack2 = new Snack("resource/image/snack1.png", new Point(3935, 1274))
+                            .setScore(40);
+        Sprite snackcoffee1 = new Snack("resource/image/snack1.png", new Point(2312, 482))
+                            .setScore(20);
+        Sprite snackcoffee2 = new Snack("resource/image/badsnack.png", new Point(2549, 340))
                             .setScore(-25);
-        Sprite snackcloset4 = new Snack("resource/image/snack1.png", new Point(504, 675))
+        Sprite snackstore1 = new Snack("resource/image/snack1.png", new Point(2409, 1501))
+                            .setScore(50);
+        Sprite snackstore2 = new Snack("resource/image/snack1.png", new Point(2406, 1958))
+                            .setScore(80);
+        Sprite snackstore3 = new Snack("resource/image/snack1.png", new Point(2495, 1958))
+                            .setScore(50);
+        Sprite snackcloset1 = new Snack("resource/image/snack1.png", new Point(2591, 1336))
+                            .setScore(50);
+        Sprite snackcloset2 = new Snack("resource/image/snack1.png", new Point(1380, 1948))
+                            .setScore(100);
+        Sprite snackroom1 = new Snack("resource/image/badsnack.png", new Point(487, 653))
                             .setScore(-25);
-
+        Sprite snackroom2 = new Snack("resource/image/snack1.png", new Point(864, 316))
+                            .setScore(20);
+        Sprite snackroom3 = new Snack("resource/image/snack1.png", new Point(864, 236))
+                            .setScore(30);
+        Sprite snackroom4 = new Snack("resource/image/snack1.png", new Point(1259, 497))
+                            .setScore(20);
+        Sprite snackroom5 = new Snack("resource/image/snack1.png", new Point(1292, 429))
+                            .setScore(20);
+        Sprite snackroom6 = new Snack("resource/image/badsnack.png", new Point(1603, 105))
+                            .setScore(-50);
+ 
         //init snacks sprites
         Sprite key1 = new Snack("resource/image/key.png", new Point(2900, 1717))
+                            .setScore(0);
+        Sprite key2 = new Snack("resource/image/key.png", new Point(2880, 1717))
+                            .setScore(0);
+        Sprite key3 = new Snack("resource/image/key.png", new Point(2860, 1717))
+                            .setScore(0);
+        Sprite key4 = new Snack("resource/image/key.png", new Point(2840, 1717))
+                            .setScore(0);
+        Sprite key5 = new Snack("resource/image/key.png", new Point(2820, 1717))
                             .setScore(0);
         //init map sprite
         Sprite map = GameMap.getInstance("resource/image/full_map.png")
@@ -116,21 +144,35 @@ public class CreateGameScene {
         Layer keyLayer = new Layer();
         keyLayer.setName("keys");
         keyLayer.addSprite(key1);
+        keyLayer.addSprite(key2);
+        keyLayer.addSprite(key3);
+        keyLayer.addSprite(key4);
+        keyLayer.addSprite(key5);
 
         Layer snackLayer = new Layer();
         snackLayer.setName("snack");
         snackLayer.addSprite(snackFridge);
-        snackLayer.addSprite(snackcounter1);
-        snackLayer.addSprite(snackcounter2);
-        snackLayer.addSprite(snacktable1);
-        snackLayer.addSprite(snacktable2);
+        snackLayer.addSprite(snackkitchen1);
+        snackLayer.addSprite(snackkitchen2);
+        snackLayer.addSprite(snackkitchen3);
+        snackLayer.addSprite(snackkitchen4);
+        snackLayer.addSprite(snackdining1);
+        snackLayer.addSprite(snackdining2);
+        snackLayer.addSprite(snackrack1);
+        snackLayer.addSprite(snackrack2);
         snackLayer.addSprite(snackcoffee1);
         snackLayer.addSprite(snackcoffee2);
-        snackLayer.addSprite(snackcoffee3);
+        snackLayer.addSprite(snackstore1);
+        snackLayer.addSprite(snackstore2);
+        snackLayer.addSprite(snackstore3);
         snackLayer.addSprite(snackcloset1);
         snackLayer.addSprite(snackcloset2);
-        snackLayer.addSprite(snackcloset3);
-        snackLayer.addSprite(snackcloset4);
+        snackLayer.addSprite(snackroom1);
+        snackLayer.addSprite(snackroom2);
+        snackLayer.addSprite(snackroom3);
+        snackLayer.addSprite(snackroom4);
+        snackLayer.addSprite(snackroom5);
+        snackLayer.addSprite(snackroom6);
 
         Layer mapLayer = new Layer();
         mapLayer.addSprite(map);
@@ -150,15 +192,19 @@ public class CreateGameScene {
         Action moveW = new CharacterMoveTo(0, -((Character)player).getSpeed());
         ((CharacterMoveTo)moveW).addSprites(snackLayer.getSprites());
         ((CharacterMoveTo)moveW).addSprites(lockLayer.getSprites());
+        ((CharacterMoveTo)moveW).addSprites(keyLayer.getSprites());
         Action moveA = new CharacterMoveTo(-((Character)player).getSpeed(), 0);
         ((CharacterMoveTo)moveA).addSprites(snackLayer.getSprites());
         ((CharacterMoveTo)moveA).addSprites(lockLayer.getSprites());
+        ((CharacterMoveTo)moveA).addSprites(keyLayer.getSprites());
         Action moveS = new CharacterMoveTo(0, ((Character)player).getSpeed());
         ((CharacterMoveTo)moveS).addSprites(snackLayer.getSprites());
         ((CharacterMoveTo)moveS).addSprites(lockLayer.getSprites());
+        ((CharacterMoveTo)moveS).addSprites(keyLayer.getSprites());
         Action moveD = new CharacterMoveTo(((Character)player).getSpeed(), 0);
         ((CharacterMoveTo)moveD).addSprites(snackLayer.getSprites());
         ((CharacterMoveTo)moveD).addSprites(lockLayer.getSprites());
+        ((CharacterMoveTo)moveD).addSprites(keyLayer.getSprites());
         //animate
         Action playerAnimate = new Animate();
         ((Animate)playerAnimate).addImage(player.getImage());

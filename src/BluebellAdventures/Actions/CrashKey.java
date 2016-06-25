@@ -12,7 +12,7 @@ import Megumin.Nodes.Sprite;
 public class CrashKey extends Effect {
     @Override
     public void update(Sprite sprite) {
-        AudioEngine.getInstance().play("eating");
+        AudioEngine.getInstance().play("clink");
         Director.getInstance().getScene().getLayerByName("keys").removeSprite(getSprite());
         ((Character)sprite).addKey(1);
         System.out.println("Keys: " + ((Character)sprite).getKey());
