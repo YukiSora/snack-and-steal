@@ -79,17 +79,15 @@ public class EnemyMove extends MoveTo {
         // Idle
         if (mode == 0){
             if (GameMap.enemyCrash(sprite, direction[0] * speed, direction[1] * speed) || (x + w) > position.getX() + size.getX() || (y + h) > position.getY() + size.getY() || x < position.getX() || y < position.getY()) {
-                if (mode == 0) {
+                direction[0] = possibleDirection[random.nextInt(3)];
+                direction[1] = possibleDirection[random.nextInt(3)];
+                while (direction[0] == 0 && direction[1] == 0) {
                     direction[0] = possibleDirection[random.nextInt(3)];
                     direction[1] = possibleDirection[random.nextInt(3)];
-                    while (direction[0] == 0 && direction[1] == 0) {
-                        direction[0] = possibleDirection[random.nextInt(3)];
-                        direction[1] = possibleDirection[random.nextInt(3)];
-                    }
-
-                    setX(direction[0] * speed);
-                    setY(direction[1] * speed);
                 }
+
+                setX(direction[0] * speed);
+                setY(direction[1] * speed);
             }
         }
 
