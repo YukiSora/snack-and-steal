@@ -31,7 +31,7 @@ public class CrashCharacter extends Effect {
 
             player.setHp(--hp);
             System.out.println("Health: " + hp);
-            GameMap.getInstance().setPosition(-2752, -2619);
+            GameMap.getInstance().setPosition(-705, -2600);
 
             System.out.println(((EnemyMove)action).getMode());
         }

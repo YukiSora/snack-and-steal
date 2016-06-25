@@ -24,9 +24,6 @@ public class EnemyMove extends MoveTo {
     private Random random;
     private Sprite chaseArea;
 
-    // Mode 0 - Idle
-    // Mode 1 - Pursuit
-
     public EnemyMove(int speed, Point position, Point size) {
         super(speed, 0);
         this.speed = speed;
@@ -73,6 +70,7 @@ public class EnemyMove extends MoveTo {
 
             setX(direction[0] * speed);
             setY(direction[1] * speed);
+
             if (GameMap.enemyCrash(sprite, direction[0] * speed, direction[1] * speed)) {
                 direction[0] = possibleDirection[random.nextInt(3)];
                 direction[1] = possibleDirection[random.nextInt(3)];
@@ -80,11 +78,9 @@ public class EnemyMove extends MoveTo {
                     direction[0] = possibleDirection[random.nextInt(3)];
                     direction[1] = possibleDirection[random.nextInt(3)];
                 }
-
                 setX(direction[0] * speed);
                 setY(direction[1] * speed);
-            }
-            else {
+            } else {
                 super.update(sprite);
             }
             if ((x + w) > position.getX() + size.getX()
@@ -92,10 +88,10 @@ public class EnemyMove extends MoveTo {
                 || x < position.getX()
                 || y < position.getY()) {
                 mode = 0;
-            }
+            } 
         }
 
-        // Idle
+        // Patrolling
         if (mode == 0){
             if (GameMap.enemyCrash(sprite, direction[0] * speed, direction[1] * speed)
                 || (x + w) > position.getX() + size.getX()
