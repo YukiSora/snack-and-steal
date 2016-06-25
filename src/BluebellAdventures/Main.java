@@ -43,7 +43,7 @@ public class Main {
         director.setUndecorated(true);
 
         //start loading page
-        Scene loading = createLoadingScene();
+        Scene loading = createLoadingScene("resource/image/menu_bg.jpeg");
         director.setScene(loading);
         director.start();
 
@@ -89,9 +89,9 @@ public class Main {
         }
     }
 
-    public static Scene createLoadingScene() throws IOException {
+    public static Scene createLoadingScene(String backgroundImage) throws IOException {
         //init sprite
-        Sprite background = new Sprite("resource/image/menu_bg.jpeg");
+        Sprite background = new Sprite(backgroundImage);
 
         //init layer
         Layer mapLayer = new Layer();
