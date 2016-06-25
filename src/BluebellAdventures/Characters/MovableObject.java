@@ -28,7 +28,7 @@ public class MovableObject extends Sprite {
     public MovableObject(BufferedImage image, Point position) {
         super(image, position);
     }
-    
+
     @Override
     public void render(Graphics2D g) {
         if (getVisible()) {

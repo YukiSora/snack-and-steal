@@ -1,5 +1,7 @@
 package BluebellAdventures.Actions;
 
+import java.io.IOException;
+
 import BluebellAdventures.Characters.Character;
 import BluebellAdventures.Characters.MovableObject;
 
@@ -9,22 +11,19 @@ import Megumin.Audio.AudioEngine;
 import Megumin.Nodes.Director;
 import Megumin.Nodes.Sprite;
 import Megumin.Point;
-import java.io.File;
-import javax.imageio.ImageIO;
-import java.io.IOException;
 
 public class CrashFridge extends Effect {
     @Override
     public void update(Sprite sprite) {
         AudioEngine.getInstance().play("fridge");
-        try{
-        Director.getInstance().getScene().getLayerByName("locks").getSpriteByName("fridge").setImage(ImageIO.read(new File("resource/image/fridge_open.png")));
-        Director.getInstance().getScene().getLayerByName("locks").getSpriteByName("fridge").setPosition(new Point(3387, 2420));
+        try {
+            Sprite fridge = Director.getInstance().getScene().getSpriteByName("fridge");
+            fridge.setImage("resource/image/fridge_open.png");
+            fridge.setPosition(new Point(3387, 2420));
         }
-        catch(IOException e){
+        catch(IOException e) {
             System.exit(1);
         }
         ((MovableObject)this.getSprite()).setLock(false);
-        
     }
 }

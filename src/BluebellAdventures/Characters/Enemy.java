@@ -18,55 +18,57 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 
 public class Enemy extends Sprite {
-	private int attack;
-	private int detectionRange;
-	private int speed;
+    private int attack;
+    private int detectionRange;
+    private int speed;
 
-	// Constructors //
-	public Enemy(String filename) throws IOException {
-		super(filename, new Point(0, 0));
-	}
+    // Constructors //
+    public Enemy(String filename) throws IOException {
+        super(filename, new Point(0, 0));
+    }
 
-	public Enemy(String filename, Point position) throws IOException {
-		super(ImageIO.read(new File(filename)), position);
-	}
+    public Enemy(String filename, Point position) throws IOException {
+        super(ImageIO.read(new File(filename)), position);
+    }
 
-	public Enemy(BufferedImage image) {
-		super(image, new Point(0, 0));
-	}
+    public Enemy(BufferedImage image) {
+        super(image, new Point(0, 0));
+    }
 
-	public Enemy(BufferedImage image, Point position) {
-		super(image, position);
-	}
+    public Enemy(BufferedImage image, Point position) {
+        super(image, position);
+    }
 
-	@Override
-	public void render(Graphics2D g) {
-		if (getVisible()) {
-			GameMap map = GameMap.getInstance();
-                        int dir = 0;
-			if (getDirection()[0] == 1) {
-				dir = 3;
-			}
-			if (getDirection()[0] == -1) {
-				dir = 1;
-			}
-			if (getDirection()[1] == 1) {
-				dir = 2;
-			}
-			if (getDirection()[1] == -1) {
-				dir = 0;
-			}
-                        /*AffineTransform tx = new AffineTransform();
-                        tx.rotate(Math.PI/dir, getImage().getWidth()/2, getImage().getHeight()/2);
-                        AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-                        g.drawImage(op.filter(getImage(), null), map.getPosition().getX() + getPosition().getX(), map.getPosition().getY() + getPosition().getY(), null);*/
-                        g.drawImage(getImage(), map.getPosition().getX() + getPosition().getX(), map.getPosition().getY() + getPosition().getY(), null);
-			g.fill(new Arc2D.Double(map.getPosition().getX() + getPosition().getX(), map.getPosition().getY() + getPosition().getY(), 200, 200, 30 + 90 * dir, 120, Arc2D.PIE));
-		}
-	}
+    @Override
+    public void render(Graphics2D g) {
+        if (getVisible()) {
+            GameMap map = GameMap.getInstance();
+            int dir = 0;
+            if (getDirection()[0] == 1) {
+                dir = 3;
+            }
+            if (getDirection()[0] == -1) {
+                dir = 1;
+            }
+            if (getDirection()[1] == 1) {
+                dir = 2;
+            }
+            if (getDirection()[1] == -1) {
+                dir = 0;
+            }
+            /*
+            AffineTransform tx = new AffineTransform();
+            tx.rotate(Math.PI/dir, getImage().getWidth()/2, getImage().getHeight()/2);
+            AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+            g.drawImage(op.filter(getImage(), null), map.getPosition().getX() + getPosition().getX(), map.getPosition().getY() + getPosition().getY(), null);
+            */
+            g.drawImage(getImage(), map.getPosition().getX() + getPosition().getX(), map.getPosition().getY() + getPosition().getY(), null);
+            g.fill(new Arc2D.Double(map.getPosition().getX() + getPosition().getX(), map.getPosition().getY() + getPosition().getY(), 200, 200, 30 + 90 * dir, 120, Arc2D.PIE));
+        }
+    }
 
-	@Override
-	public boolean checkCrash(CopyOnWriteArrayList<Sprite> sprites, Action action) {
+    @Override
+    public boolean checkCrash(CopyOnWriteArrayList<Sprite> sprites, Action action) {
         boolean crash = false;
         int x1 = getPosition().getX();
         int y1 = getPosition().getY();
@@ -75,7 +77,7 @@ public class Enemy extends Sprite {
         Iterator it = sprites.iterator();
         while (it.hasNext()) {
             Sprite sprite = (Sprite)it.next();
-            
+
             int x2 = sprite.getPosition().getX() - GameMap.getInstance().getPosition().getX();
             int y2 = sprite.getPosition().getY() - GameMap.getInstance().getPosition().getY();
             int w2 = sprite.getSize().getX();
@@ -92,31 +94,31 @@ public class Enemy extends Sprite {
         return crash;
     }
 
-	// Get and Sets //
-	public Enemy setAttack(int attack) {
-		this.attack = attack;
-		return this;
-	}
+    // Get and Sets //
+    public Enemy setAttack(int attack) {
+        this.attack = attack;
+        return this;
+    }
 
-	public int getAttack() {
-		return attack;
-	}
+    public int getAttack() {
+        return attack;
+    }
 
-	public Enemy setDetectionRange(int detectionRange) {
-		this.detectionRange = detectionRange;
-		return this;
-	}
+    public Enemy setDetectionRange(int detectionRange) {
+        this.detectionRange = detectionRange;
+        return this;
+    }
 
-	public int getDetectionRange() {
-		return detectionRange;
-	}
+    public int getDetectionRange() {
+        return detectionRange;
+    }
 
-	public Enemy setSpeed(int speed) {
-		this.speed = speed;
-		return this;
-	}
+    public Enemy setSpeed(int speed) {
+        this.speed = speed;
+        return this;
+    }
 
-	public int getSpeed() {
-		return speed;
-	}
+    public int getSpeed() {
+        return speed;
+    }
 }

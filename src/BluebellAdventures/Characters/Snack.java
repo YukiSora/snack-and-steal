@@ -12,40 +12,40 @@ import Megumin.Nodes.Sprite;
 import Megumin.Point;
 
 public class Snack extends Sprite {
-	private int score;
+    private int score;
 
-	// Constructors //
-	public Snack(String filename) throws IOException {
-		super(filename, new Point(0, 0));
-	}
+    // Constructors //
+    public Snack(String filename) throws IOException {
+        super(filename, new Point(0, 0));
+    }
 
-	public Snack(String filename, Point position) throws IOException {
-		super(ImageIO.read(new File(filename)), position);
-	}
+    public Snack(String filename, Point position) throws IOException {
+        super(ImageIO.read(new File(filename)), position);
+    }
 
-	public Snack(BufferedImage image) {
-		super(image, new Point(0, 0));
-	}
+    public Snack(BufferedImage image) {
+        super(image, new Point(0, 0));
+    }
 
-	public Snack(BufferedImage image, Point position) {
-		super(image, position);
-	}
+    public Snack(BufferedImage image, Point position) {
+        super(image, position);
+    }
 
-	@Override
-	public void render(Graphics2D g) {
-		if (getVisible()) {
-			GameMap map = GameMap.getInstance();
-			g.drawImage(getImage(), map.getPosition().getX() + getPosition().getX(), map.getPosition().getY() + getPosition().getY(), null);
-		}
-	}
+    @Override
+    public void render(Graphics2D g) {
+        if (getVisible()) {
+            GameMap map = GameMap.getInstance();
+            g.drawImage(getImage(), map.getPosition().getX() + getPosition().getX(), map.getPosition().getY() + getPosition().getY(), null);
+        }
+    }
 
-	// Set and Gets //
-	public Snack setScore(int score) {
-		this.score = score;
-		return this;
-	}
+    // Set and Gets //
+    public Snack setScore(int score) {
+        this.score = score;
+        return this;
+    }
 
-	public int getScore() {
-		return score;
-	}
+    public int getScore() {
+        return score;
+    }
 }

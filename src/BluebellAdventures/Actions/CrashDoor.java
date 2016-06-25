@@ -1,5 +1,7 @@
 package BluebellAdventures.Actions;
 
+import java.io.IOException;
+
 import BluebellAdventures.Characters.Character;
 import BluebellAdventures.Characters.MovableObject;
 
@@ -9,9 +11,6 @@ import Megumin.Audio.AudioEngine;
 import Megumin.Nodes.Director;
 import Megumin.Nodes.Sprite;
 import Megumin.Point;
-import java.io.File;
-import javax.imageio.ImageIO;
-import java.io.IOException;
 
 public class CrashDoor extends Effect {
     private Point pt;
@@ -23,14 +22,14 @@ public class CrashDoor extends Effect {
     @Override
     public void update(Sprite sprite) {
         AudioEngine.getInstance().play("fridge");
-        try{
-        Director.getInstance().getScene().getLayerByName("locks").getSpriteByName("door").setImage(ImageIO.read(new File("resource/image/door_open.png")));
-        Director.getInstance().getScene().getLayerByName("locks").getSpriteByName("door").setPosition(new Point(2698, 1450));
+        try {
+            Sprite door = Director.getInstance().getScene().getSpriteByName("door");
+            door.setImage("resource/image/door_open.png");
+            door.setPosition(new Point(2698, 1450));
         }
         catch(IOException e){
             System.exit(1);
         }
         ((MovableObject)this.getSprite()).setLock(false);
-        
     }
 }

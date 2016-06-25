@@ -10,11 +10,10 @@ import Megumin.Nodes.Director;
 import Megumin.Nodes.Sprite;
 
 public class CrashSnack extends Effect {
-	@Override
-	public void update(Sprite sprite) {
-		AudioEngine.getInstance().play("eating");
-		Director.getInstance().getScene().getLayerByName("snack").removeSprite(getSprite());
-		((Character)sprite).addSnackScore(((Snack)getSprite()).getScore());
-		System.out.println(((Character)sprite).getSnackScore());
-	}
+    @Override
+    public void update(Sprite sprite) {
+        AudioEngine.getInstance().play("eating");
+        Director.getInstance().getScene().getLayerByName("snack").removeSprite(getSprite());
+        ((Character)sprite).addSnackScore(((Snack)getSprite()).getScore());
+    }
 }
