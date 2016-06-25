@@ -35,6 +35,7 @@ public class EnemyMove extends MoveTo {
         mode = 0;
         possibleDirection = new int[]{-1, 0, 1};
         random = new Random();
+
         //create chase detection area
         chaseArea = new Sprite();
         chaseArea.setPosition(position);
@@ -53,23 +54,49 @@ public class EnemyMove extends MoveTo {
         int w = sprite.getSize().getX();
         int h = sprite.getSize().getY();
 
+        // In Pursuit
         if (mode == 1) {
-            Point characterPosition = GameMap.getInstance().getPosition();
-            if (sprite.getPosition().getX() > -characterPosition.getX() + characterSprite.getPosition().getX()) {
-                direction[0] = -1;
-            } else {
-                direction[0] = 1;
-            }
+            if (GameMap.enemyCrash(sprite, direction[0] * speed, direction[1] * speed) || (x + w) > position.getX() + size.getX() || (y + h) > position.getY() + size.getY() || x < position.getX() || y < position.getY()){
+                Point characterPosition = GameMap.getInstance().getPosition();
 
-            if (sprite.getPosition().getY() > -characterPosition.getY() + characterSprite.getPosition().getY()) {
-                direction[1] = -1;
-            } else {
-                direction[1] = 1;
-            }
+                if (sprite.getPosition().getX() > -characterPosition.getX() + characterSprite.getPosition().getX()) {
+                    direction[0] = -1;
+                } else {
+                    direction[0] = 1;
+                }
 
-            setX(direction[0] * speed);
-            setY(direction[1] * speed);
+                if (sprite.getPosition().getY() > -characterPosition.getY() + characterSprite.getPosition().getY()) {
+                    direction[1] = -1;
+                } else {
+                    direction[1] = 1;
+                }
+
+                setX(direction[0] * speed);
+                setY(direction[1] * speed);
+            }
         }
+
+        // Idle
+        if (mode == 0){
+            if (GameMap.enemyCrash(sprite, direction[0] * speed, direction[1] * speed) || (x + w) > position.getX() + size.getX() || (y + h) > position.getY() + size.getY() || x < position.getX() || y < position.getY()) {
+                if (mode == 0) {
+                    direction[0] = possibleDirection[random.nextInt(3)];
+                    direction[1] = possibleDirection[random.nextInt(3)];
+                    while (direction[0] == 0 && direction[1] == 0) {
+                        direction[0] = possibleDirection[random.nextInt(3)];
+                        direction[1] = possibleDirection[random.nextInt(3)];
+                    }
+
+                    setX(direction[0] * speed);
+                    setY(direction[1] * speed);
+                }
+            }
+        }
+
+        chaseArea.checkCrash(sprites.get(0), new ChaseCharacter(this));
+        sprite.checkCrash(sprites.get(0), new CrashCharacter(this));
+
+        super.update(sprite);
 
         /*
         if (GameMap.enemyCrash(sprite, direction[0] * speed, direction[1] * speed) || (x + w) > position.getX() + size.getX() || (y + h) > position.getY() + size.getY() || x < position.getX() || y < position.getY()) {
@@ -87,10 +114,7 @@ public class EnemyMove extends MoveTo {
         }
         else {
         */
-            chaseArea.checkCrash(sprites.get(0), new ChaseCharacter(this));
-            sprite.checkCrash(sprites.get(0), new CrashCharacter());
 
-            super.update(sprite);
         //}
     }
 

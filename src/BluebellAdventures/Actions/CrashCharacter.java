@@ -10,6 +10,12 @@ import Megumin.Audio.AudioEngine;
 import Megumin.Nodes.Sprite;
 
 public class CrashCharacter extends Effect {
+	private Action action;
+
+    CrashCharacter(Action action){
+        this.action = action;
+    }
+
     @Override
     public void update(Sprite sprite) {
         AudioEngine.getInstance().play("attacking");
@@ -18,8 +24,11 @@ public class CrashCharacter extends Effect {
 
         if (hp < 1) {
             System.out.println("Game Over Mate!");
-        }
-        else {
+        } else {
+        	// System.out.println("Chasing Mode: OFF");
+	        ((EnemyMove)action).setMode(0);
+	        ((EnemyMove)action).setCharacterSprite(getSprite());
+
             player.setHp(--hp);
             System.out.println("Health: " + hp);
             GameMap.getInstance().setPosition(-2752, -2619);

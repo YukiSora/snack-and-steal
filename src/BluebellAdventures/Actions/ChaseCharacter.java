@@ -18,7 +18,7 @@ public class ChaseCharacter extends Effect {
 
     @Override
     public void update(Sprite sprite) {
-        System.out.println("Chasing Mode: ON");
+        //System.out.println("Chasing Mode: ON");
         ((EnemyMove)action).setMode(1);
         ((EnemyMove)action).setCharacterSprite(getSprite());
     }

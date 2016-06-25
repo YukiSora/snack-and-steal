@@ -201,7 +201,7 @@ public class SelectCharacter extends Action {
         infinite.addEvent(enemyRoom1, enemyRoom1Move);
 
         //move action
-        Action enemyLivingRoomMove = new EnemyMove(((Enemy)enemyRoom1).getSpeed(), new Point(1762, 47), new Point(1383, 2015));
+        Action enemyLivingRoomMove = new EnemyMove(((Enemy)enemyLivingRoom).getSpeed(), new Point(1762, 47), new Point(1383, 2015));
         ((EnemyMove)enemyLivingRoomMove).addSprites(ownPlayerLayer.getSprites());
         //animate
         Action enemyLivingRoomAnimate = new Animate();
