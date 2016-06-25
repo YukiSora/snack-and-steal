@@ -125,7 +125,7 @@ public class CreateGameScene {
         Sprite map = GameMap.getInstance("resource/image/full_map.png")
                             .setPath("resource/path");
 
-        GameMap.getInstance().setPosition(-2752, -2619);
+        GameMap.getInstance().setPosition(-705, -2600);
 
         //init layer
         Layer guardLayer = new Layer();
@@ -229,7 +229,7 @@ public class CreateGameScene {
         ((Animate)enemyBedRoomAnimate).addImage(ImageIO.read(new File("resource/image/ladybug2.png")));
         enemyBedRoomMove.addAction(enemyBedRoomAnimate);
         //insert
-        infinite.addEvent(enemyBedRoom, enemyBedRoomMove);
+        //infinite.addEvent(enemyBedRoom, enemyBedRoomMove);
 
         // Enemy 2 - Living Room
         //move action
@@ -241,7 +241,7 @@ public class CreateGameScene {
         ((Animate)enemyLivingRoomAnimate).addImage(ImageIO.read(new File("resource/image/ladybug2.png")));
         enemyLivingRoomMove.addAction(enemyLivingRoomAnimate);
         //insert
-        infinite.addEvent(enemyLivingRoom, enemyLivingRoomMove);
+        //infinite.addEvent(enemyLivingRoom, enemyLivingRoomMove);
 
         // Enemy 3 - Dining Room
         //move action

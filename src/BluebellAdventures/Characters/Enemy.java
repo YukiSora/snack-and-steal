@@ -60,14 +60,15 @@ public class Enemy extends Sprite {
             if (getDirection()[1] == -1) {
                 dir = 0;
             }
-            /*
+            
             AffineTransform tx = new AffineTransform();
             tx.rotate(Math.PI/dir, getImage().getWidth()/2, getImage().getHeight()/2);
+
             AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
             g.drawImage(op.filter(getImage(), null), map.getPosition().getX() + getPosition().getX(), map.getPosition().getY() + getPosition().getY(), null);
-            */
+            
             g.drawImage(getImage(), map.getPosition().getX() + getPosition().getX(), map.getPosition().getY() + getPosition().getY(), null);
-            g.fill(new Arc2D.Double(map.getPosition().getX() + getPosition().getX(), map.getPosition().getY() + getPosition().getY(), 200, 200, 30 + 90 * dir, 120, Arc2D.PIE));
+            //g.fill(new Arc2D.Double(map.getPosition().getX() + getPosition().getX(), map.getPosition().getY() + getPosition().getY(), 200, 200, 30 + 90 * dir, 120, Arc2D.PIE));
         }
     }
 
