@@ -54,7 +54,7 @@ public class CreateCharacterSelectionScene {
         characterSelection.addLayer(mapLayer, 0);
 
         //init action
-        Action selectRat = new MouseCrash(new SelectCharacter("machi"));
+        Action selectRat = new MouseCrash(new SelectCharacter("snack"));
         interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, rat, selectRat);
 
         Action selectRaccoon = new MouseCrash(new SelectCharacter("natsu"));

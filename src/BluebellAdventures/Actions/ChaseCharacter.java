@@ -22,6 +22,6 @@ public class ChaseCharacter extends Effect {
         ((EnemyMove)action).setMode(1);
         ((EnemyMove)action).setCharacterSprite(getSprite());
 
-        System.out.println(((EnemyMove)action).getMode());
+        // System.out.println(((EnemyMove)action).getMode());
     }
 }

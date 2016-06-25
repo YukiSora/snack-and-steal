@@ -23,6 +23,10 @@ public class Enemy extends Sprite {
     private int speed;
 
     // Constructors //
+    public Enemy() {
+        super();
+    }
+
     public Enemy(String filename) throws IOException {
         super(filename, new Point(0, 0));
     }

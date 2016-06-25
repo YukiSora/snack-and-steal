@@ -207,7 +207,7 @@ public class CreateGameScene {
         ((Animate)enemyDiningRoomAnimate).addImage(ImageIO.read(new File("resource/image/ladybug2.png")));
         enemyDiningRoomMove.addAction(enemyDiningRoomAnimate);
         //insert
-        //infinite.addEvent(enemyDiningRoom, enemyDiningRoomMove);
+        infinite.addEvent(enemyDiningRoom, enemyDiningRoomMove);
 
         return game;
     }
