@@ -9,6 +9,7 @@ import javax.sound.sampled.Clip;
 import BluebellAdventures.Actions.ChangeScene;
 import BluebellAdventures.Actions.SelectCharacter;
 import BluebellAdventures.Actions.Quit;
+import BluebellAdventures.CreateScenes.CreateLoadingScene;
 
 import Megumin.Actions.Action;
 import Megumin.Actions.MouseCrash;
@@ -43,8 +44,7 @@ public class Main {
         director.setUndecorated(true);
 
         //start loading page
-        Scene loading = createLoadingScene("resource/image/menu_bg.jpeg");
-        director.setScene(loading);
+        director.setScene(CreateLoadingScene.createLoadingScene("resource/image/splash_screen.png"));
         director.start();
 
         //init audio
@@ -89,21 +89,6 @@ public class Main {
         }
     }
 
-    public static Scene createLoadingScene(String backgroundImage) throws IOException {
-        //init sprite
-        Sprite background = new Sprite(backgroundImage);
-
-        //init layer
-        Layer mapLayer = new Layer();
-        mapLayer.addSprite(background);
-
-        //init scene
-        Scene loading = new Scene();
-        loading.addLayer(mapLayer);
-
-        return loading;
-    }
-
     public static Scene createMenuScene() throws IOException {
         //init sprite
         Sprite singlePlayer = new Sprite("resource/image/tag_single.png", new Point(200, 100));
@@ -141,7 +126,7 @@ public class Main {
         Sprite roach = new Sprite("resource/image/roach.png", new Point(1045, 250));
 
         Sprite back = new Sprite("resource/image/tab_back.png", new Point(1150, 600));
-        Sprite background = new Sprite("resource/image/menu_bg.jpeg");
+        Sprite background = new Sprite("resource/image/character_design.png");
         rat.setName("rat");
         raccoon.setName("raccoon");
         dog.setName("dog");

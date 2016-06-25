@@ -4,7 +4,7 @@ import java.io.IOException;
 import javax.sound.sampled.Clip;
 
 import BluebellAdventures.CreateScenes.CreateGameScene;
-import BluebellAdventures.Main;
+import BluebellAdventures.CreateScenes.CreateLoadingScene;
 
 import Megumin.Actions.Action;
 import Megumin.Audio.AudioEngine;
@@ -21,7 +21,7 @@ public class SelectCharacter extends Action {
     @Override
     public void update(Sprite sprite) {
         try {
-            Director.getInstance().setScene(Main.createLoadingScene("resource/image/menu_bg.jpeg"));
+            Director.getInstance().setScene(CreateLoadingScene.createLoadingScene("resource/image/loading_screen.png"));
         } catch (IOException e) {
             System.exit(1);
         }
