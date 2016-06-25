@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
@@ -30,6 +31,16 @@ public class Audio implements Runnable{
     public void play() {
         clip.setMicrosecondPosition(0);
         clip.start();
+    }
+
+    public void volumeUp(){
+        FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        gainControl.setValue(6);
+    }
+
+    public void volumeDown(){
+        FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        gainControl.setValue(-10.0f);
     }
 
     public void loop(int times) {

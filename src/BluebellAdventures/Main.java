@@ -55,13 +55,15 @@ public class Main {
         audioEngine.addAudio("slurping", new Audio("resource/audio/slurping.wav"));
         audioEngine.addAudio("walking", new Audio("resource/audio/walking.wav"));
         audioEngine.addAudio("menu", new Audio("resource/audio/menu.wav"));
-        audioEngine.addAudio("main", new Audio("resource/audio/main.wav"));
         audioEngine.addAudio("nervous", new Audio("resource/audio/nervous.wav"));
         audioEngine.addAudio("victory", new Audio("resource/audio/victory.wav"));
         audioEngine.addAudio("door", new Audio("resource/audio/door.wav"));
         audioEngine.addAudio("fridge", new Audio("resource/audio/fridge.wav"));
         audioEngine.addAudio("unlock", new Audio("resource/audio/unlock.wav"));
-        audioEngine.addAudio("clink", new Audio("resource/audio/clink.wav"));
+        audioEngine.addAudio("key", new Audio("resource/audio/key.wav"));
+
+        audioEngine.addAudio("main", new Audio("resource/audio/main.wav"));
+        audioEngine.volumeDown("main");
 
         //system action
         Sprite system = new Sprite();

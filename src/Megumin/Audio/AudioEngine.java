@@ -47,6 +47,14 @@ public class AudioEngine {
         audios.get(name).stop();
     }
 
+    public void volumeUp(String name){
+        audios.get(name).volumeUp();
+    }
+
+    public void volumeDown(String name){
+        audios.get(name).volumeDown();
+    }
+
     public void stopAll() {
         for(Entry<String, Audio> entry : audios.entrySet()) {
             entry.getValue().stop();
