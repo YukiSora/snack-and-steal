@@ -179,6 +179,7 @@ public class CreateGameScene {
 
         //init scene
         Scene game = new Scene();
+        game.setName("game");
         game.addLayer(mapLayer);
         game.addLayer(snackLayer);
         game.addLayer(lockLayer);
@@ -214,10 +215,10 @@ public class CreateGameScene {
         moveS.addAction(playerAnimate);
         moveD.addAction(playerAnimate);
         //insert action
-        interact.addEvent(KeyEvent.VK_W, Interact.ON_KEY_PRESS, player, moveW);
-        interact.addEvent(KeyEvent.VK_A, Interact.ON_KEY_PRESS, player, moveA);
-        interact.addEvent(KeyEvent.VK_S, Interact.ON_KEY_PRESS, player, moveS);
-        interact.addEvent(KeyEvent.VK_D, Interact.ON_KEY_PRESS, player, moveD);
+        interact.addEvent(KeyEvent.VK_W, Interact.ON_KEY_PRESS, player, moveW, "game");
+        interact.addEvent(KeyEvent.VK_A, Interact.ON_KEY_PRESS, player, moveA, "game");
+        interact.addEvent(KeyEvent.VK_S, Interact.ON_KEY_PRESS, player, moveS, "game");
+        interact.addEvent(KeyEvent.VK_D, Interact.ON_KEY_PRESS, player, moveD, "game");
 
         // Enemy 1 - Bedroom
         //move action
