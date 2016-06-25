@@ -50,27 +50,28 @@ public class CreateCharacterSelectionScene {
 
         //init scene
         Scene characterSelection = new Scene();
+        characterSelection.setName("character selection");
         characterSelection.addLayer(tabLayer);
         characterSelection.addLayer(mapLayer, 0);
 
         //init action
         Action selectRat = new MouseCrash(new SelectCharacter("snack"));
-        interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, rat, selectRat);
+        interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, rat, selectRat, "character selection");
 
         Action selectRaccoon = new MouseCrash(new SelectCharacter("natsu"));
-        interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, raccoon, selectRaccoon);
+        interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, raccoon, selectRaccoon, "character selection");
 
         Action selectDog = new MouseCrash(new SelectCharacter("machi"));
-        interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, dog, selectDog);
+        interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, dog, selectDog, "character selection");
 
         Action selectCat = new MouseCrash(new SelectCharacter("cat"));
-        interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, cat, selectCat);
+        interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, cat, selectCat, "character selection");
 
         Action selectFox = new MouseCrash(new SelectCharacter("machi"));
-        interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, fox, selectFox);
+        interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, fox, selectFox, "character selection");
 
         Action selectRoach = new MouseCrash(new SelectCharacter("ladybug"));
-        interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, roach, selectRoach);
+        interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, roach, selectRoach, "character selection");
 
         return characterSelection;
     }

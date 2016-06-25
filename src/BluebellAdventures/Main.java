@@ -67,7 +67,7 @@ public class Main {
 
         //system action
         Sprite system = new Sprite();
-        interact.addEvent(KeyEvent.VK_ESCAPE, Interact.ON_KEY_CLICK, system, new Quit());
+        interact.addEvent(KeyEvent.VK_ESCAPE, Interact.ON_KEY_CLICK, system, new Quit(), "");
 
         //create scene
         Scene menu = CreateMenuScene.createMenuScene();
@@ -75,14 +75,14 @@ public class Main {
 
         //menu action
         Sprite single = menu.getSpriteByName("single player");
-        interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, single, new MouseCrash(new ChangeScene(characterSelection, "main")));
+        interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, single, new MouseCrash(new ChangeScene(characterSelection, "main")), "menu");
         Sprite exit = menu.getSpriteByName("exit");
-        interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, exit, new MouseCrash(new Quit()));
+        interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, exit, new MouseCrash(new Quit()), "menu");
 
         //character selection action
         Sprite back = characterSelection.getSpriteByName("back");
         Action backToMenu = new MouseCrash(new ChangeScene(menu, "menu"));
-        interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, back, backToMenu);
+        interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, back, backToMenu, "character selection");
 
         //after loading start game
         audioEngine.loop("menu", Clip.LOOP_CONTINUOUSLY);

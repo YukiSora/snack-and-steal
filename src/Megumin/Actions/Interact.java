@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import Megumin.Actions.MouseCrash;
+import Megumin.Nodes.Director;
 import Megumin.Nodes.Sprite;
 
 public class Interact {
@@ -36,11 +37,11 @@ public class Interact {
         return interact;
     }
 
-    public void addEvent(int key, int method, Sprite sprite, Action action) {
+    public void addEvent(int key, int method, Sprite sprite, Action action, String sceneName) {
         if (!events.get(method).containsKey(key)) {
             events.get(method).put(key, new CopyOnWriteArrayList<Event>());
         }
-        events.get(method).get(key).add(new Event(sprite, action));
+        events.get(method).get(key).add(new Event(sprite, action, sceneName));
     }
 
     public void removeEvent(int key, int method, Sprite sprite, Action action) {
@@ -59,7 +60,9 @@ public class Interact {
             Iterator it = events.get(ON_KEY_CLICK).get(key).iterator();
             while (it.hasNext()) {
                 Event event = (Event)it.next();
-                event.getSprite().runAction(event.getAction());
+                if (event.getSceneName().equals("") || event.getSceneName().equals(Director.getInstance().getScene().getName())) {
+                    event.getSprite().runAction(event.getAction());
+                }
             }
         }
     }
@@ -69,9 +72,11 @@ public class Interact {
             Iterator it = events.get(ON_MOUSE_CLICK).get(MouseEvent.BUTTON1).iterator();
             while (it.hasNext()) {
                 Event event = (Event)it.next();
-                ((MouseCrash)event.getAction()).setX(x);
-                ((MouseCrash)event.getAction()).setY(y);
-                event.getSprite().runAction(event.getAction());
+                if (event.getSceneName().equals("") || event.getSceneName().equals(Director.getInstance().getScene().getName())) {
+                    ((MouseCrash)event.getAction()).setX(x);
+                    ((MouseCrash)event.getAction()).setY(y);
+                    event.getSprite().runAction(event.getAction());
+                }
             }
         }
     }
@@ -83,7 +88,9 @@ public class Interact {
                 Iterator it = events.get(ON_KEY_PRESS).get(entry.getKey()).iterator();
                 while (it.hasNext()) {
                     Event event = (Event)it.next();
-                    event.getSprite().runAction(event.getAction());
+                    if (event.getSceneName().equals("") || event.getSceneName().equals(Director.getInstance().getScene().getName())) {
+                        event.getSprite().runAction(event.getAction());
+                    }
                 }
             }
         }

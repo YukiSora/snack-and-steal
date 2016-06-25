@@ -18,6 +18,7 @@ public class CreateLoadingScene {
 
         //init scene
         Scene loading = new Scene();
+        loading.setName("loading");
         loading.addLayer(mapLayer);
 
         return loading;

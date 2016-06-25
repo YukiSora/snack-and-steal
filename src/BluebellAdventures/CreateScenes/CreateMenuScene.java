@@ -30,6 +30,7 @@ public class CreateMenuScene {
 
         //init scene
         Scene menu = new Scene();
+        menu.setName("menu");
         menu.addLayer(tabLayer);
         menu.addLayer(mapLayer, 0);
 

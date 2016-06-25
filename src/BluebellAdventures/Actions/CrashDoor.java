@@ -13,19 +13,21 @@ import Megumin.Nodes.Sprite;
 import Megumin.Point;
 
 public class CrashDoor extends Effect {
-    private Point pt;
-    
-    CrashDoor(Point pt){
-        this.pt = pt;
-    }
-    
     @Override
     public void update(Sprite sprite) {
-        AudioEngine.getInstance().play("fridge");
+        System.out.println(((MovableObject)getSprite()).getName());
         try {
-            Sprite door = Director.getInstance().getScene().getSpriteByName("door");
-            door.setImage("resource/image/door_open.png");
-            door.setPosition(new Point(2698, 1450));
+            Sprite door = getSprite();
+            if (door.getImage().getHeight() == 53) {
+                AudioEngine.getInstance().play("door");
+                door.setImage("resource/image/door_open.png");
+                door.setPosition(door.getPosition().offset(-15, -200));
+            }
+            else if (door.getImage().getWidth() == 50){
+                AudioEngine.getInstance().play("door");
+                door.setImage("resource/image/door_open2.png");
+                door.setPosition(door.getPosition().offset(-200, 200));
+            }
         }
         catch(IOException e){
             System.exit(1);

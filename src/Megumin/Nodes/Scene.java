@@ -6,6 +6,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Scene {
     private CopyOnWriteArrayList<Layer> layers;
+    private String name;
 
     public Scene() {
         layers = new CopyOnWriteArrayList<Layer>();
@@ -63,5 +64,13 @@ public class Scene {
 
     public CopyOnWriteArrayList<Layer> getLayers() {
         return layers;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 }
