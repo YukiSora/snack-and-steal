@@ -113,6 +113,14 @@ public class CreateGameScene {
         //init snacks sprites
         Sprite key1 = new Snack("resource/image/key.png", new Point(2900, 1717))
                             .setScore(0);
+        Sprite key2 = new Snack("resource/image/key.png", new Point(2880, 1717))
+                            .setScore(0);
+        Sprite key3 = new Snack("resource/image/key.png", new Point(2860, 1717))
+                            .setScore(0);
+        Sprite key4 = new Snack("resource/image/key.png", new Point(2840, 1717))
+                            .setScore(0);
+        Sprite key5 = new Snack("resource/image/key.png", new Point(2820, 1717))
+                            .setScore(0);
         //init map sprite
         Sprite map = GameMap.getInstance("resource/image/full_map.png")
                             .setPath("resource/path");
@@ -136,6 +144,10 @@ public class CreateGameScene {
         Layer keyLayer = new Layer();
         keyLayer.setName("keys");
         keyLayer.addSprite(key1);
+        keyLayer.addSprite(key2);
+        keyLayer.addSprite(key3);
+        keyLayer.addSprite(key4);
+        keyLayer.addSprite(key5);
 
         Layer snackLayer = new Layer();
         snackLayer.setName("snack");
@@ -180,15 +192,19 @@ public class CreateGameScene {
         Action moveW = new CharacterMoveTo(0, -((Character)player).getSpeed());
         ((CharacterMoveTo)moveW).addSprites(snackLayer.getSprites());
         ((CharacterMoveTo)moveW).addSprites(lockLayer.getSprites());
+        ((CharacterMoveTo)moveW).addSprites(keyLayer.getSprites());
         Action moveA = new CharacterMoveTo(-((Character)player).getSpeed(), 0);
         ((CharacterMoveTo)moveA).addSprites(snackLayer.getSprites());
         ((CharacterMoveTo)moveA).addSprites(lockLayer.getSprites());
+        ((CharacterMoveTo)moveA).addSprites(keyLayer.getSprites());
         Action moveS = new CharacterMoveTo(0, ((Character)player).getSpeed());
         ((CharacterMoveTo)moveS).addSprites(snackLayer.getSprites());
         ((CharacterMoveTo)moveS).addSprites(lockLayer.getSprites());
+        ((CharacterMoveTo)moveS).addSprites(keyLayer.getSprites());
         Action moveD = new CharacterMoveTo(((Character)player).getSpeed(), 0);
         ((CharacterMoveTo)moveD).addSprites(snackLayer.getSprites());
         ((CharacterMoveTo)moveD).addSprites(lockLayer.getSprites());
+        ((CharacterMoveTo)moveD).addSprites(keyLayer.getSprites());
         //animate
         Action playerAnimate = new Animate();
         ((Animate)playerAnimate).addImage(player.getImage());

@@ -61,6 +61,7 @@ public class Main {
         audioEngine.addAudio("door", new Audio("resource/audio/door.wav"));
         audioEngine.addAudio("fridge", new Audio("resource/audio/fridge.wav"));
         audioEngine.addAudio("unlock", new Audio("resource/audio/unlock.wav"));
+        audioEngine.addAudio("clink", new Audio("resource/audio/clink.wav"));
 
         //system action
         Sprite system = new Sprite();
