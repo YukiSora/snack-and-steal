@@ -127,6 +127,7 @@ public class Main {
 
         Sprite back = new Sprite("resource/image/tab_back.png", new Point(1150, 600));
         Sprite background = new Sprite("resource/image/character_design.png");
+
         rat.setName("rat");
         raccoon.setName("raccoon");
         dog.setName("dog");

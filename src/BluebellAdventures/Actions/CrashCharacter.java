@@ -22,7 +22,7 @@ public class CrashCharacter extends Effect {
         Character player = (Character) getSprite();
         int hp = player.getHp();
 
-        if (hp < 1) {
+		if (hp < 1) {
             System.out.println("Game Over Mate!");
         } else {
             // System.out.println("Chasing Mode: OFF");
