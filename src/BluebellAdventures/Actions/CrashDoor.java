@@ -15,7 +15,6 @@ import Megumin.Point;
 public class CrashDoor extends Effect {
     @Override
     public void update(Sprite sprite) {
-        System.out.println(((MovableObject)getSprite()).getName());
         try {
             Sprite door = getSprite();
             if (door.getImage().getHeight() == 53) {

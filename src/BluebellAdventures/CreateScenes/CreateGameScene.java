@@ -34,10 +34,13 @@ public class CreateGameScene {
                             .setSpeed(5);
 
         Sprite enemyLivingRoom = new Enemy("resource/image/ladybug1.png", new Point(2360, 980))
-                            .setSpeed(10);
+                            .setSpeed(5);
 
         Sprite enemyDiningRoom = new Enemy("resource/image/ladybug1.png", new Point(3600, 1200))
-                            .setSpeed(10);
+                            .setSpeed(5);
+
+        Sprite finishLine = new Enemy("resource/image/natsu1.png", new Point(3705,2850))
+                            .setSpeed(0);
 
         Sprite player = new Character("resource/image/" + playerImageName + "1.png", new Point(600, 200))
                             .setHp(3)
@@ -152,6 +155,9 @@ public class CreateGameScene {
         GameMap.getInstance().setPosition(-705, -2600);
 
         //init layer
+        Layer finishLayer = new Layer();
+        finishLayer.addSprite(finishLine);
+
         Layer guardLayer = new Layer();
         guardLayer.addSprite(enemyBedRoom);
         guardLayer.addSprite(enemyLivingRoom);
@@ -220,7 +226,9 @@ public class CreateGameScene {
         game.addLayer(doorLayer);
         game.addLayer(keyLayer);
         game.addLayer(guardLayer);
+        game.addLayer(finishLayer);
         game.addLayer(ownPlayerLayer);
+        
 
         //init key listener and action
         //player
@@ -230,21 +238,29 @@ public class CreateGameScene {
         ((CharacterMoveTo)moveW).addSprites(lockLayer.getSprites());
         ((CharacterMoveTo)moveW).addSprites(doorLayer.getSprites());
         ((CharacterMoveTo)moveW).addSprites(keyLayer.getSprites());
+        ((CharacterMoveTo)moveW).addSprites(finishLayer.getSprites());
+
         Action moveA = new CharacterMoveTo(-((Character)player).getSpeed(), 0);
         ((CharacterMoveTo)moveA).addSprites(snackLayer.getSprites());
         ((CharacterMoveTo)moveA).addSprites(lockLayer.getSprites());
         ((CharacterMoveTo)moveA).addSprites(doorLayer.getSprites());
         ((CharacterMoveTo)moveA).addSprites(keyLayer.getSprites());
+        ((CharacterMoveTo)moveA).addSprites(finishLayer.getSprites());
+
         Action moveS = new CharacterMoveTo(0, ((Character)player).getSpeed());
         ((CharacterMoveTo)moveS).addSprites(snackLayer.getSprites());
         ((CharacterMoveTo)moveS).addSprites(lockLayer.getSprites());
         ((CharacterMoveTo)moveS).addSprites(doorLayer.getSprites());
         ((CharacterMoveTo)moveS).addSprites(keyLayer.getSprites());
+        ((CharacterMoveTo)moveS).addSprites(finishLayer.getSprites());
+
         Action moveD = new CharacterMoveTo(((Character)player).getSpeed(), 0);
         ((CharacterMoveTo)moveD).addSprites(snackLayer.getSprites());
         ((CharacterMoveTo)moveD).addSprites(lockLayer.getSprites());
         ((CharacterMoveTo)moveD).addSprites(doorLayer.getSprites());
         ((CharacterMoveTo)moveD).addSprites(keyLayer.getSprites());
+        ((CharacterMoveTo)moveD).addSprites(finishLayer.getSprites());
+
         //animate
         Action playerAnimate = new Animate();
         ((Animate)playerAnimate).addImage(player.getImage());
@@ -258,6 +274,12 @@ public class CreateGameScene {
         interact.addEvent(KeyEvent.VK_A, Interact.ON_KEY_PRESS, player, moveA, "game");
         interact.addEvent(KeyEvent.VK_S, Interact.ON_KEY_PRESS, player, moveS, "game");
         interact.addEvent(KeyEvent.VK_D, Interact.ON_KEY_PRESS, player, moveD, "game");
+
+        // Finshing Line
+        Action finishLineAnimate = new Animate();
+        ((Animate)finishLineAnimate).addImage(finishLine.getImage());
+        ((Animate)finishLineAnimate).addImage(ImageIO.read(new File("resource/image/natsu2.png")));
+
 
         // Enemy 1 - Bedroom
         //move action
