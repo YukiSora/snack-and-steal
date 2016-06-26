@@ -90,8 +90,7 @@ public class CreateGameScene {
         Sprite toiletDoor2 = new MovableObject("resource/image/verticaldoor.png", new Point(459, 1602))
                             .setLock(false);
         toiletDoor2.setName("door");
-        
-        
+
         //init snacks sprites
         Sprite snackFridge = new Snack("resource/image/snack1.png", new Point(3531, 2590))
                             .setScore(350);
@@ -139,16 +138,13 @@ public class CreateGameScene {
                             .setScore(-50);
  
         //init snacks sprites
-        Sprite key1 = new Snack("resource/image/key.png", new Point(2900, 1717))
+        Sprite key1 = new Snack("resource/image/key.png", new Point(2836, 1763))
                             .setScore(0);
-        Sprite key2 = new Snack("resource/image/key.png", new Point(2880, 1717))
+        Sprite key2 = new Snack("resource/image/key.png", new Point(82, 1519))
                             .setScore(0);
-        Sprite key3 = new Snack("resource/image/key.png", new Point(2860, 1717))
+        Sprite key3 = new Snack("resource/image/key.png", new Point(863, 101))
                             .setScore(0);
-        Sprite key4 = new Snack("resource/image/key.png", new Point(2840, 1717))
-                            .setScore(0);
-        Sprite key5 = new Snack("resource/image/key.png", new Point(2820, 1717))
-                            .setScore(0);
+        
         //init map sprite
         Sprite map = GameMap.getInstance("resource/image/full_map copy.jpg")
                             .setPath("resource/path");
@@ -187,8 +183,6 @@ public class CreateGameScene {
         keyLayer.addSprite(key1);
         keyLayer.addSprite(key2);
         keyLayer.addSprite(key3);
-        keyLayer.addSprite(key4);
-        keyLayer.addSprite(key5);
 
         Layer snackLayer = new Layer();
         snackLayer.setName("snack");
