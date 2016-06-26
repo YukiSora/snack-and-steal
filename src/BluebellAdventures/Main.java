@@ -84,6 +84,7 @@ public class Main {
         Action backToMenu = new MouseCrash(new ChangeScene(menu, "menu"));
         interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, back, backToMenu, "character selection");
 
+
         //after loading start game
         audioEngine.loop("menu", Clip.LOOP_CONTINUOUSLY);
         director.setScene(menu);
