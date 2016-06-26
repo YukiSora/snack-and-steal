@@ -24,7 +24,7 @@ public class CreateCharacterSelectionScene {
         Sprite fox = new Sprite("resource/image/fox.png", new Point(830, 250));
         Sprite roach = new Sprite("resource/image/roach.png", new Point(1045, 250));
 
-        Sprite back = new Sprite("resource/image/tab_back.png", new Point(950, 650));
+        Sprite back = new Sprite("resource/image/tag_back.png", new Point(950, 650));
         Sprite background = new Sprite("resource/image/character_design.png");
 
         rat.setName("rat");

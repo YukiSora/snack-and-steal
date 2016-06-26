@@ -28,10 +28,10 @@ public class CreateGameOverScene{
         //init sprite
         Sprite background = new Sprite(backgroundImage);
 
-        Sprite submitHighScore = new Sprite("resource/image/tag_single.png", new Point(470, 450));
+        Sprite submitHighScore = new Sprite("resource/image/tag_highscore.png", new Point(600, 450));
         
         
-        Sprite mainMenu = new Sprite("resource/image/tag_single.png", new Point(470, 580));
+        Sprite mainMenu = new Sprite("resource/image/tag_winback.png", new Point(650, 580));
         Scene menu = CreateMenuScene.createMenuScene();
         Action backToMenu = new MouseCrash(new ChangeScene(menu, "menu"));
 
