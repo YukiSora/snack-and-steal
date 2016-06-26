@@ -38,14 +38,13 @@ public class CharacterMoveTo extends Action {
             Action keyTouch = new CrashKey();
             Action finishLine = new GameOver();
             
-           // sprite.checkCrash(sprites.get(1), fridgeLock);
             sprite.checkCrash(sprites.get(1), fridgeLock);
             sprite.checkCrash(sprites.get(2), doorLock);
             sprite.checkCrash(sprites.get(3), keyTouch);
             sprite.checkCrash(sprites.get(4), finishLine);
-//            if ((((MovableObject)sprites.get(1).get(0)).getLock()) == true) {
+            if ((((MovableObject)sprites.get(2).get(0)).getLock()) == true) {
                 GameMap.getInstance().getPosition().offset(-x, -y);
-//            }
+            }
         }
 
         super.update(sprite);
