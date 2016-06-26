@@ -49,7 +49,7 @@ public class CreateGameScene {
                             .setKey(0);
         player.setName("player");
 
-        //Fox has advantage in speed
+        //Set character advantages
         if (playerImageName == "fox"){
             ((Character)player).setSpeed(40);
         }
@@ -64,6 +64,23 @@ public class CreateGameScene {
         Sprite fridge = new MovableObject("resource/image/fridge.png", new Point(3387, 2520))
                             .setLock(true);
         fridge.setName("fridge");
+        Sprite cupboard1 = new MovableObject("resource/image/cupboard.png", new Point(1548, 64))
+                            .setLock(false);
+        cupboard1.setName("cupboard");
+        Sprite cupboard2 = new MovableObject("resource/image/cupboard.png", new Point(834, 64))
+                            .setLock(false);
+        cupboard2.setName("cupboard");
+        Sprite cupboard3 = new MovableObject("resource/image/cupboard.png", new Point(3863, 1127))
+                            .setLock(false);
+        cupboard3.setName("cupboard");
+        
+        //init im-movable object sprites
+        Sprite table = new MovableObject("resource/image/diningtable.png", new Point(3359, 178))
+                            .setLock(false);
+        table.setName("table");
+        Sprite tree = new MovableObject("resource/image/tree.png", new Point(24, 2105))
+                            .setLock(false);
+        tree.setName("tree");
         
         //init door sprites
         Sprite storeDoor = new MovableObject("resource/image/door.png", new Point(2705, 1415))
@@ -144,6 +161,8 @@ public class CreateGameScene {
                             .setScore(0);
         Sprite key3 = new Snack("resource/image/key.png", new Point(863, 101))
                             .setScore(0);
+        Sprite key4 = new Snack("resource/image/key.png", new Point(3938, 2338))
+                            .setScore(0);
         
         //init map sprite
         Sprite map = GameMap.getInstance("resource/image/full_map copy.jpg")
@@ -167,6 +186,12 @@ public class CreateGameScene {
         lockLayer.setName("locks");
         lockLayer.addSprite(fridge);
         
+        Layer cupboardLayer = new Layer();
+        cupboardLayer.setName("cupboards");
+        cupboardLayer.addSprite(cupboard1);
+        cupboardLayer.addSprite(cupboard2);
+        cupboardLayer.addSprite(cupboard3);
+        
         Layer doorLayer = new Layer();
         doorLayer.setName("doors");
         doorLayer.addSprite(storeDoor);
@@ -183,6 +208,7 @@ public class CreateGameScene {
         keyLayer.addSprite(key1);
         keyLayer.addSprite(key2);
         keyLayer.addSprite(key3);
+        keyLayer.addSprite(key4);
 
         Layer snackLayer = new Layer();
         snackLayer.setName("snack");
@@ -208,6 +234,10 @@ public class CreateGameScene {
         snackLayer.addSprite(snackroom4);
         snackLayer.addSprite(snackroom5);
         snackLayer.addSprite(snackroom6);
+        
+        Layer objectLayer = new Layer();
+        objectLayer.addSprite(table);
+        objectLayer.addSprite(tree);
 
         Layer mapLayer = new Layer();
         mapLayer.addSprite(map);
@@ -219,10 +249,12 @@ public class CreateGameScene {
         game.addLayer(snackLayer);
         game.addLayer(lockLayer);
         game.addLayer(doorLayer);
+        game.addLayer(cupboardLayer);
         game.addLayer(keyLayer);
         game.addLayer(guardLayer);
         game.addLayer(finishLayer);
         game.addLayer(ownPlayerLayer);
+        game.addLayer(objectLayer);
         
 
         //init key listener and action
@@ -232,6 +264,7 @@ public class CreateGameScene {
         ((CharacterMoveTo)moveW).addSprites(snackLayer.getSprites());
         ((CharacterMoveTo)moveW).addSprites(lockLayer.getSprites());
         ((CharacterMoveTo)moveW).addSprites(doorLayer.getSprites());
+        ((CharacterMoveTo)moveW).addSprites(cupboardLayer.getSprites());
         ((CharacterMoveTo)moveW).addSprites(keyLayer.getSprites());
         ((CharacterMoveTo)moveW).addSprites(finishLayer.getSprites());
 
@@ -239,6 +272,7 @@ public class CreateGameScene {
         ((CharacterMoveTo)moveA).addSprites(snackLayer.getSprites());
         ((CharacterMoveTo)moveA).addSprites(lockLayer.getSprites());
         ((CharacterMoveTo)moveA).addSprites(doorLayer.getSprites());
+        ((CharacterMoveTo)moveA).addSprites(cupboardLayer.getSprites());
         ((CharacterMoveTo)moveA).addSprites(keyLayer.getSprites());
         ((CharacterMoveTo)moveA).addSprites(finishLayer.getSprites());
 
@@ -246,6 +280,7 @@ public class CreateGameScene {
         ((CharacterMoveTo)moveS).addSprites(snackLayer.getSprites());
         ((CharacterMoveTo)moveS).addSprites(lockLayer.getSprites());
         ((CharacterMoveTo)moveS).addSprites(doorLayer.getSprites());
+        ((CharacterMoveTo)moveS).addSprites(cupboardLayer.getSprites());
         ((CharacterMoveTo)moveS).addSprites(keyLayer.getSprites());
         ((CharacterMoveTo)moveS).addSprites(finishLayer.getSprites());
 
@@ -253,6 +288,7 @@ public class CreateGameScene {
         ((CharacterMoveTo)moveD).addSprites(snackLayer.getSprites());
         ((CharacterMoveTo)moveD).addSprites(lockLayer.getSprites());
         ((CharacterMoveTo)moveD).addSprites(doorLayer.getSprites());
+        ((CharacterMoveTo)moveD).addSprites(cupboardLayer.getSprites());
         ((CharacterMoveTo)moveD).addSprites(keyLayer.getSprites());
         ((CharacterMoveTo)moveD).addSprites(finishLayer.getSprites());
 
