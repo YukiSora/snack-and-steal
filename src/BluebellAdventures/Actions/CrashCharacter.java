@@ -23,17 +23,18 @@ public class CrashCharacter extends Effect {
         int hp = player.getHp();
 
 		if (hp < 1) {
+            // Trigger Game Over
             System.out.println("Game Over Mate!");
         } else {
-            // System.out.println("Chasing Mode: OFF");
+            // Set Enemy to Patrol
             ((EnemyMove)action).setMode(0);
             ((EnemyMove)action).setCharacterSprite(getSprite());
 
+            // Minus Player's Health
             player.setHp(--hp);
-            System.out.println("Health: " + hp);
+            
+            // Respawn Player's Position
             GameMap.getInstance().setPosition(-705, -2600);
-
-            System.out.println(((EnemyMove)action).getMode());
         }
     }
 }

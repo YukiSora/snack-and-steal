@@ -61,10 +61,10 @@ public class Enemy extends Sprite {
                 dir = 0;
             }
             
-            AffineTransform tx = new AffineTransform();
-            tx.rotate(Math.PI/dir, getImage().getWidth()/2, getImage().getHeight()/2);
-            Graphics2D g2d = getImage().createGraphics();
-            g2d.drawImage(getImage(), tx, null);
+            // AffineTransform tx = new AffineTransform();
+            // tx.rotate(Math.PI/dir, getImage().getWidth()/2, getImage().getHeight()/2);
+            // Graphics2D g2d = getImage().createGraphics();
+            // g2d.drawImage(getImage(), tx, null);
 
             //AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
             //g.drawImage(op.filter(getImage(), null), map.getPosition().getX() + getPosition().getX(), map.getPosition().getY() + getPosition().getY(), null);
