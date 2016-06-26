@@ -55,13 +55,13 @@ public class CreateCharacterSelectionScene {
         characterSelection.addLayer(mapLayer, 0);
 
         //init action
-        Action selectRat = new MouseCrash(new SelectCharacter("snack"));
+        Action selectRat = new MouseCrash(new SelectCharacter("rat"));
         interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, rat, selectRat, "character selection");
 
-        Action selectRaccoon = new MouseCrash(new SelectCharacter("natsu"));
+        Action selectRaccoon = new MouseCrash(new SelectCharacter("raccoon"));
         interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, raccoon, selectRaccoon, "character selection");
 
-        Action selectDog = new MouseCrash(new SelectCharacter("machi"));
+        Action selectDog = new MouseCrash(new SelectCharacter("dog"));
         interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, dog, selectDog, "character selection");
 
         Action selectCat = new MouseCrash(new SelectCharacter("cat"));
@@ -70,7 +70,7 @@ public class CreateCharacterSelectionScene {
         Action selectFox = new MouseCrash(new SelectCharacter("fox"));
         interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, fox, selectFox, "character selection");
 
-        Action selectRoach = new MouseCrash(new SelectCharacter("ladybug"));
+        Action selectRoach = new MouseCrash(new SelectCharacter("roach"));
         interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, roach, selectRoach, "character selection");
 
         return characterSelection;
