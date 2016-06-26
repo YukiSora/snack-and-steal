@@ -48,6 +48,8 @@ public class CreateGameScene {
                             .setSnackScore(0)
                             .setKey(0);
 
+        player.setName("player");
+
         //Fox has advantage in speed
         if (playerImageName == "fox"){
             ((Character)player).setSpeed(40);

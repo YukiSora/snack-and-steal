@@ -2,14 +2,15 @@ package BluebellAdventures.Actions;
 
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.io.IOException;
 
 import BluebellAdventures.Characters.Enemy;
 import BluebellAdventures.Characters.GameMap;
 import BluebellAdventures.Characters.MovableObject;
-
-import java.io.IOException;
+import BluebellAdventures.Characters.Character;
 
 import Megumin.Actions.Action;
+import Megumin.Nodes.Director;
 import Megumin.Nodes.Sprite;
 import Megumin.Point;
 
@@ -35,7 +36,7 @@ public class CharacterMoveTo extends Action {
             Action fridgeLock = new CrashFridge();
             Action doorLock = new CrashDoor();
             Action keyTouch = new CrashKey();
-            Action finishLine = new GameOver();
+            Action finishLine = new GameOver(((Character) Director.getInstance().getScene().getSpriteByName("player")).getSnackScore());
             
            // sprite.checkCrash(sprites.get(1), fridgeLock);
             sprite.checkCrash(sprites.get(1), fridgeLock);

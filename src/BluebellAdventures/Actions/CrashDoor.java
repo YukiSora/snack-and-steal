@@ -15,12 +15,15 @@ import Megumin.Point;
 public class CrashDoor extends Effect {
     @Override
     public void update(Sprite sprite) {
-/* if (((MovableObject) this.getSprite()).getLock() == true){
-           System.out.println(Director.getInstance().getScene().getLayerByName("ownPlayerLayer").((Character)getSprite()).getName());
-           if (int key = (Director.getInstance().getScene().getLayerByName("ownPlayerLayer").getSprite().getKey()) != 0){
-                Director.getInstance().getScene().getLayerByName("ownPlayerLayer").getSprite().setKey(key - 1);
-                ((MovableObject) this.getSprite()).setLock(false);
-            }*/
+            if (((MovableObject) this.getSprite()).getLock() == true){
+               Character player = (Character) Director.getInstance().getScene().getSpriteByName("player");
+               int key = player.getKey();
+               if (key != 0){
+                    player.setKey(key - 1);
+                    ((MovableObject) this.getSprite()).setLock(false);
+                }
+            }
+
             try {
                 Sprite door = getSprite();
                 if (door.getImage().getHeight() == 53) {
