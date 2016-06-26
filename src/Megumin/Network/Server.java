@@ -1,10 +1,10 @@
-import java.net.Socket;
-import java.net.ServerSocket;
+package Megumin.Network;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-
+import java.net.Socket;
+import java.net.ServerSocket;
 import java.util.Iterator;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ExecutorService;
@@ -16,15 +16,11 @@ public class Server implements Runnable {
     private CopyOnWriteArrayList<Client> clients;
     private ExecutorService pool;
 
-    Server(int port) {
+    public Server(int port) {
         this.port = port;
         clients = new CopyOnWriteArrayList<>();
-        pool = Executors.newFixedThreadPool(50);
+        pool = Executors.newFixedThreadPool(4);
         new Thread(this).start();
-    }
-
-    public static void main(String[] args) {
-        Server server = new Server(2333);
     }
 
     @Override
@@ -80,8 +76,8 @@ public class Server implements Runnable {
         public Void call() {
             try {
                 while (true) {
-                    T data = (T)client.getIn().readObject();
-                    System.out.println(data);
+                    Object data = client.getIn().readObject();
+                    System.out.println((String)data);
                     Iterator it = clients.iterator();
                     while (it.hasNext()) {
                         Client client = (Client)it.next();
