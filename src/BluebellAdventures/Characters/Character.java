@@ -46,9 +46,9 @@ public class Character extends Sprite {
 
     public void render(Graphics2D g) {
         if (getVisible()) {
-            // g.setFont(new Font("TimesRoman", Font.PLAIN, 40));
-            // g.setColor(Color.green);
-            g.drawString("Score: " + snackScore, 1000, 50);
+            g.setFont(new Font("TimesRoman", Font.BOLD, 35));
+            g.setColor(Color.white);
+            g.drawString("Health: " + hp + "    Key: " + key +"     Score: " + snackScore, 780, 50);
             super.render(g);
         }
     }
