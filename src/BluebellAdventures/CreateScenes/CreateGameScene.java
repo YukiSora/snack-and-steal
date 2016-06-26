@@ -151,7 +151,7 @@ public class CreateGameScene {
         Sprite key5 = new Snack("resource/image/key.png", new Point(2820, 1717))
                             .setScore(0);
         //init map sprite
-        Sprite map = GameMap.getInstance("resource/image/full_map.png")
+        Sprite map = GameMap.getInstance("resource/image/full_map copy.jpg")
                             .setPath("resource/path");
 
         GameMap.getInstance().setPosition(-705, -2600);
