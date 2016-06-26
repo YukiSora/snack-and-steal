@@ -47,6 +47,7 @@ public class CreateGameScene {
                             .setSpeed(25)
                             .setSnackScore(0)
                             .setKey(0);
+        player.setName("player");
 
         //Fox has advantage in speed
         if (playerImageName == "fox"){
@@ -56,7 +57,7 @@ public class CreateGameScene {
             ((Character)player).setHp(9);
         }
         if(playerImageName == "rat"){
-            ((Character)player).setKey(10);
+            ((Character)player).setKey(3);
         }
 
         //init movable object sprites
@@ -75,19 +76,19 @@ public class CreateGameScene {
                             .setLock(true);
         roomDoor2.setName("lockdoor");
         Sprite roomDoor3 = new MovableObject("resource/image/door.png", new Point(1050, 1125))
-                            .setLock(true);
+                            .setLock(false);
         roomDoor3.setName("door");
         Sprite mainDoor = new MovableObject("resource/image/door.png", new Point(1942, 1849))
-                            .setLock(true);
+                            .setLock(false);
         mainDoor.setName("door");
         Sprite backDoor = new MovableObject("resource/image/door.png", new Point(2848, 2692))
                             .setLock(true);
         backDoor.setName("lockdoor");
         Sprite toiletDoor1 = new MovableObject("resource/image/verticaldoor.png", new Point(540, 861))
-                            .setLock(true);
+                            .setLock(false);
         toiletDoor1.setName("door");
         Sprite toiletDoor2 = new MovableObject("resource/image/verticaldoor.png", new Point(459, 1602))
-                            .setLock(true);
+                            .setLock(false);
         toiletDoor2.setName("door");
         
         
