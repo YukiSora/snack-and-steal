@@ -36,7 +36,7 @@ public class CharacterMoveTo extends Action {
             Action fridgeLock = new CrashFridge();
             Action doorLock = new CrashDoor();
             Action keyTouch = new CrashKey();
-            Action finishLine = new GameOver(((Character) Director.getInstance().getScene().getSpriteByName("player")).getSnackScore());
+            Action finishLine = new GameOver();
             
            // sprite.checkCrash(sprites.get(1), fridgeLock);
             sprite.checkCrash(sprites.get(1), fridgeLock);

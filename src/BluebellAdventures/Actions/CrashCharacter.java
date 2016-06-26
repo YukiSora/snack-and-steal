@@ -22,9 +22,10 @@ public class CrashCharacter extends Effect {
         Character player = (Character) getSprite();
         int hp = player.getHp();
 
-		if (hp < 1) {
+		if (hp < 2) {
             // Trigger Game Over
             System.out.println("Game Over Mate!");
+            GameMap.getInstance().setPosition(-3105, -2650);
         } else {
             // Set Enemy to Patrol
             ((EnemyMove)action).setMode(0);

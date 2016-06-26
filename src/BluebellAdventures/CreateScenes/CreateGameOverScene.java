@@ -22,7 +22,7 @@ import Megumin.Point;
 public class CreateGameOverScene{
     private static Interact interact;
 
-	public static Scene createGameOverScene(String backgroundImage, int score) throws IOException {
+	public static Scene createGameOverScene(String backgroundImage, Character player, Boolean result) throws IOException {
         interact = Interact.getInstance();
 
         //init sprite
@@ -41,7 +41,7 @@ public class CreateGameOverScene{
             public void render(Graphics2D g) {
                 g.setFont(new Font("TimesRoman", Font.BOLD, 35));
                 g.setColor(Color.white);
-                g.drawString("Score: " + score, 560, 430);
+                g.drawString("Score: " + player.getSnackScore(), 560, 430);
                 super.render(g);
             }
         };
@@ -51,7 +51,9 @@ public class CreateGameOverScene{
         backgroundLayer.addSprite(background);
 
         Layer tabLayer = new Layer();
-        tabLayer.addSprite(submitHighScore);
+        if (result){
+            tabLayer.addSprite(submitHighScore);
+        }
         tabLayer.addSprite(mainMenu);
         tabLayer.addSprite(printStats);
 
