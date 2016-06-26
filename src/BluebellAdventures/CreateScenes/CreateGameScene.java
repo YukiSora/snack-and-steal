@@ -67,25 +67,25 @@ public class CreateGameScene {
         storeDoor.setName("lockdoor");
         Sprite roomDoor1 = new MovableObject("resource/image/door.png", new Point(689, 774))
                             .setLock(true);
-        storeDoor.setName("lockdoor");
+        roomDoor1.setName("lockdoor");
         Sprite roomDoor2 = new MovableObject("resource/image/door.png", new Point(1063, 774))
                             .setLock(true);
-        storeDoor.setName("lockdoor");
+        roomDoor2.setName("lockdoor");
         Sprite roomDoor3 = new MovableObject("resource/image/door.png", new Point(1050, 1125))
                             .setLock(true);
-        storeDoor.setName("door");
+        roomDoor3.setName("door");
         Sprite mainDoor = new MovableObject("resource/image/door.png", new Point(1942, 1849))
                             .setLock(true);
-        storeDoor.setName("door");
+        mainDoor.setName("door");
         Sprite backDoor = new MovableObject("resource/image/door.png", new Point(2848, 2692))
                             .setLock(true);
-        storeDoor.setName("lockdoor");
+        backDoor.setName("lockdoor");
         Sprite toiletDoor1 = new MovableObject("resource/image/verticaldoor.png", new Point(540, 861))
                             .setLock(true);
-        storeDoor.setName("door");
+        toiletDoor1.setName("door");
         Sprite toiletDoor2 = new MovableObject("resource/image/verticaldoor.png", new Point(459, 1602))
                             .setLock(true);
-        storeDoor.setName("door");
+        toiletDoor2.setName("door");
         
         
         //init snacks sprites

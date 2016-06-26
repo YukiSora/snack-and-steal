@@ -67,7 +67,7 @@ public class CreateCharacterSelectionScene {
         Action selectCat = new MouseCrash(new SelectCharacter("cat"));
         interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, cat, selectCat, "character selection");
 
-        Action selectFox = new MouseCrash(new SelectCharacter("machi"));
+        Action selectFox = new MouseCrash(new SelectCharacter("fox"));
         interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, fox, selectFox, "character selection");
 
         Action selectRoach = new MouseCrash(new SelectCharacter("ladybug"));
