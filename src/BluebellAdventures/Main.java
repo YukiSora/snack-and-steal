@@ -10,6 +10,7 @@ import BluebellAdventures.Actions.ChangeScene;
 import BluebellAdventures.Actions.SelectCharacter;
 import BluebellAdventures.Actions.Quit;
 import BluebellAdventures.CreateScenes.CreateCharacterSelectionScene;
+
 import BluebellAdventures.CreateScenes.CreateLoadingScene;
 import BluebellAdventures.CreateScenes.CreateMenuScene;
 
@@ -83,6 +84,7 @@ public class Main {
         Sprite back = characterSelection.getSpriteByName("back");
         Action backToMenu = new MouseCrash(new ChangeScene(menu, "menu"));
         interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, back, backToMenu, "character selection");
+
 
         //after loading start game
         audioEngine.loop("menu", Clip.LOOP_CONTINUOUSLY);
