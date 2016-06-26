@@ -11,11 +11,11 @@ import Megumin.Point;
 public class CreateMenuScene {
     public static Scene createMenuScene() throws IOException {
         //init sprite
-        Sprite singlePlayer = new Sprite("resource/image/tag_single.png", new Point(200, 100));
-        Sprite multiPlayer = new Sprite("resource/image/tag_multi.png", new Point(200, 250));
-        Sprite setting = new Sprite("resource/image/tag_setting.png", new Point(200, 400));
-        Sprite exit = new Sprite("resource/image/tag_quit.png", new Point(200, 550));
-        Sprite background = new Sprite("resource/image/menu_bg.jpeg");
+        Sprite singlePlayer = new Sprite("resource/image/tag_single.png", new Point(0, 100));
+        Sprite multiPlayer = new Sprite("resource/image/tag_multi.png", new Point(0, 250));
+        Sprite setting = new Sprite("resource/image/tag_setting.png", new Point(00, 400));
+        Sprite exit = new Sprite("resource/image/tag_quit.png", new Point(0, 550));
+        Sprite background = new Sprite("resource/image/character_design.png");
         singlePlayer.setName("single player");
         exit.setName("exit");
 
