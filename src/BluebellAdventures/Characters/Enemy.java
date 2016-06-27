@@ -2,20 +2,18 @@ package BluebellAdventures.Characters;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.awt.geom.Arc2D;
 import java.io.File;
 import java.io.IOException;
-import javax.imageio.ImageIO;
 import java.util.Iterator;
+import java.util.concurrent.CopyOnWriteArrayList;
+import javax.imageio.ImageIO;
+
+import BluebellAdventures.Characters.GameMap;
 
 import Megumin.Actions.Action;
 import Megumin.Actions.Effect;
-import java.util.concurrent.CopyOnWriteArrayList;
-import BluebellAdventures.Characters.GameMap;
 import Megumin.Nodes.Sprite;
 import Megumin.Point;
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
 
 public class Enemy extends Sprite {
     private int attack;
@@ -47,30 +45,7 @@ public class Enemy extends Sprite {
     public void render(Graphics2D g) {
         if (getVisible()) {
             GameMap map = GameMap.getInstance();
-            int dir = 0;
-            if (getDirection()[0] == 1) {
-                dir = 3;
-            }
-            if (getDirection()[0] == -1) {
-                dir = 1;
-            }
-            if (getDirection()[1] == 1) {
-                dir = 2;
-            }
-            if (getDirection()[1] == -1) {
-                dir = 0;
-            }
-            
-                // AffineTransform tx = new AffineTransform();
-                // tx.rotate(Math.PI/dir, getImage().getWidth()/2, getImage().getHeight()/2);
-                // Graphics2D g2d = getImage().createGraphics();
-                // g2d.drawImage(getImage(), tx, null);
-
-            //AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-            //g.drawImage(op.filter(getImage(), null), map.getPosition().getX() + getPosition().getX(), map.getPosition().getY() + getPosition().getY(), null);
-            
             g.drawImage(getImage(), map.getPosition().getX() + getPosition().getX(), map.getPosition().getY() + getPosition().getY(), null);
-            //g.fill(new Arc2D.Double(map.getPosition().getX() + getPosition().getX(), map.getPosition().getY() + getPosition().getY(), 200, 200, 30 + 90 * dir, 120, Arc2D.PIE));
         }
     }
 
