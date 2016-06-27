@@ -2,26 +2,32 @@ package BluebellAdventures.Actions;
 
 import java.io.IOException;
 
-import BluebellAdventures.Characters.Character;
 import BluebellAdventures.Characters.MovableObject;
 
-import Megumin.Actions.Action;
 import Megumin.Actions.Effect;
 import Megumin.Audio.AudioEngine;
-import Megumin.Nodes.Director;
 import Megumin.Nodes.Sprite;
 import Megumin.Point;
 
 public class CrashCupboard extends Effect {
     @Override
     public void update(Sprite sprite) {
-        //Open cupboards
         try {
-            Sprite cupboard = Director.getInstance().getScene().getSpriteByName("cupboard");
-            AudioEngine.getInstance().play("fridge");
-            cupboard.setImage("resource/image/cupboard_open.png");
-            cupboard.setPosition(cupboard.getPosition().offset(-147, 0));
+            //Open cupboard if havn't opened
+            MovableObject cupboard = (MovableObject)getSprite();
+            if (!cupboard.getOpen()) {
+                AudioEngine.getInstance().play("fridge");
 
+                //change position base on the image size
+                int oldWidth = cupboard.getImage().getWidth();
+                int oldHeight = cupboard.getImage().getHeight();
+                cupboard.setImage("resource/image/cupboard_open.png");
+                int newWidth = cupboard.getImage().getWidth();
+                int newHeight = cupboard.getImage().getHeight();
+                cupboard.setPosition(cupboard.getPosition().offset(oldWidth - newWidth, oldHeight - newHeight));
+
+                cupboard.setOpen(true);
+            }
         } catch (IOException e) {
             System.exit(1);
         }
