@@ -39,11 +39,40 @@ public class GameMap extends Sprite {
         return map;
     }
 
-    public static boolean enemyCrash(Sprite sprite, int moveX, int moveY) {
+    public static boolean characterCrash(Sprite sprite, int moveX, int moveY) {
         byte[][] path = map.getPath();
-        
+
+        //map position
+        //this is negative
         int mapX = map.getPosition().getX();
         int mapY = map.getPosition().getY();
+
+        //character postion
+        int x = sprite.getPosition().getX() + moveX;
+        int y = sprite.getPosition().getY() + moveY;
+        int w = sprite.getSize().getX();
+        int h = sprite.getSize().getY();
+
+        //check 4 sides of sprite whether any point in path is 0
+        for (int i = 0; i < w; i++) {
+            if (path[-mapY + y][-mapX + x + i] == 0 || path[-mapY + y + h][-mapX + x + i] == 0) {
+                return true;
+            }
+        }
+        for (int i = 0; i < h; i++) {
+            if (path[-mapY + y + i][-mapX + x] == 0 || path[-mapY + y + i][-mapX + x + w] == 0) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean enemyCrash(Sprite sprite, int moveX, int moveY) {
+        byte[][] path = map.getPath();
+
+        //enemy and map in same coordinated system
+        //so don't need mapX and mapY
 
         int x = sprite.getPosition().getX() + moveX;
         int y = sprite.getPosition().getY() + moveY;
@@ -64,34 +93,14 @@ public class GameMap extends Sprite {
         return false;
     }
 
-    public static boolean characterCrash(Sprite sprite, int moveX, int moveY) {
-        byte[][] path = map.getPath();
-        int mapX = map.getPosition().getX();
-        int mapY = map.getPosition().getY();
-        int x = sprite.getPosition().getX() + moveX;
-        int y = sprite.getPosition().getY() + moveY;
-        int w = sprite.getSize().getX();
-        int h = sprite.getSize().getY();
-        for (int i = 0; i < w; i++) {
-            if (path[-mapY + y][-mapX + x + i] == 0 || path[-mapY + y + h][-mapX + x + i] == 0) {
-                return true;
-            }
-        }
-        for (int i = 0; i < h; i++) {
-            if (path[-mapY + y + i][-mapX + x] == 0 || path[-mapY + y + i][-mapX + x + w] == 0) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     public GameMap setPath(String filename) throws IOException {
+        //read map path file and save into byte array
         path = new byte[getSize().getY()][getSize().getX()];
         int i = 0, j = 0;
         try (FileInputStream in = new FileInputStream(filename)) {
             int c;
             while ((c = in.read()) != -1) {
+                //skip \r for windows
                 if (c == '\r') {
                 }
                 else if (c == '\n') {
