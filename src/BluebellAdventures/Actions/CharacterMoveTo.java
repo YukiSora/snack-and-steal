@@ -7,7 +7,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import BluebellAdventures.Characters.GameMap;
 
 import Megumin.Actions.Action;
-import Megumin.Nodes.Director;
 import Megumin.Nodes.Sprite;
 import Megumin.Point;
 
@@ -37,13 +36,13 @@ public class CharacterMoveTo extends Action {
             Action finishLine = new GameOver();
 
             sprite.checkCrash(sprites.get(0), snackpick);
-            sprite.checkCrash(sprites.get(1), fridgeLock);
             sprite.checkCrash(sprites.get(3), cupboardLock);
             sprite.checkCrash(sprites.get(4), keyTouch);
             sprite.checkCrash(sprites.get(5), finishLine);
             
             sprite.setPosition(sprite.getPosition().offset(x, y));
-            if (!sprite.checkCrash(sprites.get(2), doorLock)) {
+            if (!sprite.checkCrash(sprites.get(1), fridgeLock) &&
+                !sprite.checkCrash(sprites.get(2), doorLock)) {
                 GameMap.getInstance().getPosition().offset(-x, -y);
             }
             sprite.setPosition(sprite.getPosition().offset(-x, -y));

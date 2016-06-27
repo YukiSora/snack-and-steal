@@ -41,6 +41,8 @@ public class CrashFridge extends Effect {
                 int newWidth = fridge.getImage().getWidth();
                 int newHeight = fridge.getImage().getHeight();
                 fridge.setPosition(fridge.getPosition().offset(oldWidth - newWidth, oldHeight - newHeight));
+                //set crash area to 0
+                fridge.setSize(new Point(0, 0));
 
                 fridge.setOpen(true);
             }
