@@ -1,16 +1,17 @@
 package BluebellAdventures.Characters;
 
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import java.awt.Graphics2D;
 
 import Megumin.Nodes.Sprite;
 import Megumin.Point;
 
 public class MovableObject extends Sprite {
-    private boolean lock = true;
+    private boolean lock;
+    private boolean open;
 
     // Constructors //
     public MovableObject(String filename) throws IOException {
@@ -45,5 +46,14 @@ public class MovableObject extends Sprite {
 
     public boolean getLock() {
         return lock;
+    }
+
+    public MovableObject setOpen(boolean open) {
+        this.open = open;
+        return this;
+    }
+
+    public boolean getOpen() {
+        return open;
     }
 }

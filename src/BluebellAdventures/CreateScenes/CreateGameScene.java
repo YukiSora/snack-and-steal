@@ -60,50 +60,64 @@ public class CreateGameScene {
 
         //init movable object sprites
         Sprite fridge = new MovableObject("resource/image/fridge.png", new Point(3387, 2520))
-                            .setLock(true);
+                            .setLock(true)
+                            .setOpen(false);
         fridge.setName("fridge");
         Sprite cupboard1 = new MovableObject("resource/image/cupboard.png", new Point(1548, 64))
-                            .setLock(false);
+                            .setLock(false)
+                            .setOpen(false);
         cupboard1.setName("cupboard1");
         Sprite cupboard2 = new MovableObject("resource/image/cupboard.png", new Point(834, 64))
-                            .setLock(false);
+                            .setLock(false)
+                            .setOpen(false);
         cupboard2.setName("cupboard2");
         Sprite cupboard3 = new MovableObject("resource/image/cupboard.png", new Point(3863, 1127))
-                            .setLock(false);
+                            .setLock(false)
+                            .setOpen(false);
         cupboard3.setName("cupboard3");
 
         //init im-movable object sprites
         Sprite table = new MovableObject("resource/image/diningtable.png", new Point(3359, 178))
-                            .setLock(false);
+                            .setLock(false)
+                            .setOpen(false);
         table.setName("table");
         Sprite tree = new MovableObject("resource/image/tree.png", new Point(24, 2105))
-                            .setLock(false);
+                            .setLock(false)
+                            .setOpen(false);
         tree.setName("tree");
 
         //init door sprites
         Sprite storeDoor = new MovableObject("resource/image/door.png", new Point(2705, 1415))
-                            .setLock(true);
+                            .setLock(true)
+                            .setOpen(false);
         storeDoor.setName("lockdoor1");
         Sprite roomDoor1 = new MovableObject("resource/image/door.png", new Point(689, 774))
-                            .setLock(true);
+                            .setLock(true)
+                            .setOpen(false);
         roomDoor1.setName("lockdoor2");
         Sprite roomDoor2 = new MovableObject("resource/image/door.png", new Point(1063, 774))
-                            .setLock(true);
+                            .setLock(true)
+                            .setOpen(false);
         roomDoor2.setName("lockdoor3");
         Sprite roomDoor3 = new MovableObject("resource/image/door.png", new Point(1050, 1125))
-                            .setLock(false);
+                            .setLock(false)
+                            .setOpen(false);
         roomDoor3.setName("door1");
         Sprite mainDoor = new MovableObject("resource/image/door.png", new Point(1942, 1849))
-                            .setLock(false);
+                            .setLock(false)
+                            .setOpen(false);
         mainDoor.setName("door2");
         Sprite backDoor = new MovableObject("resource/image/door.png", new Point(2848, 2692))
-                            .setLock(true);
+                            .setLock(true)
+                            .setOpen(false);
         backDoor.setName("lockdoor4");
         Sprite toiletDoor1 = new MovableObject("resource/image/verticaldoor.png", new Point(540, 861))
-                            .setLock(false);
+                            .setLock(false)
+                            .setOpen(false);
         toiletDoor1.setName("door3");
         Sprite toiletDoor2 = new MovableObject("resource/image/verticaldoor.png", new Point(459, 1602))
-                            .setLock(false);
+                            .setLock(false)
+                            .setOpen(false);
         toiletDoor2.setName("door4");
 
         //init snacks sprites
