@@ -1,9 +1,7 @@
 package BluebellAdventures.CreateScenes;
 
 import java.awt.event.KeyEvent;
-import java.io.File;
 import java.io.IOException;
-import javax.imageio.ImageIO;
 
 import BluebellAdventures.Actions.CharacterMoveTo;
 import BluebellAdventures.Actions.EnemyMove;
@@ -47,7 +45,6 @@ public class CreateGameScene {
                             .setSpeed(25)
                             .setSnackScore(0)
                             .setKey(0);
-                            
         player.setName("player");
 
         //Set character advantages
@@ -67,14 +64,14 @@ public class CreateGameScene {
         fridge.setName("fridge");
         Sprite cupboard1 = new MovableObject("resource/image/cupboard.png", new Point(1548, 64))
                             .setLock(false);
-        cupboard1.setName("cupboard");
+        cupboard1.setName("cupboard1");
         Sprite cupboard2 = new MovableObject("resource/image/cupboard.png", new Point(834, 64))
                             .setLock(false);
-        cupboard2.setName("cupboard");
+        cupboard2.setName("cupboard2");
         Sprite cupboard3 = new MovableObject("resource/image/cupboard.png", new Point(3863, 1127))
                             .setLock(false);
-        cupboard3.setName("cupboard");
-        
+        cupboard3.setName("cupboard3");
+
         //init im-movable object sprites
         Sprite table = new MovableObject("resource/image/diningtable.png", new Point(3359, 178))
                             .setLock(false);
@@ -82,32 +79,32 @@ public class CreateGameScene {
         Sprite tree = new MovableObject("resource/image/tree.png", new Point(24, 2105))
                             .setLock(false);
         tree.setName("tree");
-        
+
         //init door sprites
         Sprite storeDoor = new MovableObject("resource/image/door.png", new Point(2705, 1415))
                             .setLock(true);
-        storeDoor.setName("lockdoor");
+        storeDoor.setName("lockdoor1");
         Sprite roomDoor1 = new MovableObject("resource/image/door.png", new Point(689, 774))
                             .setLock(true);
-        roomDoor1.setName("lockdoor");
+        roomDoor1.setName("lockdoor2");
         Sprite roomDoor2 = new MovableObject("resource/image/door.png", new Point(1063, 774))
                             .setLock(true);
-        roomDoor2.setName("lockdoor");
+        roomDoor2.setName("lockdoor3");
         Sprite roomDoor3 = new MovableObject("resource/image/door.png", new Point(1050, 1125))
                             .setLock(false);
-        roomDoor3.setName("door");
+        roomDoor3.setName("door1");
         Sprite mainDoor = new MovableObject("resource/image/door.png", new Point(1942, 1849))
                             .setLock(false);
-        mainDoor.setName("door");
+        mainDoor.setName("door2");
         Sprite backDoor = new MovableObject("resource/image/door.png", new Point(2848, 2692))
                             .setLock(true);
-        backDoor.setName("lockdoor");
+        backDoor.setName("lockdoor4");
         Sprite toiletDoor1 = new MovableObject("resource/image/verticaldoor.png", new Point(540, 861))
                             .setLock(false);
-        toiletDoor1.setName("door");
+        toiletDoor1.setName("door3");
         Sprite toiletDoor2 = new MovableObject("resource/image/verticaldoor.png", new Point(459, 1602))
                             .setLock(false);
-        toiletDoor2.setName("door");
+        toiletDoor2.setName("door4");
 
         //init snacks sprites
         Sprite snackFridge = new Snack("resource/image/snack1.png", new Point(3531, 2590))
@@ -164,11 +161,12 @@ public class CreateGameScene {
                             .setScore(0);
         Sprite key4 = new Snack("resource/image/key.png", new Point(3938, 2338))
                             .setScore(0);
-        
+
         //init map sprite
         Sprite map = GameMap.getInstance("resource/image/full_map copy.jpg")
                             .setPath("resource/path");
 
+        //set start point
         GameMap.getInstance().setPosition(-705, -2600);
 
         //init layer
@@ -186,13 +184,13 @@ public class CreateGameScene {
         Layer lockLayer = new Layer();
         lockLayer.setName("locks");
         lockLayer.addSprite(fridge);
-        
+
         Layer cupboardLayer = new Layer();
         cupboardLayer.setName("cupboards");
         cupboardLayer.addSprite(cupboard1);
         cupboardLayer.addSprite(cupboard2);
         cupboardLayer.addSprite(cupboard3);
-        
+
         Layer doorLayer = new Layer();
         doorLayer.setName("doors");
         doorLayer.addSprite(storeDoor);
@@ -235,7 +233,7 @@ public class CreateGameScene {
         snackLayer.addSprite(snackroom4);
         snackLayer.addSprite(snackroom5);
         snackLayer.addSprite(snackroom6);
-        
+
         Layer objectLayer = new Layer();
         objectLayer.addSprite(table);
         objectLayer.addSprite(tree);
@@ -256,7 +254,7 @@ public class CreateGameScene {
         game.addLayer(finishLayer);
         game.addLayer(ownPlayerLayer);
         game.addLayer(objectLayer);
-        
+
         //init key listener and action
         //player
         //control action
@@ -295,7 +293,7 @@ public class CreateGameScene {
         //animate
         Action playerAnimate = new Animate();
         ((Animate)playerAnimate).addImage(player.getImage());
-        ((Animate)playerAnimate).addImage(ImageIO.read(new File("resource/image/" + playerImageName + "2.png")));
+        ((Animate)playerAnimate).addImage("resource/image/" + playerImageName + "2.png");
         moveW.addAction(playerAnimate);
         moveA.addAction(playerAnimate);
         moveS.addAction(playerAnimate);
@@ -309,8 +307,8 @@ public class CreateGameScene {
         // Finshing Line
         Action finishLineAnimate = new Animate();
         ((Animate)finishLineAnimate).addImage(finishLine.getImage());
-        ((Animate)finishLineAnimate).addImage(ImageIO.read(new File("resource/image/natsu2.png")));
-
+        ((Animate)finishLineAnimate).addImage("resource/image/natsu2.png");
+        infinite.addEvent(finishLine, finishLineAnimate);
 
         // Enemy 1 - Bedroom
         //move action
@@ -319,7 +317,7 @@ public class CreateGameScene {
         //animate
         Action enemyBedRoomAnimate = new Animate();
         ((Animate)enemyBedRoomAnimate).addImage(enemyBedRoom.getImage());
-        ((Animate)enemyBedRoomAnimate).addImage(ImageIO.read(new File("resource/image/ladybug2.png")));
+        ((Animate)enemyBedRoomAnimate).addImage("resource/image/ladybug2.png");
         enemyBedRoomMove.addAction(enemyBedRoomAnimate);
         //insert
         infinite.addEvent(enemyBedRoom, enemyBedRoomMove);
@@ -331,7 +329,7 @@ public class CreateGameScene {
         //animate
         Action enemyLivingRoomAnimate = new Animate();
         ((Animate)enemyLivingRoomAnimate).addImage(enemyLivingRoom.getImage());
-        ((Animate)enemyLivingRoomAnimate).addImage(ImageIO.read(new File("resource/image/ladybug2.png")));
+        ((Animate)enemyLivingRoomAnimate).addImage("resource/image/ladybug2.png");
         enemyLivingRoomMove.addAction(enemyLivingRoomAnimate);
         //insert
         infinite.addEvent(enemyLivingRoom, enemyLivingRoomMove);
@@ -343,7 +341,7 @@ public class CreateGameScene {
         //animate
         Action enemyDiningRoomAnimate = new Animate();
         ((Animate)enemyDiningRoomAnimate).addImage(enemyDiningRoom.getImage());
-        ((Animate)enemyDiningRoomAnimate).addImage(ImageIO.read(new File("resource/image/ladybug2.png")));
+        ((Animate)enemyDiningRoomAnimate).addImage("resource/image/ladybug2.png");
         enemyDiningRoomMove.addAction(enemyDiningRoomAnimate);
         //insert
         infinite.addEvent(enemyDiningRoom, enemyDiningRoomMove);
