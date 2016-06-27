@@ -17,7 +17,6 @@ public class CrashCupboard extends Effect {
     public void update(Sprite sprite) {
         //Open cupboards
         try {
-            System.out.println("poi");
             Sprite cupboard = Director.getInstance().getScene().getSpriteByName("cupboard");
             AudioEngine.getInstance().play("fridge");
             cupboard.setImage("resource/image/cupboard_open.png");

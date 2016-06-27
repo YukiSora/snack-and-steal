@@ -1,5 +1,7 @@
 package BluebellAdventures.CreateScenes;
 
+//import com.mysql.jdbc.Statement;
+
 import java.io.IOException;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
@@ -28,10 +30,10 @@ public class CreateGameOverScene{
         //init sprite
         Sprite background = new Sprite(backgroundImage);
 
-        Sprite submitHighScore = new Sprite("resource/image/tag_highscore.png", new Point(600, 450));
+        Sprite submitHighScore = new Sprite("resource/image/tag_highscore.png", new Point(600, 480));
         
         
-        Sprite mainMenu = new Sprite("resource/image/tag_winback.png", new Point(650, 580));
+        Sprite mainMenu = new Sprite("resource/image/tag_winback.png", new Point(650, 610));
         Scene menu = CreateMenuScene.createMenuScene();
         Action backToMenu = new MouseCrash(new ChangeScene(menu, "menu"));
 
@@ -65,4 +67,19 @@ public class CreateGameOverScene{
 
         return loading;
     }
+
+    // public static void saveDatabase(String directoryString, String remainderString) {
+    //     // MARC_LIST - Insert Into Database
+    //     try {
+    //         Statement stmt = (Statement) connection.createStatement();
+    //         String query = "INSERT INTO marc_list (tag, data) VALUE('" + directoryString + "', '"
+    //                 + remainderString + "')";
+
+    //         if (stmt.executeUpdate(query) <= 0) {
+    //             System.out.println("Book record not added");
+    //         }
+    //     } catch (Exception e) {
+    //         e.printStackTrace();
+    //     }
+    // }
 }

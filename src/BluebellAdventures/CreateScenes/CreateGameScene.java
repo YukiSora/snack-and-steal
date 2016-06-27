@@ -47,6 +47,7 @@ public class CreateGameScene {
                             .setSpeed(25)
                             .setSnackScore(0)
                             .setKey(0);
+                            
         player.setName("player");
 
         //Set character advantages
@@ -256,7 +257,6 @@ public class CreateGameScene {
         game.addLayer(ownPlayerLayer);
         game.addLayer(objectLayer);
         
-
         //init key listener and action
         //player
         //control action
