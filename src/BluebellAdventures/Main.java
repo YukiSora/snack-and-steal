@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.sql.SQLException;
 import javax.sound.sampled.Clip;
 
 import BluebellAdventures.Actions.ChangeScene;
@@ -20,6 +21,7 @@ import Megumin.Actions.Infinite;
 import Megumin.Actions.Interact;
 import Megumin.Audio.Audio;
 import Megumin.Audio.AudioEngine;
+import Megumin.Database.Database;
 import Megumin.Nodes.Director;
 import Megumin.Nodes.Layer;
 import Megumin.Nodes.Scene;
@@ -38,6 +40,12 @@ public class Main {
         infinite = Infinite.getInstance();
         interact = Interact.getInstance();
         audioEngine = AudioEngine.getInstance();
+        try {
+            Database.createDatabase("jdbc:mysql://localhost:3306/BluebellAdventuresRecord", "username", "password");
+        } catch (SQLException e) {
+            System.out.println(e);
+            System.exit(1);
+        }
 
         //init window property
         director.setTitle("Bluebell's Adventures");
