@@ -32,21 +32,22 @@ public class CharacterMoveTo extends Action {
     @Override
     public void update(Sprite sprite) {
         if (!GameMap.characterCrash(sprite, x, y)) {
-            sprite.checkCrash(sprites.get(0), new CrashSnack());
+			Action snackpick = new CrashSnack();
             Action fridgeLock = new CrashFridge();
             Action doorLock = new CrashDoor();
             Action keyTouch = new CrashKey();
             Action cupboardLock = new CrashCupboard();
             Action finishLine = new GameOver();
             
+			sprite.checkCrash(sprites.get(0), snackpick);
             sprite.checkCrash(sprites.get(1), fridgeLock);
             sprite.checkCrash(sprites.get(2), doorLock);
-            sprite.checkCrash(sprites.get(3), keyTouch);
-            sprite.checkCrash(sprites.get(4), cupboardLock);
+            sprite.checkCrash(sprites.get(3), cupboardLock);
+            sprite.checkCrash(sprites.get(4), keyTouch);
             sprite.checkCrash(sprites.get(5), finishLine);
-            //if ((((MovableObject)sprites.get(2).get(0)).getLock()) == true) {
-                GameMap.getInstance().getPosition().offset(-x, -y);
-            //}
+            
+            GameMap.getInstance().getPosition().offset(-x, -y);
+
         }
 
         super.update(sprite);
