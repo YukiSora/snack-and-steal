@@ -40,12 +40,13 @@ public class CreateGameScene {
         Sprite finishLine = new Enemy("resource/image/natsu1.png", new Point(3705,2850))
                             .setSpeed(0);
 
-        Sprite player = new Character("resource/image/" + playerImageName + "1.png", new Point(600, 200))
+        Sprite player = new Character("resource/image/" + playerImageName + "1.png")
                             .setHp(3)
                             .setSpeed(25)
                             .setSnackScore(0)
                             .setKey(0);
         player.setName("player");
+        player.setPosition(new Point((1280 - player.getImage().getWidth()) / 2, (720 - player.getImage().getHeight()) / 2));
 
         //Set character advantages
         if (playerImageName == "fox"){
