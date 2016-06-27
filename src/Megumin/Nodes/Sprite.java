@@ -71,11 +71,17 @@ public class Sprite {
         Iterator it = sprites.iterator();
         while (it.hasNext()) {
             Sprite sprite = (Sprite)it.next();
+
             int x2 = sprite.getPosition().getX();
             int y2 = sprite.getPosition().getY();
             int w2 = sprite.getSize().getX();
             int h2 = sprite.getSize().getY();
-            //check if two rectangle intersect
+
+            //check whether crash area exist
+            if (w2 == 0 || h2 == 0) {
+                continue;
+            }
+            //check whether two rectangle intersect
             if (Math.max(Math.abs(x2 - (x1 + w1)), Math.abs(x2 + w2 - x1)) < w1 + w2 &&
                 Math.max(Math.abs(y2 - (y1 + h1)), Math.abs(y2 + h2 - y1)) < h1 + h2) {
                 //set sprite which be effected
