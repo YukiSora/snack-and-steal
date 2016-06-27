@@ -15,22 +15,34 @@ import Megumin.Point;
 public class CrashFridge extends Effect {
     @Override
     public void update(Sprite sprite) {
-        //Unlock fridge if player has key
-        if (((MovableObject) this.getSprite()).getLock() == true) {
-            Character player = ((Character) Director.getInstance().getScene().getSpriteByName("player"));
-            int key = player.getKey();
-            if (key != 0) {
-                player.setKey(key - 1);
-                ((MovableObject) this.getSprite()).setLock(false);
-            }
-        }
-        //Open fridge if unlocked
         try {
-            if (((MovableObject) this.getSprite()).getLock() == false) {
-                Sprite fridge = Director.getInstance().getScene().getSpriteByName("fridge");
+            //Open fridge if it hasn't opened
+            MovableObject fridge = (MovableObject)getSprite();
+            if (!fridge.getOpen()) {
+                //Unlock fridge if it hasn't unlocked
+                if (fridge.getLock()) {
+                    //Unlock fridge if character has enough key
+                    Character player = (Character)sprite;
+                    int key = player.getKey();
+                    if (key > 0) {
+                        player.setKey(key - 1);
+                        fridge.setLock(false);
+                    }
+                    else {
+                        return;
+                    }
+                }
+
+                //change position base on the image size
                 AudioEngine.getInstance().play("fridge");
+                int oldWidth = fridge.getImage().getWidth();
+                int oldHeight = fridge.getImage().getHeight();
                 fridge.setImage("resource/image/fridge_open.png");
-                fridge.setPosition(new Point(3387, 2420));
+                int newWidth = fridge.getImage().getWidth();
+                int newHeight = fridge.getImage().getHeight();
+                fridge.setPosition(fridge.getPosition().offset(oldWidth - newWidth, oldHeight - newHeight));
+
+                fridge.setOpen(true);
             }
         } catch (IOException e) {
             System.exit(1);
