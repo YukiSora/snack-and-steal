@@ -8,11 +8,13 @@ import javax.imageio.ImageIO;
 
 import BluebellAdventures.Characters.GameMap;
 
+import Megumin.Actions.Action;
 import Megumin.Nodes.Sprite;
 import Megumin.Point;
 
 public class Snack extends Sprite {
     private int score;
+    private Action effect;
 
     // Constructors //
     public Snack(String filename) throws IOException {
@@ -47,5 +49,14 @@ public class Snack extends Sprite {
 
     public int getScore() {
         return score;
+    }
+
+    public Snack setEffect(Action effect) {
+        this.effect = effect;
+        return this;
+    }
+
+    public Action getEffect() {
+        return effect;
     }
 }
