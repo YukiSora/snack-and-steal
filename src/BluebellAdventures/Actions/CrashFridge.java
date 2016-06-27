@@ -5,10 +5,8 @@ import java.io.IOException;
 import BluebellAdventures.Characters.Character;
 import BluebellAdventures.Characters.MovableObject;
 
-import Megumin.Actions.Action;
 import Megumin.Actions.Effect;
 import Megumin.Audio.AudioEngine;
-import Megumin.Nodes.Director;
 import Megumin.Nodes.Sprite;
 import Megumin.Point;
 
