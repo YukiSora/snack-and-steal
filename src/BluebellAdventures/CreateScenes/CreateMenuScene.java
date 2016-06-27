@@ -25,14 +25,14 @@ public class CreateMenuScene {
         tabLayer.addSprite(multiPlayer);
         tabLayer.addSprite(setting);
         tabLayer.addSprite(exit);
-        Layer mapLayer = new Layer();
-        mapLayer.addSprite(background);
+        Layer backgroundLayer = new Layer();
+        backgroundLayer.addSprite(background);
 
         //init scene
         Scene menu = new Scene();
         menu.setName("menu");
         menu.addLayer(tabLayer);
-        menu.addLayer(mapLayer, 0);
+        menu.addLayer(backgroundLayer, 0);
 
         return menu;
     }
