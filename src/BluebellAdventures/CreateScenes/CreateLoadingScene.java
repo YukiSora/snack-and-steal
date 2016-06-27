@@ -13,13 +13,13 @@ public class CreateLoadingScene {
         Sprite background = new Sprite(backgroundImage);
 
         //init layer
-        Layer mapLayer = new Layer();
-        mapLayer.addSprite(background);
+        Layer backgroundLayer = new Layer();
+        backgroundLayer.addSprite(background);
 
         //init scene
         Scene loading = new Scene();
         loading.setName("loading");
-        loading.addLayer(mapLayer);
+        loading.addLayer(backgroundLayer);
 
         return loading;
     }
