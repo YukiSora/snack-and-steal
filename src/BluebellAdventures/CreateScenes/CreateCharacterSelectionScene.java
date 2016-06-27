@@ -16,6 +16,7 @@ import Megumin.Point;
 public class CreateCharacterSelectionScene {
     public static Scene createCharacterSelectionScene() throws IOException {
         Interact interact = Interact.getInstance();
+
         //init Sprite
         Sprite rat = new Sprite("resource/image/rat.png", new Point(40, 250));
         Sprite raccoon = new Sprite("resource/image/raccoon.png", new Point(180, 250));
@@ -45,14 +46,14 @@ public class CreateCharacterSelectionScene {
         tabLayer.addSprite(roach);
         tabLayer.addSprite(back);
 
-        Layer mapLayer = new Layer();
-        mapLayer.addSprite(background);
+        Layer backgroundLayer = new Layer();
+        backgroundLayer.addSprite(background);
 
         //init scene
         Scene characterSelection = new Scene();
         characterSelection.setName("character selection");
         characterSelection.addLayer(tabLayer);
-        characterSelection.addLayer(mapLayer, 0);
+        characterSelection.addLayer(backgroundLayer, 0);
 
         //init action
         Action selectRat = new MouseCrash(new SelectCharacter("rat"));
