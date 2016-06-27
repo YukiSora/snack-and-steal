@@ -47,12 +47,8 @@ public class AudioEngine {
         audios.get(name).stop();
     }
 
-    public void volumeUp(String name){
-        audios.get(name).volumeUp();
-    }
-
-    public void volumeDown(String name){
-        audios.get(name).volumeDown();
+    public void setVolume(String name, float percent){
+        audios.get(name).setVolume(percent);
     }
 
     public void stopAll() {

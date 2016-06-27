@@ -41,7 +41,7 @@ public class Main {
         interact = Interact.getInstance();
         audioEngine = AudioEngine.getInstance();
         try {
-            Database.createDatabase("jdbc:mysql://localhost:3306/BluebellAdventuresRecord", "username", "password");
+            Database.createDatabase("jdbc:mysql://localhost:3306/BluebellAdventuresRecord", "root", "yukisora");
         } catch (SQLException e) {
             System.out.println(e);
             System.exit(1);
@@ -59,20 +59,19 @@ public class Main {
         director.start();
 
         //init audio
+        audioEngine.addAudio("menu", new Audio("resource/audio/menu.wav"));
+        audioEngine.addAudio("main", new Audio("resource/audio/main.wav"));
+        audioEngine.addAudio("nervous", new Audio("resource/audio/nervous.wav"));
+        audioEngine.addAudio("victory", new Audio("resource/audio/victory.wav"));
         audioEngine.addAudio("eating", new Audio("resource/audio/eating.wav"));
         audioEngine.addAudio("attacking", new Audio("resource/audio/attacking.wav"));
         audioEngine.addAudio("slurping", new Audio("resource/audio/slurping.wav"));
         audioEngine.addAudio("walking", new Audio("resource/audio/walking.wav"));
-        audioEngine.addAudio("menu", new Audio("resource/audio/menu.wav"));
-        audioEngine.addAudio("nervous", new Audio("resource/audio/nervous.wav"));
-        audioEngine.addAudio("victory", new Audio("resource/audio/victory.wav"));
         audioEngine.addAudio("door", new Audio("resource/audio/door.wav"));
         audioEngine.addAudio("fridge", new Audio("resource/audio/fridge.wav"));
         audioEngine.addAudio("unlock", new Audio("resource/audio/unlock.wav"));
         audioEngine.addAudio("key", new Audio("resource/audio/key.wav"));
-
-        audioEngine.addAudio("main", new Audio("resource/audio/main.wav"));
-        audioEngine.volumeDown("main");
+        audioEngine.setVolume("main", 0.8f);
 
         //system action
         Sprite system = new Sprite();

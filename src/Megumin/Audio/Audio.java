@@ -33,14 +33,11 @@ public class Audio implements Runnable{
         clip.start();
     }
 
-    public void volumeUp(){
+    public void setVolume(float percent){
         FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-        gainControl.setValue(6);
-    }
-
-    public void volumeDown(){
-        FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-        gainControl.setValue(-10.0f);
+        float max = gainControl.getMaximum();
+        float min = gainControl.getMinimum();
+        gainControl.setValue(min + (max - min) * percent);
     }
 
     public void loop(int times) {
