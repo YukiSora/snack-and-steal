@@ -13,7 +13,7 @@ public class CrashCupboard extends Effect {
     @Override
     public void update(Sprite sprite) {
         try {
-            //Open cupboard if havn't opened
+            //Open cupboard if hasn't opened
             MovableObject cupboard = (MovableObject)getSprite();
             if (!cupboard.getOpen()) {
                 AudioEngine.getInstance().play("fridge");

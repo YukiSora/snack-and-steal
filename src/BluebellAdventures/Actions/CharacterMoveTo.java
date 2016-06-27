@@ -1,13 +1,10 @@
 package BluebellAdventures.Actions;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.io.IOException;
 
-import BluebellAdventures.Characters.Enemy;
 import BluebellAdventures.Characters.GameMap;
-import BluebellAdventures.Characters.MovableObject;
-import BluebellAdventures.Characters.Character;
 
 import Megumin.Actions.Action;
 import Megumin.Nodes.Director;
@@ -24,7 +21,7 @@ public class CharacterMoveTo extends Action {
         this.y = y;
         sprites = new CopyOnWriteArrayList<>();
     }
-    
+
     public void addSprites(CopyOnWriteArrayList<Sprite> sprites) {
         this.sprites.add(sprites);
     }
@@ -32,22 +29,24 @@ public class CharacterMoveTo extends Action {
     @Override
     public void update(Sprite sprite) {
         if (!GameMap.characterCrash(sprite, x, y)) {
-			Action snackpick = new CrashSnack();
+            Action snackpick = new CrashSnack();
             Action fridgeLock = new CrashFridge();
             Action doorLock = new CrashDoor();
             Action keyTouch = new CrashKey();
             Action cupboardLock = new CrashCupboard();
             Action finishLine = new GameOver();
-            
-			sprite.checkCrash(sprites.get(0), snackpick);
+
+            sprite.checkCrash(sprites.get(0), snackpick);
             sprite.checkCrash(sprites.get(1), fridgeLock);
-            sprite.checkCrash(sprites.get(2), doorLock);
             sprite.checkCrash(sprites.get(3), cupboardLock);
             sprite.checkCrash(sprites.get(4), keyTouch);
             sprite.checkCrash(sprites.get(5), finishLine);
             
-            GameMap.getInstance().getPosition().offset(-x, -y);
-
+            sprite.setPosition(sprite.getPosition().offset(x, y));
+            if (!sprite.checkCrash(sprites.get(2), doorLock)) {
+                GameMap.getInstance().getPosition().offset(-x, -y);
+            }
+            sprite.setPosition(sprite.getPosition().offset(-x, -y));
         }
 
         super.update(sprite);
