@@ -1,25 +1,28 @@
 package BluebellAdventures.CreateScenes;
 
-//import com.mysql.jdbc.Statement;
-
 import java.io.IOException;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
-import BluebellAdventures.Characters.Character;
 import BluebellAdventures.Actions.ChangeScene;
+import BluebellAdventures.Characters.Character;
+import BluebellAdventures.CreateScenes.CreateMenuScene;
 
 import Megumin.Actions.Action;
 import Megumin.Actions.Interact;
 import Megumin.Actions.MouseCrash;
+import Megumin.Database.Database;
 import Megumin.Nodes.Director;
 import Megumin.Nodes.Layer;
 import Megumin.Nodes.Scene;
 import Megumin.Nodes.Sprite;
 import Megumin.Point;
-
 
 public class CreateGameOverScene{
     private static Interact interact;
@@ -30,9 +33,34 @@ public class CreateGameOverScene{
         //init sprite
         Sprite background = new Sprite(backgroundImage);
 
+        // [1] Submit - Highscore
         Sprite submitHighScore = new Sprite("resource/image/tag_highscore.png", new Point(600, 480));
-        
-        
+        Action saveHighScore = new MouseCrash(new Action(){
+            @Override
+            public void update(Sprite sprite) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String currentTime = sdf.format(new java.util.Date());
+
+                try {
+                    Database.getInstance().update("INSERT INTO Records (Score, Date_Time) VALUE('"+ player.getSnackScore() +"','"+ currentTime +"')");
+                    System.out.println("Score Saved: " + player.getSnackScore());
+
+                    Director.getInstance().setScene(CreateMenuScene.createMenuScene());
+                } catch (SQLException e) {
+                    System.out.println(e);
+                } catch (IOException e){
+                    System.out.println(e);
+                }
+
+                
+            }
+        });
+
+        if (result){
+            interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, submitHighScore, saveHighScore, "save score");
+        }
+
+        // [2] Back to Main Menu
         Sprite mainMenu = new Sprite("resource/image/tag_winback.png", new Point(650, 610));
         Scene menu = CreateMenuScene.createMenuScene();
         Action backToMenu = new MouseCrash(new ChangeScene(menu, "menu"));
@@ -62,24 +90,13 @@ public class CreateGameOverScene{
         //init scene
         Scene loading = new Scene();
         loading.setName("game over");
+        if (result){
+            loading.setName("save score");
+        }
         loading.addLayer(backgroundLayer);
         loading.addLayer(tabLayer);
 
         return loading;
     }
 
-    // public static void saveDatabase(String directoryString, String remainderString) {
-    //     // MARC_LIST - Insert Into Database
-    //     try {
-    //         Statement stmt = (Statement) connection.createStatement();
-    //         String query = "INSERT INTO marc_list (tag, data) VALUE('" + directoryString + "', '"
-    //                 + remainderString + "')";
-
-    //         if (stmt.executeUpdate(query) <= 0) {
-    //             System.out.println("Book record not added");
-    //         }
-    //     } catch (Exception e) {
-    //         e.printStackTrace();
-    //     }
-    // }
 }

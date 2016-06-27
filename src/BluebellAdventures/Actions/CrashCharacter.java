@@ -21,6 +21,7 @@ public class CrashCharacter extends Effect {
         AudioEngine.getInstance().play("attacking");
         Character player = (Character) getSprite();
         int hp = player.getHp();
+        System.out.println("This is HP: " + hp);
 
 		if (hp < 2) {
             // Trigger Game Over
