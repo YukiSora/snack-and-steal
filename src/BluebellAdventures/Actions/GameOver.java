@@ -2,14 +2,14 @@ package BluebellAdventures.Actions;
 
 import java.io.IOException;
 
+import BluebellAdventures.Characters.Character;
+import BluebellAdventures.CreateScenes.CreateGameOverScene;
+
 import Megumin.Actions.Effect;
 import Megumin.Audio.AudioEngine;
 import Megumin.Nodes.Director;
 import Megumin.Nodes.Scene;
 import Megumin.Nodes.Sprite;
-
-import BluebellAdventures.Characters.Character;
-import BluebellAdventures.CreateScenes.CreateGameOverScene;
 
 public class GameOver extends Effect {
     private boolean victory;

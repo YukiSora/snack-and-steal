@@ -5,20 +5,16 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.Font;
 import java.awt.Graphics2D;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import BluebellAdventures.Actions.ChangeScene;
 import BluebellAdventures.Characters.Character;
-import BluebellAdventures.CreateScenes.CreateMenuScene;
 
 import Megumin.Actions.Action;
 import Megumin.Actions.Interact;
 import Megumin.Actions.MouseCrash;
 import Megumin.Database.Database;
-import Megumin.Nodes.Director;
 import Megumin.Nodes.Layer;
 import Megumin.Nodes.Scene;
 import Megumin.Nodes.Sprite;
