@@ -54,7 +54,7 @@ public class Character extends Sprite {
             g.setColor(Color.red);
             g.drawString(hpString.substring(0, hp), 250, 50);
 
-            String keyString = "⚷⚷⚷⚷⚷⚷⚷⚷⚷⚷";
+            String keyString = "⚩⚩⚩⚩⚩⚩⚩⚩⚩⚩";
             g.setColor(Color.white);
             g.drawString("key: ", 400, 50);
             g.setColor(Color.yellow);
