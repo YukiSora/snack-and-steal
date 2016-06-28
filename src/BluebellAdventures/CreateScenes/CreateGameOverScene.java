@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import BluebellAdventures.Characters.Character;
+import BluebellAdventures.Actions.ChangeScene;
 
 import Megumin.Actions.Action;
 import Megumin.Actions.Interact;
