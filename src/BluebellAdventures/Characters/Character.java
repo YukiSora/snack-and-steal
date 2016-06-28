@@ -28,6 +28,9 @@ public class Character extends Sprite {
     private int key;
 
     // Constructors //
+    public Character() {
+    }
+
     public Character(String filename) throws IOException {
         super(filename, new Point(0, 0));
     }
@@ -46,22 +49,6 @@ public class Character extends Sprite {
 
     public void render(Graphics2D g) {
         if (getVisible()) {
-            g.setFont(new Font("TimesRoman", Font.BOLD, 35));
-
-            String hpString = "❤❤❤❤❤❤❤❤❤❤";
-            g.setColor(Color.white);
-            g.drawString("Health: ", 100, 50);
-            g.setColor(Color.red);
-            g.drawString(hpString.substring(0, hp), 250, 50);
-
-            String keyString = "⚩⚩⚩⚩⚩⚩⚩⚩⚩⚩";
-            g.setColor(Color.white);
-            g.drawString("key: ", 400, 50);
-            g.setColor(Color.yellow);
-            g.drawString(keyString.substring(0, key), 500, 50);
-
-            g.setColor(Color.white);
-            g.drawString("Score: " + snackScore, 700, 50);
             super.render(g);
         }
     }

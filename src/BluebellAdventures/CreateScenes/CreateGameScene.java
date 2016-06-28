@@ -1,5 +1,8 @@
 package BluebellAdventures.CreateScenes;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 
@@ -184,7 +187,35 @@ public class CreateGameScene {
         //set start point
         GameMap.getInstance().setPosition(-705, -2600);
 
+        Sprite score = new Character() {
+            @Override
+            public void render(Graphics2D g) {
+                if (getVisible()) {
+                    g.setFont(new Font("TimesRoman", Font.BOLD, 35));
+
+                    String hpString = "❤❤❤❤❤❤❤❤❤❤";
+                    g.setColor(Color.white);
+                    g.drawString("Health: ", 100, 50);
+                    g.setColor(Color.red);
+                    g.drawString(hpString.substring(0, ((Character)player).getHp()), 250, 50);
+
+                    String keyString = "⚩⚩⚩⚩⚩⚩⚩⚩⚩⚩";
+                    g.setColor(Color.white);
+                    g.drawString("key: ", 400, 50);
+                    g.setColor(Color.yellow);
+                    g.drawString(keyString.substring(0, ((Character)player).getKey()), 500, 50);
+
+                    g.setColor(Color.white);
+                    g.drawString("Score: " + ((Character)player).getSnackScore(), 700, 50);
+                }
+            }
+        };
+        score.setVisible(true);
+
         //init layer
+        Layer scoreLayer = new Layer();
+        scoreLayer.addSprite(score);
+
         Layer finishLayer = new Layer();
         finishLayer.addSprite(finishLine);
 
@@ -269,6 +300,7 @@ public class CreateGameScene {
         game.addLayer(finishLayer);
         game.addLayer(ownPlayerLayer);
         game.addLayer(objectLayer);
+        game.addLayer(scoreLayer);
 
         //init key listener and action
         //player
