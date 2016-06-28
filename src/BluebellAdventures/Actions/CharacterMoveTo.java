@@ -14,10 +14,15 @@ public class CharacterMoveTo extends Action {
     private CopyOnWriteArrayList<CopyOnWriteArrayList<Sprite>> sprites;
     private int x;
     private int y;
+    private int coordinate;
+    private int direction;
+
 
     public CharacterMoveTo(int x, int y) throws IOException{
         this.x = x;
         this.y = y;
+        coordinate = x == 0 ? 1 : 0;
+        direction = x > 0 || y > 0 ? 1 : -1;
         sprites = new CopyOnWriteArrayList<>();
     }
 
@@ -27,6 +32,7 @@ public class CharacterMoveTo extends Action {
 
     @Override
     public void update(Sprite sprite) {
+        sprite.getDirection()[coordinate] = direction;
         if (!GameMap.characterCrash(sprite, x, y)) {
             Action snackpick = new CrashSnack();
             Action fridgeLock = new CrashFridge();
@@ -39,7 +45,7 @@ public class CharacterMoveTo extends Action {
             sprite.checkCrash(sprites.get(3), cupboardLock);
             sprite.checkCrash(sprites.get(4), keyTouch);
             sprite.checkCrash(sprites.get(5), finishLine);
-            
+
             sprite.setPosition(sprite.getPosition().offset(x, y));
             if (!sprite.checkCrash(sprites.get(1), fridgeLock) &&
                 !sprite.checkCrash(sprites.get(2), doorLock)) {

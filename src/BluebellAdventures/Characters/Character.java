@@ -26,6 +26,7 @@ public class Character extends Sprite {
     private int attackScore;
     private int snackScore;
     private int key;
+    private int rotate;
 
     // Constructors //
     public Character() {
@@ -49,7 +50,66 @@ public class Character extends Sprite {
 
     public void render(Graphics2D g) {
         if (getVisible()) {
-            super.render(g);
+            GameMap map = GameMap.getInstance();
+            int[] direction = getDirection();
+            int x = getPosition().getX();
+            int y = getPosition().getY();
+            int w = getImage().getWidth();
+            int h = getImage().getHeight();
+
+            if (direction[0] == -1) {
+                if (direction[1] == -1) {
+                    rotate = 7;
+                    setPosition((1280 - h) / 2, (720 - h) / 2);
+                    setSize(h, h);
+                }
+                else if (direction[1] == 0) {
+                    rotate = 6;
+                    setPosition((1280 - h) / 2, (720 - w) / 2);
+                    setSize(h, w);
+                }
+                else if (direction[1] == 1) {
+                    rotate = 5;
+                    setPosition((1280 - h) / 2, (720 - h) / 2);
+                    setSize(h, h);
+                }
+            }
+            else if (direction[0] == 0) {
+                if (direction[1] == -1) {
+                    rotate = 0;
+                    setPosition((1280 - w) / 2, (720 - h) / 2);
+                    setSize(w, h);
+                }
+                else if (direction[1] == 0) {
+                }
+                else if (direction[1] == 1) {
+                    rotate = 4;
+                    setPosition((1280 - w) / 2, (720 - h) / 2);
+                    setSize(w, h);
+                }
+            }
+            else if (direction[0] == 1) {
+                if (direction[1] == -1) {
+                    setPosition((1280 - h) / 2, (720 - h) / 2);
+                    setSize(h, h);
+                    rotate = 1;
+                }
+                else if (direction[1] == 0) {
+                    setPosition((1280 - h) / 2, (720 - w) / 2);
+                    setSize(h, w);
+                    rotate = 2;
+                }
+                else if (direction[1] == 1) {
+                    setPosition((1280 - h) / 2, (720 - h) / 2);
+                    setSize(h, h);
+                    rotate = 3;
+                }
+            }
+            double theta = Math.PI / 4 * rotate;
+
+            g.rotate(theta, 1280 / 2, 720 / 2);
+            g.drawImage(getImage(), (1280 - w) / 2, (720 - h) / 2, null);
+            g.rotate(-theta, 1280 / 2, 720 / 2);
         }
     }
 

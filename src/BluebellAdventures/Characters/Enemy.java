@@ -19,6 +19,7 @@ public class Enemy extends Sprite {
     private int attack;
     private int detectionRange;
     private int speed;
+    private int rotate;
 
     // Constructors //
     public Enemy() {
@@ -45,7 +46,58 @@ public class Enemy extends Sprite {
     public void render(Graphics2D g) {
         if (getVisible()) {
             GameMap map = GameMap.getInstance();
-            g.drawImage(getImage(), map.getPosition().getX() + getPosition().getX(), map.getPosition().getY() + getPosition().getY(), null);
+            int[] direction = getDirection();
+            int x = map.getPosition().getX() + getPosition().getX();
+            int y = map.getPosition().getY() + getPosition().getY();
+            int w = getImage().getWidth();
+            int h = getImage().getHeight();
+
+            //TODO: rotate area corrected
+            if (direction[0] == -1) {
+                if (direction[1] == -1) {
+                    rotate = 7;
+                    setSize(h, h);
+                }
+                else if (direction[1] == 0) {
+                    rotate = 6;
+                    setSize(h, w);
+                }
+                else if (direction[1] == 1) {
+                    rotate = 5;
+                    setSize(h, h);
+                }
+            }
+            else if (direction[0] == 0) {
+                if (direction[1] == -1) {
+                    rotate = 0;
+                    setSize(w, h);
+                }
+                else if (direction[1] == 0) {
+                }
+                else if (direction[1] == 1) {
+                    rotate = 4;
+                    setSize(w, h);
+                }
+            }
+            else if (direction[0] == 1) {
+                if (direction[1] == -1) {
+                    setSize(h, h);
+                    rotate = 1;
+                }
+                else if (direction[1] == 0) {
+                    setSize(h, w);
+                    rotate = 2;
+                }
+                else if (direction[1] == 1) {
+                    setSize(h, h);
+                    rotate = 3;
+                }
+            }
+            double theta = Math.PI / 4 * rotate;
+
+            g.rotate(theta, x + getImage().getWidth() / 2, y + getImage().getHeight() / 2);
+            g.drawImage(getImage(), x, y, null);
+            g.rotate(-theta, x + getImage().getWidth() / 2, y + getImage().getHeight() / 2);
         }
     }
 

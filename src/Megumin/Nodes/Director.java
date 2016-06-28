@@ -61,8 +61,8 @@ public class Director extends Frame implements KeyListener, MouseListener, Runna
     @Override
     public void run () {
         while(true) {
-            interact.update();
             infinite.update();
+            interact.update();
             repaint();
             try{
                 Thread.sleep(33);

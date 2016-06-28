@@ -379,6 +379,15 @@ public class CreateGameScene {
         interact.addEvent(KeyEvent.VK_S, Interact.ON_KEY_PRESS, player, moveS, "game");
         interact.addEvent(KeyEvent.VK_D, Interact.ON_KEY_PRESS, player, moveD, "game");
 
+        //reset direction to 0
+        infinite.addEvent(player, new Action() {
+            @Override
+            public void update(Sprite sprite) {
+                sprite.getDirection()[0] = 0;
+                sprite.getDirection()[1] = 0;
+            }
+        });
+
         // Finshing Line
         Action finishLineAnimate = new Animate();
         ((Animate)finishLineAnimate).addImage(finishLine.getImage());
