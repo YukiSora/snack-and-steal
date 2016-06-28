@@ -13,6 +13,7 @@ import BluebellAdventures.Characters.Character;
 import BluebellAdventures.Actions.ChangeScene;
 
 import Megumin.Actions.Action;
+import Megumin.Actions.Infinite;
 import Megumin.Actions.Interact;
 import Megumin.Actions.MouseCrash;
 import Megumin.Database.Database;
@@ -24,6 +25,9 @@ import Megumin.Point;
 public class CreateGameOverScene {
     public static Scene createGameOverScene(String backgroundImage, Sprite sprite, boolean victory) throws IOException {
         Interact interact = Interact.getInstance();
+        Infinite infinite = Infinite.getInstance();
+        interact.removeAllKeyPress();
+        infinite.removeAll();
         Character player = (Character)sprite;
 
         //init sprite

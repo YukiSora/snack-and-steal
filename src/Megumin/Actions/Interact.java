@@ -50,6 +50,12 @@ public class Interact {
         }
     }
 
+    public void removeAllKeyPress() {
+        tickId = 0;
+        events.put(ON_KEY_PRESS, new HashMap<Integer, CopyOnWriteArrayList<Event>>());
+        keyStatus = new HashMap<Integer, Boolean>();
+    }
+
     public void keyPressed(int key) {
         keyStatus.put(key, true);
     }

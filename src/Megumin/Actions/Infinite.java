@@ -33,6 +33,10 @@ public class Infinite {
         events.remove(event);
     }
 
+    public void removeAll() {
+        events = new CopyOnWriteArrayList<>();
+    }
+
     public void update() {
         Iterator it = events.iterator();
         while (it.hasNext()) {
