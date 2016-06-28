@@ -40,9 +40,6 @@ public class CreateGameScene {
         Sprite enemyDiningRoom = new Enemy("resource/image/enemy_girl1.png", new Point(3600, 1200))
                             .setSpeed(5);
 
-        Sprite finishLine = new Enemy("resource/image/natsu1.png", new Point(3705,2850))
-                            .setSpeed(0);
-
         Sprite player = new Character("resource/image/" + playerImageName + "1.png")
                             .setHp(3)
                             .setSpeed(25)
@@ -66,103 +63,79 @@ public class CreateGameScene {
         Sprite fridge = new MovableObject("resource/image/fridge.png", new Point(3387, 2520))
                             .setLock(true)
                             .setOpen(false);
-        fridge.setName("fridge");
-		Sprite stove = new MovableObject("resource/image/cooker.png", new Point(3880, 2311))
+        Sprite stove = new MovableObject("resource/image/cooker.png", new Point(3880, 2311))
                             .setLock(false)
                             .setOpen(false);
-        stove.setName("stove");
         Sprite cupboard1 = new MovableObject("resource/image/cupboard.png", new Point(1548, 64))
                             .setLock(false)
                             .setOpen(false);
-        cupboard1.setName("cupboard1");
         Sprite cupboard2 = new MovableObject("resource/image/cupboard.png", new Point(800, 64))
                             .setLock(false)
                             .setOpen(false);
-        cupboard2.setName("cupboard2");
         Sprite cupboard3 = new MovableObject("resource/image/cupboard.png", new Point(3863, 1127))
                             .setLock(false)
                             .setOpen(false);
-        cupboard3.setName("cupboard3");
-		Sprite cupboard4 = new MovableObject("resource/image/closet.png", new Point(1333, 1895))
+        Sprite cupboard4 = new MovableObject("resource/image/closet.png", new Point(1333, 1895))
                             .setLock(false)
                             .setOpen(false);
-        cupboard4.setName("cupboard4");
-		Sprite cupboard5 = new MovableObject("resource/image/closet.png", new Point(2334, 1278))
+        Sprite cupboard5 = new MovableObject("resource/image/closet.png", new Point(2334, 1278))
                             .setLock(false)
                             .setOpen(false);
-        cupboard5.setName("cupboard5");
 
         //init immovable object sprites
         Sprite table = new MovableObject("resource/image/diningtable.png", new Point(3359, 178))
                             .setLock(false)
                             .setOpen(false);
-        table.setName("table");
         Sprite tree = new MovableObject("resource/image/tree.png", new Point(24, 2105))
                             .setLock(false)
                             .setOpen(false);
-        tree.setName("tree");
-		Sprite cupboard1 = new MovableObject("resource/image/cupboard.png", new Point(1548, 64))
+        Sprite fridgeCover = new MovableObject("resource/image/fridge_top.png", new Point(3387, 2520))
                             .setLock(false)
                             .setOpen(false);
-        cupboard1.setName("cupboard1");
-		Sprite cupboard2 = new MovableObject("resource/image/cupboard.png", new Point(834, 64))
+        Sprite stoveCover = new MovableObject("resource/image/cooker.png", new Point(3880, 2311))
                             .setLock(false)
                             .setOpen(false);
-        cupboard2.setName("cupboard2");
-        Sprite cupboard3 = new MovableObject("resource/image/cupboard.png", new Point(3863, 1127))
+        Sprite cupboard1Cover = new MovableObject("resource/image/cupboard.png", new Point(1548, 64))
                             .setLock(false)
                             .setOpen(false);
-        cupboard3.setName("cupboard3");
-		Sprite cupboard4 = new MovableObject("resource/image/closet.png", new Point(1333, 1895))
+        Sprite cupboard2Cover = new MovableObject("resource/image/cupboard.png", new Point(800, 64))
                             .setLock(false)
                             .setOpen(false);
-        cupboard4.setName("cupboard4");
-		Sprite cupboard5 = new MovableObject("resource/image/closet.png", new Point(2334, 1278))
+        Sprite cupboard3Cover = new MovableObject("resource/image/cupboard.png", new Point(3863, 1127))
                             .setLock(false)
                             .setOpen(false);
-        cupboard5.setName("cupboard5");
-		Sprite fridge = new MovableObject("resource/image/fridge_top.png", new Point(3387, 2520))
+        Sprite cupboard4Cover = new MovableObject("resource/image/closet.png", new Point(1333, 1895))
                             .setLock(false)
                             .setOpen(false);
-        fridge.setName("fridge");
-		Sprite stove = new MovableObject("resource/image/cooker.png", new Point(3880, 2311))
+        Sprite cupboard5Cover = new MovableObject("resource/image/closet.png", new Point(2334, 1278))
                             .setLock(false)
                             .setOpen(false);
-        stove.setName("stove");
 
         //init door sprites
         Sprite storeDoor = new MovableObject("resource/image/door.png", new Point(2705, 1415))
                             .setLock(true)
                             .setOpen(false);
-        storeDoor.setName("lockdoor1");
         Sprite roomDoor1 = new MovableObject("resource/image/door.png", new Point(689, 774))
                             .setLock(true)
                             .setOpen(false);
-        roomDoor1.setName("lockdoor2");
         Sprite roomDoor2 = new MovableObject("resource/image/door.png", new Point(1063, 774))
                             .setLock(true)
                             .setOpen(false);
-        roomDoor2.setName("lockdoor3");
         Sprite roomDoor3 = new MovableObject("resource/image/door.png", new Point(1050, 1125))
                             .setLock(false)
                             .setOpen(false);
-        roomDoor3.setName("door1");
         Sprite mainDoor = new MovableObject("resource/image/door.png", new Point(1942, 1849))
                             .setLock(false)
                             .setOpen(false);
-        mainDoor.setName("door2");
         Sprite backDoor = new MovableObject("resource/image/door.png", new Point(2848, 2692))
                             .setLock(true)
                             .setOpen(false);
-        backDoor.setName("lockdoor4");
         Sprite toiletDoor1 = new MovableObject("resource/image/verticaldoor.png", new Point(540, 861))
                             .setLock(false)
                             .setOpen(false);
-        toiletDoor1.setName("door3");
         Sprite toiletDoor2 = new MovableObject("resource/image/verticaldoor.png", new Point(459, 1602))
                             .setLock(false)
                             .setOpen(false);
-        toiletDoor2.setName("door4");
 
         //init snacks sprites
         Sprite snackFridge = new Snack("resource/image/snack1.png", new Point(3531, 2590))
@@ -217,8 +190,12 @@ public class CreateGameScene {
                             .setScore(0);
         Sprite key4 = new Snack("resource/image/key.png", new Point(3938, 2338))
                             .setScore(0);
-		Sprite key5 = new Snack("resource/image/key.png", new Point(3623, 319))
+        Sprite key5 = new Snack("resource/image/key.png", new Point(3623, 319))
                             .setScore(0);
+
+        //init finish line
+        Sprite finishLine = new Enemy("resource/image/natsu1.png", new Point(3705,2850))
+                            .setSpeed(0);
 
         //init map sprite
         Sprite map = GameMap.getInstance("resource/image/full_map copy.jpg")
@@ -227,6 +204,7 @@ public class CreateGameScene {
         //set start point
         GameMap.getInstance().setPosition(-705, -2600);
 
+        //draw score infomation
         Sprite score = new Character() {
             @Override
             public void render(Graphics2D g) {
@@ -267,18 +245,18 @@ public class CreateGameScene {
         Layer ownPlayerLayer = new Layer();
         ownPlayerLayer.addSprite(player);
 
-        Layer lockLayer = new Layer();
-        lockLayer.setName("locks");
-        lockLayer.addSprite(fridge);
+        Layer fridgeLayer = new Layer();
+        fridgeLayer.setName("fridges");
+        fridgeLayer.addSprite(fridge);
 
         Layer cupboardLayer = new Layer();
         cupboardLayer.setName("cupboards");
         cupboardLayer.addSprite(cupboard1);
         cupboardLayer.addSprite(cupboard2);
         cupboardLayer.addSprite(cupboard3);
-		cupboardLayer.addSprite(cupboard4);
-		cupboardLayer.addSprite(cupboard5);
-		objectLayer.addSprite(stove);
+        cupboardLayer.addSprite(cupboard4);
+        cupboardLayer.addSprite(cupboard5);
+        cupboardLayer.addSprite(stove);
 
         Layer doorLayer = new Layer();
         doorLayer.setName("doors");
@@ -297,10 +275,10 @@ public class CreateGameScene {
         keyLayer.addSprite(key2);
         keyLayer.addSprite(key3);
         keyLayer.addSprite(key4);
-		keyLayer.addSprite(key5);
+        keyLayer.addSprite(key5);
 
         Layer snackLayer = new Layer();
-        snackLayer.setName("snack");
+        snackLayer.setName("snacks");
         snackLayer.addSprite(snackFridge);
         snackLayer.addSprite(snackkitchen1);
         snackLayer.addSprite(snackkitchen2);
@@ -323,16 +301,16 @@ public class CreateGameScene {
         snackLayer.addSprite(snackroom5);
         snackLayer.addSprite(snackroom6);
 
-        Layer objectLayer = new Layer();
-        objectLayer.addSprite(table);
-        objectLayer.addSprite(tree);
-		objectLayer.addSprite(stove);
-		objectLayer.addSprite(cupboard1);
-		objectLayer.addSprite(cupboard2);
-		objectLayer.addSprite(cupboard3);
-		objectLayer.addSprite(cupboard4);
-		objectLayer.addSprite(cupboard5);
-		objectLayer.addSprite(fridge);
+        Layer coverLayer = new Layer();
+        coverLayer.addSprite(table);
+        coverLayer.addSprite(tree);
+        coverLayer.addSprite(stoveCover);
+        coverLayer.addSprite(cupboard1Cover);
+        coverLayer.addSprite(cupboard2Cover);
+        coverLayer.addSprite(cupboard3Cover);
+        coverLayer.addSprite(cupboard4Cover);
+        coverLayer.addSprite(cupboard5Cover);
+        coverLayer.addSprite(fridgeCover);
 
         Layer mapLayer = new Layer();
         mapLayer.addSprite(map);
@@ -342,14 +320,14 @@ public class CreateGameScene {
         game.setName("game");
         game.addLayer(mapLayer);
         game.addLayer(snackLayer);
-        game.addLayer(lockLayer);
+        game.addLayer(fridgeLayer);
         game.addLayer(doorLayer);
         game.addLayer(cupboardLayer);
         game.addLayer(keyLayer);
         game.addLayer(guardLayer);
         game.addLayer(finishLayer);
         game.addLayer(ownPlayerLayer);
-        game.addLayer(objectLayer);
+        game.addLayer(coverLayer);
         game.addLayer(scoreLayer);
 
         //init key listener and action
@@ -357,7 +335,7 @@ public class CreateGameScene {
         //control action
         Action moveW = new CharacterMoveTo(0, -((Character)player).getSpeed());
         ((CharacterMoveTo)moveW).addSprites(snackLayer.getSprites());
-        ((CharacterMoveTo)moveW).addSprites(lockLayer.getSprites());
+        ((CharacterMoveTo)moveW).addSprites(fridgeLayer.getSprites());
         ((CharacterMoveTo)moveW).addSprites(doorLayer.getSprites());
         ((CharacterMoveTo)moveW).addSprites(cupboardLayer.getSprites());
         ((CharacterMoveTo)moveW).addSprites(keyLayer.getSprites());
@@ -365,7 +343,7 @@ public class CreateGameScene {
 
         Action moveA = new CharacterMoveTo(-((Character)player).getSpeed(), 0);
         ((CharacterMoveTo)moveA).addSprites(snackLayer.getSprites());
-        ((CharacterMoveTo)moveA).addSprites(lockLayer.getSprites());
+        ((CharacterMoveTo)moveA).addSprites(fridgeLayer.getSprites());
         ((CharacterMoveTo)moveA).addSprites(doorLayer.getSprites());
         ((CharacterMoveTo)moveA).addSprites(cupboardLayer.getSprites());
         ((CharacterMoveTo)moveA).addSprites(keyLayer.getSprites());
@@ -373,7 +351,7 @@ public class CreateGameScene {
 
         Action moveS = new CharacterMoveTo(0, ((Character)player).getSpeed());
         ((CharacterMoveTo)moveS).addSprites(snackLayer.getSprites());
-        ((CharacterMoveTo)moveS).addSprites(lockLayer.getSprites());
+        ((CharacterMoveTo)moveS).addSprites(fridgeLayer.getSprites());
         ((CharacterMoveTo)moveS).addSprites(doorLayer.getSprites());
         ((CharacterMoveTo)moveS).addSprites(cupboardLayer.getSprites());
         ((CharacterMoveTo)moveS).addSprites(keyLayer.getSprites());
@@ -381,7 +359,7 @@ public class CreateGameScene {
 
         Action moveD = new CharacterMoveTo(((Character)player).getSpeed(), 0);
         ((CharacterMoveTo)moveD).addSprites(snackLayer.getSprites());
-        ((CharacterMoveTo)moveD).addSprites(lockLayer.getSprites());
+        ((CharacterMoveTo)moveD).addSprites(fridgeLayer.getSprites());
         ((CharacterMoveTo)moveD).addSprites(doorLayer.getSprites());
         ((CharacterMoveTo)moveD).addSprites(cupboardLayer.getSprites());
         ((CharacterMoveTo)moveD).addSprites(keyLayer.getSprites());

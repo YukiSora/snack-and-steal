@@ -13,7 +13,7 @@ public class CrashSnack extends Effect {
     public void update(Sprite sprite) {
         AudioEngine.getInstance().play("eating");
 
-        Director.getInstance().getScene().getLayerByName("snack").removeSprite(getSprite());
+        Director.getInstance().getScene().getLayerByName("snacks").removeSprite(getSprite());
         ((Character)sprite).addSnackScore(((Snack)getSprite()).getScore());
     }
 }
