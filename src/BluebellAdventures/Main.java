@@ -41,7 +41,7 @@ public class Main {
         interact = Interact.getInstance();
         audioEngine = AudioEngine.getInstance();
         try {
-            Database.createDatabase("jdbc:mysql://localhost:3306/BluebellAdventuresRecord", "root", "yukisora");
+            Database.createDatabase("jdbc:mysql://localhost:3306/BluebellAdventuresRecord", "root", "root");
         } catch (SQLException e) {
             System.out.println(e);
             System.exit(1);

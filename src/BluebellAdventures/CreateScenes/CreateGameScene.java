@@ -31,13 +31,13 @@ public class CreateGameScene {
         Interact interact = Interact.getInstance();
 
         //init AI & player sprites
-        Sprite enemyBedRoom = new Enemy("resource/image/ladybug1.png", new Point(350, 400))
+        Sprite enemyBedRoom = new Enemy("resource/image/enemy_man1.png", new Point(350, 400))
                             .setSpeed(5);
 
-        Sprite enemyLivingRoom = new Enemy("resource/image/ladybug1.png", new Point(2360, 980))
+        Sprite enemyLivingRoom = new Enemy("resource/image/enemy_woman1.png", new Point(2360, 980))
                             .setSpeed(5);
 
-        Sprite enemyDiningRoom = new Enemy("resource/image/ladybug1.png", new Point(3600, 1200))
+        Sprite enemyDiningRoom = new Enemy("resource/image/enemy_girl1.png", new Point(3600, 1200))
                             .setSpeed(5);
 
         Sprite finishLine = new Enemy("resource/image/natsu1.png", new Point(3705,2850))
@@ -71,7 +71,7 @@ public class CreateGameScene {
                             .setLock(false)
                             .setOpen(false);
         cupboard1.setName("cupboard1");
-        Sprite cupboard2 = new MovableObject("resource/image/cupboard.png", new Point(834, 64))
+        Sprite cupboard2 = new MovableObject("resource/image/cupboard.png", new Point(800, 64))
                             .setLock(false)
                             .setOpen(false);
         cupboard2.setName("cupboard2");
@@ -201,7 +201,7 @@ public class CreateGameScene {
 
                     String keyString = "⚩⚩⚩⚩⚩⚩⚩⚩⚩⚩";
                     g.setColor(Color.white);
-                    g.drawString("key: ", 400, 50);
+                    g.drawString("Key: ", 400, 50);
                     g.setColor(Color.yellow);
                     g.drawString(keyString.substring(0, ((Character)player).getKey()), 500, 50);
 
@@ -364,7 +364,7 @@ public class CreateGameScene {
         //animate
         Action enemyBedRoomAnimate = new Animate();
         ((Animate)enemyBedRoomAnimate).addImage(enemyBedRoom.getImage());
-        ((Animate)enemyBedRoomAnimate).addImage("resource/image/ladybug2.png");
+        ((Animate)enemyBedRoomAnimate).addImage("resource/image/enemy_man2.png");
         enemyBedRoomMove.addAction(enemyBedRoomAnimate);
         //insert
         infinite.addEvent(enemyBedRoom, enemyBedRoomMove);
@@ -376,7 +376,7 @@ public class CreateGameScene {
         //animate
         Action enemyLivingRoomAnimate = new Animate();
         ((Animate)enemyLivingRoomAnimate).addImage(enemyLivingRoom.getImage());
-        ((Animate)enemyLivingRoomAnimate).addImage("resource/image/ladybug2.png");
+        ((Animate)enemyLivingRoomAnimate).addImage("resource/image/enemy_woman2.png");
         enemyLivingRoomMove.addAction(enemyLivingRoomAnimate);
         //insert
         infinite.addEvent(enemyLivingRoom, enemyLivingRoomMove);
@@ -388,7 +388,7 @@ public class CreateGameScene {
         //animate
         Action enemyDiningRoomAnimate = new Animate();
         ((Animate)enemyDiningRoomAnimate).addImage(enemyDiningRoom.getImage());
-        ((Animate)enemyDiningRoomAnimate).addImage("resource/image/ladybug2.png");
+        ((Animate)enemyDiningRoomAnimate).addImage("resource/image/enemy_girl2.png");
         enemyDiningRoomMove.addAction(enemyDiningRoomAnimate);
         //insert
         infinite.addEvent(enemyDiningRoom, enemyDiningRoomMove);
