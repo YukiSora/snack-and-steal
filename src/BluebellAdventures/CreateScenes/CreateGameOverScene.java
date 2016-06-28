@@ -24,79 +24,70 @@ import Megumin.Nodes.Scene;
 import Megumin.Nodes.Sprite;
 import Megumin.Point;
 
-public class CreateGameOverScene{
-    private static Interact interact;
-
-	public static Scene createGameOverScene(String backgroundImage, Character player, Boolean result) throws IOException {
-        interact = Interact.getInstance();
+public class CreateGameOverScene {
+    public static Scene createGameOverScene(String backgroundImage, Sprite sprite, boolean victory) throws IOException {
+        Interact interact = Interact.getInstance();
+        Character player = (Character)sprite;
 
         //init sprite
         Sprite background = new Sprite(backgroundImage);
 
-        // [1] Submit - Highscore
-        Sprite submitHighScore = new Sprite("resource/image/tag_highscore.png", new Point(600, 480));
-        Action saveHighScore = new MouseCrash(new Action(){
+        Sprite printStats = new Sprite() {
             @Override
-            public void update(Sprite sprite) {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                String currentTime = sdf.format(new java.util.Date());
-
-                try {
-                    Database.getInstance().update("INSERT INTO Records (Score, Date_Time) VALUE('"+ player.getSnackScore() +"','"+ currentTime +"')");
-                    System.out.println("Score Saved: " + player.getSnackScore());
-
-                    Director.getInstance().setScene(CreateMenuScene.createMenuScene());
-                } catch (SQLException e) {
-                    System.out.println(e);
-                } catch (IOException e){
-                    System.out.println(e);
-                }
-
-                
+            public void render(Graphics2D g) {
+                g.setFont(new Font("TimesRoman", Font.BOLD, 35));
+                g.setColor(Color.white);
+                g.drawString("Score: " + player.getSnackScore(), 560, 430);
             }
-        });
+        };
 
-        if (result){
-            interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, submitHighScore, saveHighScore, "save score");
+        // [1] Submit - Highscore
+        Sprite submitHighScore = null;
+        if (victory) {
+            submitHighScore = new Sprite("resource/image/tag_highscore.png", new Point(600, 480));
+            Action saveHighScore = new MouseCrash(new Action() {
+                @Override
+                public void update(Sprite sprite) {
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    String currentTime = sdf.format(new java.util.Date());
+
+                    try {
+                        Database.getInstance().update("INSERT INTO Records (Score, Date_Time) VALUE('" + player.getSnackScore() + "', '" + currentTime + "')");
+                        new ChangeScene(CreateMenuScene.createMenuScene(), "menu").update(null);
+                    } catch (SQLException e) {
+                        System.out.println(e);
+                        System.exit(1);
+                    } catch (IOException e){
+                        System.exit(1);
+                    }
+                }
+            });
+            interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, submitHighScore, saveHighScore, "game over");
         }
 
         // [2] Back to Main Menu
         Sprite mainMenu = new Sprite("resource/image/tag_winback.png", new Point(650, 610));
         Scene menu = CreateMenuScene.createMenuScene();
         Action backToMenu = new MouseCrash(new ChangeScene(menu, "menu"));
-
         interact.addEvent(MouseEvent.BUTTON1, Interact.ON_MOUSE_CLICK, mainMenu, backToMenu, "game over");
-
-        Sprite printStats = new Sprite() {
-            public void render(Graphics2D g) {
-                g.setFont(new Font("TimesRoman", Font.BOLD, 35));
-                g.setColor(Color.white);
-                g.drawString("Score: " + player.getSnackScore(), 560, 430);
-                super.render(g);
-            }
-        };
 
         //init layer
         Layer backgroundLayer = new Layer();
         backgroundLayer.addSprite(background);
 
         Layer tabLayer = new Layer();
-        if (result){
+        tabLayer.addSprite(printStats);
+        if (victory) {
             tabLayer.addSprite(submitHighScore);
         }
         tabLayer.addSprite(mainMenu);
-        tabLayer.addSprite(printStats);
 
         //init scene
-        Scene loading = new Scene();
-        loading.setName("game over");
-        if (result){
-            loading.setName("save score");
-        }
-        loading.addLayer(backgroundLayer);
-        loading.addLayer(tabLayer);
+        Scene gameover = new Scene();
+        gameover.setName("game over");
+        gameover.addLayer(backgroundLayer);
+        gameover.addLayer(tabLayer);
 
-        return loading;
+        return gameover;
     }
-
 }

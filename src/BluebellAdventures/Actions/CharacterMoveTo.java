@@ -33,7 +33,7 @@ public class CharacterMoveTo extends Action {
             Action doorLock = new CrashDoor();
             Action keyTouch = new CrashKey();
             Action cupboardLock = new CrashCupboard();
-            Action finishLine = new GameOver();
+            Action finishLine = new GameOver(true);
 
             sprite.checkCrash(sprites.get(0), snackpick);
             sprite.checkCrash(sprites.get(3), cupboardLock);

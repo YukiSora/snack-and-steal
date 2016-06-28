@@ -1,7 +1,5 @@
 package BluebellAdventures.Actions;
 
-import BluebellAdventures.Characters.Character;
-import BluebellAdventures.Characters.GameMap;
 import BluebellAdventures.Characters.Snack;
 
 import Megumin.Actions.Action;
@@ -21,6 +19,5 @@ public class ChaseCharacter extends Effect {
         // Set Enemy to Chase
         ((EnemyMove)action).setMode(1);
         ((EnemyMove)action).setCharacterSprite(getSprite());
-
     }
 }
