@@ -53,13 +53,13 @@ public class CreateGameScene {
 
         //Set character advantages
         if (playerImageName == "fox"){
-            ((Character)player).setSpeed(40);
+            ((Character)player).setSpeed(35);
         }
         if (playerImageName == "cat"){
             ((Character)player).setHp(9);
         }
         if(playerImageName == "rat"){
-            ((Character)player).setKey(3);
+            ((Character)player).setKey(2);
         }
 
         //init movable object sprites
@@ -67,6 +67,10 @@ public class CreateGameScene {
                             .setLock(true)
                             .setOpen(false);
         fridge.setName("fridge");
+		Sprite stove = new MovableObject("resource/image/cooker.png", new Point(3880, 2311))
+                            .setLock(false)
+                            .setOpen(false);
+        stove.setName("stove");
         Sprite cupboard1 = new MovableObject("resource/image/cupboard.png", new Point(1548, 64))
                             .setLock(false)
                             .setOpen(false);
@@ -79,8 +83,16 @@ public class CreateGameScene {
                             .setLock(false)
                             .setOpen(false);
         cupboard3.setName("cupboard3");
+		Sprite cupboard4 = new MovableObject("resource/image/closet.png", new Point(1333, 1895))
+                            .setLock(false)
+                            .setOpen(false);
+        cupboard4.setName("cupboard4");
+		Sprite cupboard5 = new MovableObject("resource/image/closet.png", new Point(2334, 1278))
+                            .setLock(false)
+                            .setOpen(false);
+        cupboard5.setName("cupboard5");
 
-        //init im-movable object sprites
+        //init immovable object sprites
         Sprite table = new MovableObject("resource/image/diningtable.png", new Point(3359, 178))
                             .setLock(false)
                             .setOpen(false);
@@ -89,6 +101,34 @@ public class CreateGameScene {
                             .setLock(false)
                             .setOpen(false);
         tree.setName("tree");
+		Sprite cupboard1 = new MovableObject("resource/image/cupboard.png", new Point(1548, 64))
+                            .setLock(false)
+                            .setOpen(false);
+        cupboard1.setName("cupboard1");
+		Sprite cupboard2 = new MovableObject("resource/image/cupboard.png", new Point(834, 64))
+                            .setLock(false)
+                            .setOpen(false);
+        cupboard2.setName("cupboard2");
+        Sprite cupboard3 = new MovableObject("resource/image/cupboard.png", new Point(3863, 1127))
+                            .setLock(false)
+                            .setOpen(false);
+        cupboard3.setName("cupboard3");
+		Sprite cupboard4 = new MovableObject("resource/image/closet.png", new Point(1333, 1895))
+                            .setLock(false)
+                            .setOpen(false);
+        cupboard4.setName("cupboard4");
+		Sprite cupboard5 = new MovableObject("resource/image/closet.png", new Point(2334, 1278))
+                            .setLock(false)
+                            .setOpen(false);
+        cupboard5.setName("cupboard5");
+		Sprite fridge = new MovableObject("resource/image/fridge_top.png", new Point(3387, 2520))
+                            .setLock(false)
+                            .setOpen(false);
+        fridge.setName("fridge");
+		Sprite stove = new MovableObject("resource/image/cooker.png", new Point(3880, 2311))
+                            .setLock(false)
+                            .setOpen(false);
+        stove.setName("stove");
 
         //init door sprites
         Sprite storeDoor = new MovableObject("resource/image/door.png", new Point(2705, 1415))
@@ -135,10 +175,8 @@ public class CreateGameScene {
                             .setScore(100);
         Sprite snackkitchen4 = new Snack("resource/image/snack1.png", new Point(3977, 2338))
                             .setScore(50);
-        Sprite snackdining1 = new Snack("resource/image/badsnack.png", new Point(3525, 687))
-                             .setScore(-50);
-        Sprite snackdining2 = new Snack("resource/image/snack1.png", new Point(3623, 319))
-                            .setScore(20);
+        Sprite snackdining1 = new Snack("resource/image/snack1.png", new Point(3525, 687))
+                             .setScore(50);
         Sprite snackrack1 = new Snack("resource/image/snack1.png", new Point(3933, 1166))
                             .setScore(40);
         Sprite snackrack2 = new Snack("resource/image/snack1.png", new Point(3935, 1274))
@@ -178,6 +216,8 @@ public class CreateGameScene {
         Sprite key3 = new Snack("resource/image/key.png", new Point(863, 101))
                             .setScore(0);
         Sprite key4 = new Snack("resource/image/key.png", new Point(3938, 2338))
+                            .setScore(0);
+		Sprite key5 = new Snack("resource/image/key.png", new Point(3623, 319))
                             .setScore(0);
 
         //init map sprite
@@ -236,6 +276,9 @@ public class CreateGameScene {
         cupboardLayer.addSprite(cupboard1);
         cupboardLayer.addSprite(cupboard2);
         cupboardLayer.addSprite(cupboard3);
+		cupboardLayer.addSprite(cupboard4);
+		cupboardLayer.addSprite(cupboard5);
+		objectLayer.addSprite(stove);
 
         Layer doorLayer = new Layer();
         doorLayer.setName("doors");
@@ -254,6 +297,7 @@ public class CreateGameScene {
         keyLayer.addSprite(key2);
         keyLayer.addSprite(key3);
         keyLayer.addSprite(key4);
+		keyLayer.addSprite(key5);
 
         Layer snackLayer = new Layer();
         snackLayer.setName("snack");
@@ -263,7 +307,6 @@ public class CreateGameScene {
         snackLayer.addSprite(snackkitchen3);
         snackLayer.addSprite(snackkitchen4);
         snackLayer.addSprite(snackdining1);
-        snackLayer.addSprite(snackdining2);
         snackLayer.addSprite(snackrack1);
         snackLayer.addSprite(snackrack2);
         snackLayer.addSprite(snackcoffee1);
@@ -283,6 +326,13 @@ public class CreateGameScene {
         Layer objectLayer = new Layer();
         objectLayer.addSprite(table);
         objectLayer.addSprite(tree);
+		objectLayer.addSprite(stove);
+		objectLayer.addSprite(cupboard1);
+		objectLayer.addSprite(cupboard2);
+		objectLayer.addSprite(cupboard3);
+		objectLayer.addSprite(cupboard4);
+		objectLayer.addSprite(cupboard5);
+		objectLayer.addSprite(fridge);
 
         Layer mapLayer = new Layer();
         mapLayer.addSprite(map);

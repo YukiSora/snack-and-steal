@@ -21,11 +21,18 @@ public class CrashCupboard extends Effect {
                 //change position base on the image size
                 int oldWidth = cupboard.getImage().getWidth();
                 int oldHeight = cupboard.getImage().getHeight();
-                cupboard.setImage("resource/image/cupboard_open.png");
-                int newWidth = cupboard.getImage().getWidth();
-                int newHeight = cupboard.getImage().getHeight();
-                cupboard.setPosition(cupboard.getPosition().offset(oldWidth - newWidth, oldHeight - newHeight));
-
+				if(oldWidth == 182) {
+					cupboard.setImage("resource/image/cupboard_open.png");
+				}
+				else if (oldWidth == 363){
+					cupboard.setImage("resource/image/closet_open.png");
+				}
+				else if (oldWidth == 165){
+					cupboard.setImage("resource/image/cooker_open.png");
+				}
+				int newWidth = cupboard.getImage().getWidth();
+				int newHeight = cupboard.getImage().getHeight();
+				cupboard.setPosition(cupboard.getPosition().offset(oldWidth - newWidth, oldHeight - newHeight));
                 cupboard.setOpen(true);
             }
         } catch (IOException e) {
