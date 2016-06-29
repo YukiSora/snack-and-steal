@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="bluebell-adventures" default="run" basedir=".">
     <property name="src" value="src" />
+    <property name="mysql" value="resource/mysql.jar" />
     <property name="dest" value="bin" />
     <property name="game" value="BluebellAdventures" />
 
@@ -10,13 +11,31 @@
     </target>
 
     <target name="compile" depends="init">
-        <javac srcdir="${src}" destdir="${dest}" includeantruntime="false" />
+        <javac srcdir="${src}" destdir="${dest}" includeantruntime="false">
+            <classpath>
+                <pathelement path="${mysql}"/>
+            </classpath>
+        </javac>
         <echo message="Compile"/>
     </target>
 
     <target name="run" depends="compile">
-        <java classname="${game}.Main" classpath="${dest}" />
+        <java classname="${game}.Main" classpath="${dest}">
+            <classpath>
+                <pathelement path="${mysql}"/>
+            </classpath>
+        </java>
         <echo message="Run"/>
+    </target>
+
+    <target name="jar" depends="compile">
+        <jar jarfile="${game}.jar" basedir="${dest}">  
+            <manifest>  
+                <attribute name="Main-Class" value="${game}.Main" />
+                <attribute name="Class-Path" value="${mysql}">  
+                </attribute>
+            </manifest>
+        </jar>
     </target>
 
     <target name="clean">  
