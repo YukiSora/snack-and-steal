@@ -15,7 +15,7 @@ public class CrashCupboard extends Effect {
         try {
             //Open cupboard if hasn't opened
             MovableObject cupboard = (MovableObject)getSprite();
-            if (!cupboard.getOpen()) {
+            if (!cupboard.getOpened()) {
                 AudioEngine.getInstance().play("fridge");
 
                 //change position base on the image size
@@ -33,7 +33,7 @@ public class CrashCupboard extends Effect {
                 int newWidth = cupboard.getImage().getWidth();
                 int newHeight = cupboard.getImage().getHeight();
                 cupboard.setPosition(cupboard.getPosition().offset(oldWidth - newWidth, oldHeight - newHeight));
-                cupboard.setOpen(true);
+                cupboard.setOpened(true);
             }
         } catch (IOException e) {
             System.exit(1);

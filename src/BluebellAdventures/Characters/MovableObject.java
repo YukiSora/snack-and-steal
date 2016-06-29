@@ -10,8 +10,8 @@ import Megumin.Nodes.Sprite;
 import Megumin.Point;
 
 public class MovableObject extends Sprite {
-    private boolean lock;
-    private boolean open;
+    private boolean locked;
+    private boolean opened;
 
     // Constructors //
     public MovableObject(String filename) throws IOException {
@@ -39,21 +39,21 @@ public class MovableObject extends Sprite {
     }
 
     // Set and Gets //
-    public MovableObject setLock(boolean lock) {
-        this.lock = lock;
+    public MovableObject setLocked(boolean locked) {
+        this.locked = locked;
         return this;
     }
 
-    public boolean getLock() {
-        return lock;
+    public boolean getLocked() {
+        return locked;
     }
 
-    public MovableObject setOpen(boolean open) {
-        this.open = open;
+    public MovableObject setOpened(boolean opened) {
+        this.opened = opened;
         return this;
     }
 
-    public boolean getOpen() {
-        return open;
+    public boolean getOpened() {
+        return opened;
     }
 }

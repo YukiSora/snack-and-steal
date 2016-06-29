@@ -90,19 +90,19 @@ public class Character extends Sprite {
             }
             else if (direction[0] == 1) {
                 if (direction[1] == -1) {
+                    rotate = 1;
                     setPosition((1280 - h) / 2, (720 - h) / 2);
                     setSize(h, h);
-                    rotate = 1;
                 }
                 else if (direction[1] == 0) {
+                    rotate = 2;
                     setPosition((1280 - h) / 2, (720 - w) / 2);
                     setSize(h, w);
-                    rotate = 2;
                 }
                 else if (direction[1] == 1) {
+                    rotate = 3;
                     setPosition((1280 - h) / 2, (720 - h) / 2);
                     setSize(h, h);
-                    rotate = 3;
                 }
             }
             double theta = Math.PI / 4 * rotate;

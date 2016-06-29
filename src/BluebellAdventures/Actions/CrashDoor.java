@@ -17,15 +17,15 @@ public class CrashDoor extends Effect {
         try {
             //Open door if it hasn't opened
             MovableObject door = (MovableObject)getSprite();
-            if (!door.getOpen()) {
+            if (!door.getOpened()) {
                 //Unlock door if it hasn't unlocked
-                if (door.getLock()) {
+                if (door.getLocked()) {
                     //Unlock door if character has enough key
                     Character player = (Character)sprite;
                     int key = player.getKey();
                     if (key > 0) {
                         player.setKey(key - 1);
-                        door.setLock(false);
+                        door.setLocked(false);
                     }
                     else {
                         return;
@@ -48,7 +48,7 @@ public class CrashDoor extends Effect {
                 //set crash area to 0
                 door.setSize(new Point(0, 0));
 
-                door.setOpen(true);
+                door.setOpened(true);
             }
         } catch (IOException e) {
             System.exit(1);

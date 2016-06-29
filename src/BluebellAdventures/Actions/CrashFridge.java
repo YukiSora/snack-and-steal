@@ -16,15 +16,15 @@ public class CrashFridge extends Effect {
         try {
             //Open fridge if it hasn't opened
             MovableObject fridge = (MovableObject)getSprite();
-            if (!fridge.getOpen()) {
+            if (!fridge.getOpened()) {
                 //Unlock fridge if it hasn't unlocked
-                if (fridge.getLock()) {
+                if (fridge.getLocked()) {
                     //Unlock fridge if character has enough key
                     Character player = (Character)sprite;
                     int key = player.getKey();
                     if (key > 0) {
                         player.setKey(key - 1);
-                        fridge.setLock(false);
+                        fridge.setLocked(false);
                     }
                     else {
                         return;
@@ -42,7 +42,7 @@ public class CrashFridge extends Effect {
                 //set crash area to 0
                 fridge.setSize(new Point(0, 0));
 
-                fridge.setOpen(true);
+                fridge.setOpened(true);
             }
         } catch (IOException e) {
             System.exit(1);

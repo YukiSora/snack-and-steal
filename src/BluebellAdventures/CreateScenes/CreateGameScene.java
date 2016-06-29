@@ -61,81 +61,81 @@ public class CreateGameScene {
 
         //init movable object sprites
         Sprite fridge = new MovableObject("resource/image/fridge.png", new Point(3387, 2520))
-                            .setLock(true)
-                            .setOpen(false);
+                            .setLocked(true)
+                            .setOpened(false);
         Sprite stove = new MovableObject("resource/image/cooker.png", new Point(3880, 2311))
-                            .setLock(false)
-                            .setOpen(false);
+                            .setLocked(false)
+                            .setOpened(false);
         Sprite cupboard1 = new MovableObject("resource/image/cupboard.png", new Point(1548, 64))
-                            .setLock(false)
-                            .setOpen(false);
+                            .setLocked(false)
+                            .setOpened(false);
         Sprite cupboard2 = new MovableObject("resource/image/cupboard.png", new Point(800, 64))
-                            .setLock(false)
-                            .setOpen(false);
+                            .setLocked(false)
+                            .setOpened(false);
         Sprite cupboard3 = new MovableObject("resource/image/cupboard.png", new Point(3863, 1127))
-                            .setLock(false)
-                            .setOpen(false);
+                            .setLocked(false)
+                            .setOpened(false);
         Sprite cupboard4 = new MovableObject("resource/image/closet.png", new Point(1333, 1895))
-                            .setLock(false)
-                            .setOpen(false);
+                            .setLocked(false)
+                            .setOpened(false);
         Sprite cupboard5 = new MovableObject("resource/image/closet.png", new Point(2334, 1278))
-                            .setLock(false)
-                            .setOpen(false);
+                            .setLocked(false)
+                            .setOpened(false);
 
         //init immovable object sprites
         Sprite table = new MovableObject("resource/image/diningtable.png", new Point(3359, 178))
-                            .setLock(false)
-                            .setOpen(false);
+                            .setLocked(false)
+                            .setOpened(false);
         Sprite tree = new MovableObject("resource/image/tree.png", new Point(24, 2105))
-                            .setLock(false)
-                            .setOpen(false);
+                            .setLocked(false)
+                            .setOpened(false);
         Sprite fridgeCover = new MovableObject("resource/image/fridge_top.png", new Point(3387, 2520))
-                            .setLock(false)
-                            .setOpen(false);
+                            .setLocked(false)
+                            .setOpened(false);
         Sprite stoveCover = new MovableObject("resource/image/cooker.png", new Point(3880, 2311))
-                            .setLock(false)
-                            .setOpen(false);
+                            .setLocked(false)
+                            .setOpened(false);
         Sprite cupboard1Cover = new MovableObject("resource/image/cupboard.png", new Point(1548, 64))
-                            .setLock(false)
-                            .setOpen(false);
+                            .setLocked(false)
+                            .setOpened(false);
         Sprite cupboard2Cover = new MovableObject("resource/image/cupboard.png", new Point(800, 64))
-                            .setLock(false)
-                            .setOpen(false);
+                            .setLocked(false)
+                            .setOpened(false);
         Sprite cupboard3Cover = new MovableObject("resource/image/cupboard.png", new Point(3863, 1127))
-                            .setLock(false)
-                            .setOpen(false);
+                            .setLocked(false)
+                            .setOpened(false);
         Sprite cupboard4Cover = new MovableObject("resource/image/closet.png", new Point(1333, 1895))
-                            .setLock(false)
-                            .setOpen(false);
+                            .setLocked(false)
+                            .setOpened(false);
         Sprite cupboard5Cover = new MovableObject("resource/image/closet.png", new Point(2334, 1278))
-                            .setLock(false)
-                            .setOpen(false);
+                            .setLocked(false)
+                            .setOpened(false);
 
         //init door sprites
         Sprite storeDoor = new MovableObject("resource/image/door.png", new Point(2705, 1415))
-                            .setLock(true)
-                            .setOpen(false);
+                            .setLocked(true)
+                            .setOpened(false);
         Sprite roomDoor1 = new MovableObject("resource/image/door.png", new Point(689, 774))
-                            .setLock(true)
-                            .setOpen(false);
+                            .setLocked(true)
+                            .setOpened(false);
         Sprite roomDoor2 = new MovableObject("resource/image/door.png", new Point(1063, 774))
-                            .setLock(true)
-                            .setOpen(false);
+                            .setLocked(true)
+                            .setOpened(false);
         Sprite roomDoor3 = new MovableObject("resource/image/door.png", new Point(1050, 1125))
-                            .setLock(false)
-                            .setOpen(false);
+                            .setLocked(false)
+                            .setOpened(false);
         Sprite mainDoor = new MovableObject("resource/image/door.png", new Point(1942, 1849))
-                            .setLock(false)
-                            .setOpen(false);
+                            .setLocked(false)
+                            .setOpened(false);
         Sprite backDoor = new MovableObject("resource/image/door.png", new Point(2848, 2692))
-                            .setLock(true)
-                            .setOpen(false);
+                            .setLocked(true)
+                            .setOpened(false);
         Sprite toiletDoor1 = new MovableObject("resource/image/verticaldoor.png", new Point(540, 861))
-                            .setLock(false)
-                            .setOpen(false);
+                            .setLocked(false)
+                            .setOpened(false);
         Sprite toiletDoor2 = new MovableObject("resource/image/verticaldoor.png", new Point(459, 1602))
-                            .setLock(false)
-                            .setOpen(false);
+                            .setLocked(false)
+                            .setOpened(false);
 
         //init snacks sprites
         Sprite snackFridge = new Snack("resource/image/snack1.png", new Point(3531, 2590))
