@@ -218,12 +218,12 @@ public class CreateGameScene {
 
                     String keyString = "⚩⚩⚩⚩⚩⚩⚩⚩⚩⚩";
                     g.setColor(Color.white);
-                    g.drawString("Key: ", 400, 50);
+                    g.drawString("Key: ", 550, 50);
                     g.setColor(Color.yellow);
-                    g.drawString(keyString.substring(0, ((Character)player).getKey()), 500, 50);
+                    g.drawString(keyString.substring(0, ((Character)player).getKey()), 650, 50);
 
                     g.setColor(Color.white);
-                    g.drawString("Score: " + ((Character)player).getSnackScore(), 700, 50);
+                    g.drawString("Score: " + ((Character)player).getSnackScore(), 900, 50);
                 }
             }
         };
