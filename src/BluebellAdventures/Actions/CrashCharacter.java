@@ -17,7 +17,9 @@ public class CrashCharacter extends Effect {
 
     @Override
     public void update(Sprite sprite) {
+        AudioEngine.getInstance().stop("nervous");
         AudioEngine.getInstance().play("attacking");
+        AudioEngine.getInstance().play("main");
 
         Character player = (Character) getSprite();
         // Minus Player's Health

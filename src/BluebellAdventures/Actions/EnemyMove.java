@@ -7,6 +7,7 @@ import BluebellAdventures.Characters.Character;
 import BluebellAdventures.Characters.Enemy;
 import BluebellAdventures.Characters.GameMap;
 
+import Megumin.Audio.AudioEngine;
 import Megumin.Actions.MoveTo;
 import Megumin.Nodes.Director;
 import Megumin.Nodes.Scene;
@@ -110,10 +111,16 @@ public class EnemyMove extends MoveTo {
             } else {
                 walkable = true;
             }
+
+            // When Enemy Loses Sight of the Character
             if ((x + w) + direction[0] * speed > position.getX() + size.getX()
                 || (y + h) + direction[1] * speed > position.getY() + size.getY()
                 || x + direction[0] * speed < position.getX()
                 || y + direction[1] * speed < position.getY()) {
+                
+                AudioEngine.getInstance().stop("nervous");
+                AudioEngine.getInstance().play("main");
+
                 mode = 0;
             } 
         }
