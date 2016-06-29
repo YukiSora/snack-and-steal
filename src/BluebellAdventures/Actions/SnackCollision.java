@@ -8,7 +8,7 @@ import Megumin.Audio.AudioEngine;
 import Megumin.Nodes.Director;
 import Megumin.Nodes.Sprite;
 
-public class CrashSnack extends Effect {
+public class SnackCollision extends Effect {
     @Override
     public void update(Sprite sprite) {
         AudioEngine.getInstance().play("eating");

@@ -102,8 +102,8 @@ public class Enemy extends Sprite {
     }
 
     @Override
-    public boolean checkCrash(CopyOnWriteArrayList<Sprite> sprites, Action action) {
-        boolean crash = false;
+    public boolean checkCollision(CopyOnWriteArrayList<Sprite> sprites, Action action) {
+        boolean collision = false;
         int x1 = getPosition().getX();
         int y1 = getPosition().getY();
         int w1 = getSize().getX();
@@ -117,7 +117,7 @@ public class Enemy extends Sprite {
             int w2 = sprite.getSize().getX();
             int h2 = sprite.getSize().getY();
 
-            //check whether crash area exist
+            //check whether collision area exist
             if (w2 == 0 || h2 == 0) {
                 continue;
             }
@@ -126,11 +126,11 @@ public class Enemy extends Sprite {
                 Math.max(Math.abs(y2 - (y1 + h1)), Math.abs(y2 + h2 - y1)) < h1 + h2) {
                 ((Effect)action).setSprite(sprite);
                 runAction(action);
-                crash = true;
+                collision = true;
             }
         }
 
-        return crash;
+        return collision;
     }
 
     // Get and Sets //

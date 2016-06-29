@@ -62,8 +62,8 @@ public class Sprite {
         return action;
     }
 
-    public boolean checkCrash(CopyOnWriteArrayList<Sprite> sprites, Action action) {
-        boolean isCrash = false;
+    public boolean checkCollision(CopyOnWriteArrayList<Sprite> sprites, Action action) {
+        boolean collision = false;
         int x1 = position.getX();
         int y1 = position.getY();
         int w1 = size.getX();
@@ -77,7 +77,7 @@ public class Sprite {
             int w2 = sprite.getSize().getX();
             int h2 = sprite.getSize().getY();
 
-            //check whether crash area exist
+            //check whether in collision area exist
             if (w2 == 0 || h2 == 0) {
                 continue;
             }
@@ -87,11 +87,11 @@ public class Sprite {
                 //set sprite which be effected
                 ((Effect)action).setSprite(sprite);
                 runAction(action);
-                isCrash = true;
+                collision = true;
             }
         }
 
-        return isCrash;
+        return collision;
     }
 
     public Point getPosition() {

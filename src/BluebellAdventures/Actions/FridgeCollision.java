@@ -10,7 +10,7 @@ import Megumin.Audio.AudioEngine;
 import Megumin.Nodes.Sprite;
 import Megumin.Point;
 
-public class CrashFridge extends Effect {
+public class FridgeCollision extends Effect {
     @Override
     public void update(Sprite sprite) {
         try {
@@ -39,7 +39,7 @@ public class CrashFridge extends Effect {
                 int newWidth = fridge.getImage().getWidth();
                 int newHeight = fridge.getImage().getHeight();
                 fridge.setPosition(fridge.getPosition().offset(oldWidth - newWidth, oldHeight - newHeight));
-                //set crash area to 0
+                //set collision area to 0
                 fridge.setSize(new Point(0, 0));
 
                 fridge.setOpened(true);

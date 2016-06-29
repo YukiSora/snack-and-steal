@@ -33,22 +33,22 @@ public class CharacterMoveTo extends Action {
     @Override
     public void update(Sprite sprite) {
         sprite.getDirection()[coordinate] = direction;
-        if (!GameMap.characterCrash(sprite, x, y)) {
-            Action snackpick = new CrashSnack();
-            Action fridgeLock = new CrashFridge();
-            Action doorLock = new CrashDoor();
-            Action keyTouch = new CrashKey();
-            Action cupboardLock = new CrashCupboard();
+        if (!GameMap.characterCollision(sprite, x, y)) {
+            Action snackpick = new SnackCollision();
+            Action fridgeLock = new FridgeCollision();
+            Action doorLock = new DoorCollision();
+            Action keyTouch = new KeyCollision();
+            Action cupboardLock = new CupboardCollision();
             Action finishLine = new GameOver(true);
 
-            sprite.checkCrash(sprites.get(0), snackpick);
-            sprite.checkCrash(sprites.get(3), cupboardLock);
-            sprite.checkCrash(sprites.get(4), keyTouch);
-            sprite.checkCrash(sprites.get(5), finishLine);
+            sprite.checkCollision(sprites.get(0), snackpick);
+            sprite.checkCollision(sprites.get(3), cupboardLock);
+            sprite.checkCollision(sprites.get(4), keyTouch);
+            sprite.checkCollision(sprites.get(5), finishLine);
 
             sprite.setPosition(sprite.getPosition().offset(x, y));
-            if (!sprite.checkCrash(sprites.get(1), fridgeLock) &&
-                !sprite.checkCrash(sprites.get(2), doorLock)) {
+            if (!sprite.checkCollision(sprites.get(1), fridgeLock) &&
+                !sprite.checkCollision(sprites.get(2), doorLock)) {
                 GameMap.getInstance().getPosition().offset(-x, -y);
             }
             sprite.setPosition(sprite.getPosition().offset(-x, -y));

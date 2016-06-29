@@ -7,7 +7,7 @@ import Megumin.Audio.AudioEngine;
 import Megumin.Nodes.Director;
 import Megumin.Nodes.Sprite;
 
-public class CrashKey extends Effect {
+public class KeyCollision extends Effect {
     @Override
     public void update(Sprite sprite) {
         AudioEngine.getInstance().play("key");

@@ -8,10 +8,10 @@ import Megumin.Actions.Effect;
 import Megumin.Audio.AudioEngine;
 import Megumin.Nodes.Sprite;
 
-public class CrashCharacter extends Effect {
+public class CharacterCollision extends Effect {
     private Action action;
 
-    CrashCharacter(Action action) {
+    CharacterCollision(Action action) {
         this.action = action;
     }
 

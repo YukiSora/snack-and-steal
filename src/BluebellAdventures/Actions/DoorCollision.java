@@ -11,7 +11,7 @@ import Megumin.Nodes.Sprite;
 import Megumin.Point;
 
 //Check door upon touching
-public class CrashDoor extends Effect {
+public class DoorCollision extends Effect {
     @Override
     public void update(Sprite sprite) {
         try {
@@ -45,7 +45,7 @@ public class CrashDoor extends Effect {
                 int newWidth = door.getImage().getWidth();
                 int newHeight = door.getImage().getHeight();
                 door.setPosition(door.getPosition().offset(oldWidth - newWidth, oldHeight - newHeight));
-                //set crash area to 0
+                //set collision area to 0
                 door.setSize(new Point(0, 0));
 
                 door.setOpened(true);

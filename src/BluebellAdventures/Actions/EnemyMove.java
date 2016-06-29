@@ -82,10 +82,10 @@ public class EnemyMove extends MoveTo {
             setX(direction[0] * speed);
             setY(direction[1] * speed);
 
-            boolean xCrash = GameMap.enemyCrash(sprite, direction[0] * speed, 0);
-            boolean yCrash = GameMap.enemyCrash(sprite, 0, direction[1] * speed);
-            if (xCrash || yCrash) {
-                if (xCrash && !yCrash) {
+            boolean xCollision = GameMap.enemyCollision(sprite, direction[0] * speed, 0);
+            boolean yCollision = GameMap.enemyCollision(sprite, 0, direction[1] * speed);
+            if (xCollision || yCollision) {
+                if (xCollision && !yCollision) {
                     setX(0);
                     if (sprite.getPosition().getY() > -characterPosition.getY() + characterSprite.getPosition().getY()) {
                         setY(-1 * speed);
@@ -94,7 +94,7 @@ public class EnemyMove extends MoveTo {
                         setY(1 * speed);
                     }
                 }
-                else if (!xCrash && yCrash) {
+                else if (!xCollision && yCollision) {
                     if (sprite.getPosition().getX() > -characterPosition.getX() + characterSprite.getPosition().getX()) {
                         setX(-1 * speed);
                     }
@@ -103,7 +103,7 @@ public class EnemyMove extends MoveTo {
                     }
                     setY(0);
                 }
-                else if (xCrash && yCrash) {
+                else if (xCollision && yCollision) {
                     setX(-direction[0] * speed);
                     setY(-direction[1] * speed);
                 }
@@ -127,7 +127,7 @@ public class EnemyMove extends MoveTo {
 
         // Patrolling
         if (mode == 0){
-            if (GameMap.enemyCrash(sprite, direction[0] * speed, direction[1] * speed)
+            if (GameMap.enemyCollision(sprite, direction[0] * speed, direction[1] * speed)
                 || (x + w) + direction[0] * speed > position.getX() + size.getX()
                 || (y + h) + direction[1] * speed > position.getY() + size.getY()
                 || x + direction[0] * speed < position.getX()
@@ -151,8 +151,8 @@ public class EnemyMove extends MoveTo {
             super.update(sprite);
         }
 
-        chaseArea.checkCrash(sprites.get(0), new ChaseCharacter(this));
-        sprite.checkCrash(sprites.get(0), new CrashCharacter(this));
+        chaseArea.checkCollision(sprites.get(0), new ChaseCharacter(this));
+        sprite.checkCollision(sprites.get(0), new CharacterCollision(this));
     }
 
     public int getMode() {

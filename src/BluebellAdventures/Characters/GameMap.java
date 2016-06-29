@@ -39,7 +39,7 @@ public class GameMap extends Sprite {
         return map;
     }
 
-    public static boolean characterCrash(Sprite sprite, int moveX, int moveY) {
+    public static boolean characterCollision(Sprite sprite, int moveX, int moveY) {
         byte[][] path = map.getPath();
 
         //map position
@@ -68,7 +68,7 @@ public class GameMap extends Sprite {
         return false;
     }
 
-    public static boolean enemyCrash(Sprite sprite, int moveX, int moveY) {
+    public static boolean enemyCollision(Sprite sprite, int moveX, int moveY) {
         byte[][] path = map.getPath();
 
         //enemy and map in same coordinated system

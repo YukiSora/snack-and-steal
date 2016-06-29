@@ -9,7 +9,7 @@ import Megumin.Audio.AudioEngine;
 import Megumin.Nodes.Sprite;
 import Megumin.Point;
 
-public class CrashCupboard extends Effect {
+public class CupboardCollision extends Effect {
     @Override
     public void update(Sprite sprite) {
         try {
