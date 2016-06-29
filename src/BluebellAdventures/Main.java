@@ -63,6 +63,7 @@ public class Main {
         audioEngine.addAudio("main", new Audio("resource/audio/main.wav"));
         audioEngine.addAudio("nervous", new Audio("resource/audio/nervous.wav"));
         audioEngine.addAudio("victory", new Audio("resource/audio/victory.wav"));
+        audioEngine.addAudio("lose", new Audio("resource/audio/lose.wav"));
         audioEngine.addAudio("eating", new Audio("resource/audio/eating.wav"));
         audioEngine.addAudio("attacking", new Audio("resource/audio/attacking.wav"));
         audioEngine.addAudio("slurping", new Audio("resource/audio/slurping.wav"));
@@ -71,6 +72,7 @@ public class Main {
         audioEngine.addAudio("fridge", new Audio("resource/audio/fridge.wav"));
         audioEngine.addAudio("unlock", new Audio("resource/audio/unlock.wav"));
         audioEngine.addAudio("key", new Audio("resource/audio/key.wav"));
+
         audioEngine.setVolume("main", 0.8f);
 
         //system action

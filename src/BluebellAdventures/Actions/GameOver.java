@@ -26,7 +26,7 @@ public class GameOver extends Effect {
             audio = "victory";
             backgroundImage = "resource/image/win.png";
         } else {
-            audio = "nervous";
+            audio = "lose";
             backgroundImage = "resource/image/lose.png";
         }
 
