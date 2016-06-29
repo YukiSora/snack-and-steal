@@ -1,0 +1,4 @@
+username
+password
+#replace above two lines with your mysql username and password
+#change this filename to mysql.txt

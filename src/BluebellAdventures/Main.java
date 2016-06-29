@@ -4,8 +4,10 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Scanner;
 import javax.imageio.ImageIO;
 import javax.sound.sampled.Clip;
 
@@ -42,8 +44,8 @@ public class Main {
         infinite = Infinite.getInstance();
         interact = Interact.getInstance();
         audioEngine = AudioEngine.getInstance();
-        try {
-            Database.createDatabase("jdbc:mysql://localhost:3306/BluebellAdventuresRecord", "yukisora", "poi");
+        try (Scanner in = new Scanner(new FileReader("resource/mysql.txt"))) {
+            Database.createDatabase("jdbc:mysql://localhost:3306/BluebellAdventuresRecord", in.nextLine(), in.nextLine());
         } catch (SQLException e) {
             System.out.println(e);
             System.exit(1);
