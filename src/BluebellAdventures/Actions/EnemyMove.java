@@ -47,7 +47,6 @@ public class EnemyMove extends MoveTo {
 
     @Override
     public void update(Sprite sprite) {
-        System.out.println(mode);
         int[] direction = sprite.getDirection();
         int x = sprite.getPosition().getX() + direction[0] * speed;
         int y = sprite.getPosition().getY() + direction[1] * speed;
@@ -119,7 +118,7 @@ public class EnemyMove extends MoveTo {
                 || y + direction[1] * speed < position.getY()) {
                 
                 AudioEngine.getInstance().stop("nervous");
-                AudioEngine.getInstance().play("main");
+                AudioEngine.getInstance().loop("main");
 
                 mode = 0;
             } 

@@ -19,7 +19,7 @@ public class ChaseCharacter extends Effect {
     public void update(Sprite sprite) {
         if(((EnemyMove)action).getMode() == 0){
             AudioEngine.getInstance().stop("main");
-            AudioEngine.getInstance().play("nervous");
+            AudioEngine.getInstance().loop("nervous");
         }
         // Set Enemy to Chase
         ((EnemyMove)action).setMode(1);

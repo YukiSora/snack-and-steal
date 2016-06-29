@@ -19,7 +19,7 @@ public class CharacterCollision extends Effect {
     public void update(Sprite sprite) {
         AudioEngine.getInstance().stop("nervous");
         AudioEngine.getInstance().play("attacking");
-        AudioEngine.getInstance().play("main");
+        AudioEngine.getInstance().loop("main");
 
         Character player = (Character) getSprite();
         // Minus Player's Health
