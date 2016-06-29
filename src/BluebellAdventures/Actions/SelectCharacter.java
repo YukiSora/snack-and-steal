@@ -1,7 +1,6 @@
 package BluebellAdventures.Actions;
 
 import java.io.IOException;
-import javax.sound.sampled.Clip;
 
 import BluebellAdventures.CreateScenes.CreateGameScene;
 import BluebellAdventures.CreateScenes.CreateLoadingScene;
@@ -34,7 +33,7 @@ public class SelectCharacter extends Action {
                 } catch (IOException e) {
                     System.exit(1);
                 }
-                AudioEngine.getInstance().loop("main", Clip.LOOP_CONTINUOUSLY);
+                AudioEngine.getInstance().loop("main");
             }
         }).start();
         super.update(sprite);

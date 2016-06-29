@@ -8,10 +8,12 @@ public class AudioEngine {
     // Variables
     private static AudioEngine audioEngine;
     HashMap<String, Audio> audios;
+    HashMap<String, Boolean> status;
 
     // Constructor
     private AudioEngine() {
-        audios = new HashMap<String, Audio>();
+        audios = new HashMap<>();
+        status = new HashMap<>();
     }
 
     public static AudioEngine getInstance() {
@@ -25,39 +27,46 @@ public class AudioEngine {
     // Methods
     public void addAudio(String name, Audio audio) {
         audios.put(name, audio);
-    }
-
-    public void removeAudio(Audio audio) {
-        audios.remove(audio);
+        status.put(name, false);
     }
 
     public void removeAudio(String name) {
         audios.remove(name);
+        status.remove(name);
     }
 
     public void play(String name) {
         audios.get(name).play();
+        status.put(name, true);
+    }
+
+    public boolean isPlayed(String name) {
+        return status.get(name);
+    }
+
+    public void loop(String name) {
+        audios.get(name).loop(Clip.LOOP_CONTINUOUSLY);
+        status.put(name, true);
     }
 
     public void loop(String name, int times) {
         audios.get(name).loop(times);
-    }
-
-    public void stop(String name) {
-        audios.get(name).stop();
+        status.put(name, true);
     }
 
     public void setVolume(String name, float percent){
         audios.get(name).setVolume(percent);
     }
 
+    public void stop(String name) {
+        audios.get(name).stop();
+        status.put(name, false);
+    }
+
     public void stopAll() {
         for(Entry<String, Audio> entry : audios.entrySet()) {
             entry.getValue().stop();
+            status.put(entry.getKey(), false);
         }
-    }
-
-    public void close(String name) {
-        audios.get(name).close();
     }
 }

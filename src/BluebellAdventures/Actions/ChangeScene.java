@@ -1,7 +1,5 @@
 package BluebellAdventures.Actions;
 
-import javax.sound.sampled.Clip;
-
 import Megumin.Actions.Action;
 import Megumin.Audio.AudioEngine;
 import Megumin.Nodes.Director;
@@ -21,7 +19,7 @@ public class ChangeScene extends Action {
     public void update(Sprite sprite) {
         Director.getInstance().setScene(scene);
         AudioEngine.getInstance().stopAll();
-        AudioEngine.getInstance().loop(audio, Clip.LOOP_CONTINUOUSLY);
+        AudioEngine.getInstance().loop(audio);
         super.update(sprite);
     }
 
