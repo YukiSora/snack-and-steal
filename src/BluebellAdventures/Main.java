@@ -3,8 +3,10 @@ package BluebellAdventures;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import javax.imageio.ImageIO;
 import javax.sound.sampled.Clip;
 
 import BluebellAdventures.Actions.ChangeScene;
@@ -41,7 +43,7 @@ public class Main {
         interact = Interact.getInstance();
         audioEngine = AudioEngine.getInstance();
         try {
-            Database.createDatabase("jdbc:mysql://localhost:3306/BluebellAdventuresRecord", "root", "root");
+            Database.createDatabase("jdbc:mysql://localhost:3306/BluebellAdventuresRecord", "yukisora", "poi");
         } catch (SQLException e) {
             System.out.println(e);
             System.exit(1);
@@ -53,6 +55,7 @@ public class Main {
         director.setSize(1280, 720);
         director.setBackground(Color.black);
         director.setUndecorated(true);
+        director.setIconImage(ImageIO.read(new File("resource/image/logo.png")));
 
         //start loading page
         director.setScene(CreateLoadingScene.createLoadingScene("resource/image/splash_screen.png"));
