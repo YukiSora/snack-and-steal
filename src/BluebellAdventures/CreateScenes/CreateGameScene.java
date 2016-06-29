@@ -194,8 +194,7 @@ public class CreateGameScene {
                             .setScore(0);
 
         //init finish line
-        Sprite finishLine = new Enemy("resource/image/natsu1.png", new Point(3705,2850))
-                            .setSpeed(0);
+        Sprite finishLine = new Snack("resource/image/natsu1.png", new Point(3705,2850));
 
         //init map sprite
         Sprite map = GameMap.getInstance("resource/image/full_map copy.jpg")
