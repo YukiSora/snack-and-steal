@@ -14,7 +14,7 @@ import Megumin.Nodes.Sprite;
 public class Interact {
     public static final int ON_KEY_PRESS = 0;
     public static final int ON_KEY_CLICK = 1;
-    public static final int ON_MOUSE_CLICK = 1;
+    public static final int ON_MOUSE_CLICK = 2;
     private static Interact interact;
     public static int tickId;
     private HashMap<Integer, HashMap<Integer, CopyOnWriteArrayList<Event>>> events;
