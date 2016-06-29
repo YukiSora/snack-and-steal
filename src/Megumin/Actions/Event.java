@@ -23,6 +23,7 @@ class Event {
     Event(Event event) {
         sprite = event.sprite;
         action = event.action;
+        sceneName = event.sceneName;
     }
 
     public Sprite getSprite() {
