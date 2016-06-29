@@ -59,20 +59,20 @@ public class EnemyMove extends MoveTo {
         if (mode == 1) {
             Point characterPosition = GameMap.getInstance().getPosition();
 
-            if (sprite.getPosition().getX() - characterSprite.getSize().getX() > -characterPosition.getX() + characterSprite.getPosition().getX()) {
+            if (sprite.getPosition().getX() > -characterPosition.getX() + characterSprite.getPosition().getX() + characterSprite.getSize().getX()) {
                 direction[0] = -1;
             }
-            else if (sprite.getPosition().getX() + characterSprite.getSize().getX() < -characterPosition.getX() + characterSprite.getPosition().getX()) {
+            else if (sprite.getPosition().getX() + sprite.getSize().getX() < -characterPosition.getX() + characterSprite.getPosition().getX()) {
                 direction[0] = 1;
             }
             else {
                 direction[0] = 0;
             }
 
-            if (sprite.getPosition().getY() - characterSprite.getSize().getY() > -characterPosition.getY() + characterSprite.getPosition().getY()) {
+            if (sprite.getPosition().getY() > -characterPosition.getY() + characterSprite.getPosition().getY() + characterSprite.getSize().getY()) {
                 direction[1] = -1;
             }
-            else if (sprite.getPosition().getY() + characterSprite.getSize().getY() < -characterPosition.getY() + characterSprite.getPosition().getY()) {
+            else if (sprite.getPosition().getY() + sprite.getSize().getY() < -characterPosition.getY() + characterSprite.getPosition().getY()) {
                 direction[1] = 1;
             }
             else {
