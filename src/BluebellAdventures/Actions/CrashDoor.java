@@ -40,7 +40,7 @@ public class CrashDoor extends Effect {
                     door.setImage("resource/image/door_open.png");
                 }
                 else {
-                    door.setImage("resource/image/door_open2.png");
+                    door.setImage("resource/image/verticaldoor_open.png");
                 }
                 int newWidth = door.getImage().getWidth();
                 int newHeight = door.getImage().getHeight();

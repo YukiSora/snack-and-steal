@@ -197,7 +197,7 @@ public class CreateGameScene {
         Sprite finishLine = new Snack("resource/image/natsu1.png", new Point(3705,2850));
 
         //init map sprite
-        Sprite map = GameMap.getInstance("resource/image/full_map copy.jpg")
+        Sprite map = GameMap.getInstance("resource/image/full_map.jpg")
                             .setPath("resource/path");
 
         //set start point
